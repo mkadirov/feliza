@@ -1,0 +1,18 @@
+{
+   "products": [
+        {
+            "id": 1,
+            "unicode": 12113,
+            "nome" : "PoloShirt",
+            "price" : "450000",
+            "category" : [
+                "sale", "New"
+            ],
+            "file" : [
+                "header", "attachment"
+            ],
+            "colors": ["red", "yellow"],
+            "disc" : "asdasd asdasdasd asdadasd asdasdasd"
+        }
+    ]
+}
