@@ -29,7 +29,7 @@ export default function ProductCard({item}) {
         <Box display='flex' justifyContent='space-between'>
         <Link to={`/product/${item.id}`}>
           <Typography gutterBottom  fontSize={16} component="div">
-            Yozgi oq ko'ylak
+            {item.title}
           </Typography>
 
           <Typography fontSize={12}>

@@ -17,9 +17,9 @@ function Product() {
     const {addToBasket, addToLastSeenList} = useContext(MyContext);
     
 
-    // useEffect(() => {
-    //   addToLastSeenList(id);
-    // }, [])
+    useEffect(() => {
+      addToLastSeenList(id);
+    }, [])
 
 
   return (

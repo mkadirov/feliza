@@ -57,7 +57,6 @@ function App() {
     } else {
       if(list.length >= 10) {
         list.shift();
-        
       }
       list.push(id);
       
