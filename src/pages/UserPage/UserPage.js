@@ -2,7 +2,7 @@ import { Close } from '@mui/icons-material'
 import { Box, IconButton, Typography } from '@mui/material'
 import React from 'react'
 
-function UserPage({setIsUserOpen}) {
+function UserPage() {
   return (
     <Box sx={{width: '100%'}} align = 'center'>
         <Box  sx={{width: '100%'}}>
@@ -12,7 +12,7 @@ function UserPage({setIsUserOpen}) {
                    Kirish
                  </Typography>
                 </Box>
-                <IconButton onClick={() => setIsUserOpen(false)}>
+                <IconButton >
                      <Close/>
                 </IconButton>
             </Box>
@@ -21,12 +21,11 @@ function UserPage({setIsUserOpen}) {
             <Typography variant='h5'>
                 Telefon raqamingizni kriting
             </Typography>
-            <Typography>
-                Tasdiqlash kodi SMS orqali yuboriladi
-            </Typography>
         </Box>
     </Box>
   )
 }
+
+
 
 export default UserPage

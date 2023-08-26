@@ -34,33 +34,7 @@ export const CategoryCardList = [
     },
 ]
 
-export const catalogList = [
-    {
-        title: 'Barcha mahsulotlar',
-        category: 'all_products'
-    },
-    {
-        title: 'Fudbolka va toplar',
-        category: 't_shirt'
-    },
-    {
-        title:  "Ko'ylaklar",
-        category: 'dress'
-    },
-    {
-        title: 'Shimlar va jinsilar',
-        category: 'jeans'
-    },
-    {
-        title: 'Islomiy kyimlar',
-        category: 'islamic'
-    },
-    {
-        title: 'Rubashka',
-        category: 'bluse'
-    },
 
-]
 
 export const productList = [
     {

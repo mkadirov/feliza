@@ -20,6 +20,7 @@ function App() {
   const initialBasketList = [];
   const initialLastSeenList = [];
 
+  const [isUserActive, setIsUserActive] = useState(false)
   
   const [likedList, setLikedList] = useState(() => {
     const storedLikedList = localStorage.getItem('likeList');
@@ -115,7 +116,9 @@ function App() {
         addToBasket,
         deleteFromBasket,
         lastSeenList,
-        addToLastSeenList
+        addToLastSeenList,
+        isUserActive,
+        setIsUserActive
         }}>
         <ThemeProvider theme={theme}>
         <Box>
@@ -128,7 +131,6 @@ function App() {
           <Route path='/product/:id' element={<Product/>}/>
           <Route path='/favorite' element={<FavoritePage/>}/>
           <Route path='/basket' element={<BasketPage/>}/>
-          
         </Routes>
       </BrowserRouter>
     </Box>

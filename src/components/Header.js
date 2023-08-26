@@ -17,14 +17,14 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import Menu from '../pages/Menu/Menu';
 import logo from '../assets/icons/Feliza-logo.png'
 import SearchPage from '../pages/SearchPage/SearchPage';
-import UserPage from '../pages/UserPage/UserPage';
+import LoginPage from '../pages/LoginPage/LoginPage';
 
 
 
 export default function HomePageHeader() {
   const[isDrawerOpen, setIsDrawerOpen] = useState(false);
   const[isSearchOpen, setIsSearchOpen] = useState(false);
-  const [isUserOpen, setIsUserOpen] = useState(false);
+  const [isLoginPageOpen, setIsLoginPageOpen] = useState(false);
 
   const IconText = styled(Typography)({
     color: 'black',
@@ -85,7 +85,7 @@ export default function HomePageHeader() {
                     Qidiruv
                 </IconText>
             </Box>
-            <Box sx={{color: 'coral', textAlign: 'center'}} onClick= {() => setIsUserOpen(true)}>
+            <Box sx={{color: 'coral', textAlign: 'center'}} onClick= {() => setIsLoginPageOpen(true)}>
                 <PermIdentityIcon sx={{color: 'primary.main'}}/>
                 <IconText sx={{display: {xs: 'none', md: 'block'}}}>
                     Kirish
@@ -130,8 +130,7 @@ export default function HomePageHeader() {
               Kirish / Röyhatdan ötish
             </Typography>
           </Box>
-
-          <Menu setIsDrawerOpen= {setIsDrawerOpen}/>
+            <Menu setIsDrawerOpen= {setIsDrawerOpen}/>
           </Box>
         </Box>
       </Drawer>
@@ -152,11 +151,11 @@ export default function HomePageHeader() {
 
       <Drawer
       anchor='bottom'
-      open = {isUserOpen}
-      onClose={() => setIsUserOpen(false)}
+      open = {isLoginPageOpen}
+      onClose={() => setIsLoginPageOpen(false)}
       >
         <Box sx={{height: '60vh', width: '100vw'}}>
-          <UserPage setIsUserOpen= {setIsUserOpen}/>
+          <LoginPage setIsLoginPageOpen= {setIsLoginPageOpen}/>
         </Box>
       </Drawer>
       

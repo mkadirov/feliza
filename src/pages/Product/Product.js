@@ -44,7 +44,9 @@ function Product() {
        onClose={()=> setIsDrawerOpen(false)}
        >
         <Box sx={{width: '100%', height: '40vh'}} >
+
           <Box align= 'center'>
+            
           <Typography  variant='h5' marginTop={3}>
             Maxsulot savatchaga qo'shildi
           </Typography>

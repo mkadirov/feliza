@@ -47,4 +47,10 @@ a{
     cursor: pointer;
   }
  
-  
+  .MuiAccordion-root {
+    box-shadow: none !important;
+  }
+
+  .MuiAccordion-root:before {
+    background-color: inherit !important;
+  }
