@@ -1,8 +1,8 @@
 import React from 'react'
 import {Box, Container, Grid} from '@mui/material'
 import HomePageHeader from '../../components/Header'
-import Slider from '../../components/HomePage/Slider'
-import SliderMain from '../../components/HomePage/Slider'
+import Slider from '../../components/Sliders/Slider'
+import SliderMain from '../../components/Sliders/Slider'
 import CategoryCard from '../../components/HomePage/CategoryCard'
 import SaleBox from '../../components/HomePage/SaleBox'
 import { CategoryCardList } from '../../data/DataList'
@@ -12,9 +12,10 @@ function Homepage() {
     const list = CategoryCardList;
   return (
     
-    <Box>
+    
+      <Box>
         <Grid container justifyContent='center'>
-            <Grid item xs={12} md= {10} lg={8} sx={{marginTop: {xs: '8vh'}}}>
+            <Grid item xs={12} md= {12} lg={12} sx={{marginTop: {xs: '8vh', sm: '70px', lg: '80px'}}}>
               <SliderMain/>
               <SaleBox/>
               {
@@ -27,6 +28,7 @@ function Homepage() {
             </Grid>
         </Grid>
     </Box>
+    
     
   )
 }

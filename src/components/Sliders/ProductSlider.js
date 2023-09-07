@@ -18,7 +18,7 @@ const ProductSlider = ({list}) => {
             list?.map((item, idx) => {
                 return(
 
-                    <Box sx={{width: '100%', height: '70vh', overflow: 'hidden'}} key={idx + '123'}>
+                    <Box sx={{width: '100%', height: '60vh', overflow: 'hidden'}} key={idx + '123'}>
                         <img src={item} alt="" />
                     </Box>
                 )

@@ -3,6 +3,7 @@ import {Box, Grid, Typography} from '@mui/material'
 import { useParams } from 'react-router-dom'
 import ProductCard from '../../components/Global/Cards/ProductCard';
 import { productList } from '../../data/DataList';
+import { grey } from '@mui/material/colors';
 
 
 function Products() {
@@ -11,14 +12,14 @@ function Products() {
 
     
   return (
-    <Box sx={{marginTop: '12vh'}} id='product_page'>
+    <Box sx={{pt: '70px'}} id='product_page' >
        <Box align='center'> 
        <h4 className="logo" >
             {category}
         </h4>
        </Box>
 
-       <Grid container py={2} spacing={2}>
+       <Grid container py={2} spacing={1}>
         {
           list.filter(item => {
             if(category=== 'all_products') return true

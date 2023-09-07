@@ -10,7 +10,6 @@ import {Drawer, styled} from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link,  useNavigate } from 'react-router-dom';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
@@ -18,6 +17,7 @@ import Menu from '../pages/Menu/Menu';
 import logo from '../assets/icons/Feliza-logo.png'
 import SearchPage from '../pages/SearchPage/SearchPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
+
 
 
 
@@ -52,8 +52,8 @@ export default function HomePageHeader() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       
-      <AppBar position="fixed" sx={{backgroundColor: 'white', boxShadow: 'none', height: {xs: '8vh', md: '10vh', lg: '8vh'}, borderBottom: ' 1px solid rgb(234, 87, 116)'}}>
-        <Toolbar sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+      <AppBar position="fixed" sx={{backgroundColor: 'white', boxShadow: 'none', height: {xs: '8vh', sm: '70px', lg: '80px'}, borderBottom: ' 1px solid rgb(234, 87, 116)'}}>
+        <Toolbar sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '100%'}}>
          <Box display='flex' alignItems='center' >
          <IconButton
             size="large"
@@ -81,6 +81,7 @@ export default function HomePageHeader() {
         <Box sx={{display: 'flex', gap: 3}}>
             <Box className= 'searchBox' sx={{ textAlign: 'center'}} onClick={() => setIsSearchOpen(true)}>
                 <SearchIcon sx={{color: 'primary.main'}}/>
+                
                 <IconText sx={{display: {xs: 'none', md: 'block'}}}>
                     Qidiruv
                 </IconText>
@@ -118,7 +119,7 @@ export default function HomePageHeader() {
       open = {isDrawerOpen}
       onClose={() => setIsDrawerOpen(false)}
       >
-        <Box sx={{width: {xs: '100vw', lg: '20vw', display: 'flex', justifyContent: 'center'}}} role='presentation'>
+        <Box sx={{width: {xs: '80vw', lg: '20vw', display: 'flex', justifyContent: 'center'}}} role='presentation'>
           
           <Box sx={{width: '90%', py: 2}}>
           <Box justifyContent='space-between' display='flex' alignItems='center' sx={{borderBottom: '1px solid black', pb: 1}}>

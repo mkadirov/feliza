@@ -33,6 +33,9 @@ function BasketCard({item}) {
                         <Typography>
                             Soni: {product.quantity}
                         </Typography>
+                        <Typography>
+                            O'lchami: {product.size}
+                        </Typography>
                         </Box>
 
                         <Typography>

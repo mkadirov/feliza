@@ -3,6 +3,7 @@ import { Box, IconButton, Typography, Button, TextField } from '@mui/material'
 import React, {useState} from 'react'
 import { userList } from '../../data/UserList'
 
+
 function LoginPage({setIsLoginPageOpen}) {
     const [isRegistreted, setIsRegistreted] = useState(true);
     const [tel, setTel] = useState('');
@@ -13,7 +14,7 @@ function LoginPage({setIsLoginPageOpen}) {
     
 
   return (
-    <Box sx={{width: '100%'}} align = 'center'>
+    <Box sx={{width: '100%'}} align='center'>  
         <Box  sx={{width: '100%'}}>
             <Box display='flex'   padding={2} alignItems='center'>
                 <Box flex={1} align= 'center'>
@@ -78,6 +79,8 @@ function LoginPage({setIsLoginPageOpen}) {
                     </Box>)
             }
         </Box>
+
+        
     </Box>
   )
 }

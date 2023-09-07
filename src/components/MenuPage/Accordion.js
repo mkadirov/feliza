@@ -24,11 +24,13 @@ function AccordionBtn({setIsDrawerOpen, item}) {
         {
             item.list.map((i, idx) => {
               return(
-                <Link to={`/products/${i.category}`} key={i.title}>
-                <Typography marginLeft='30px' onClick={() => setIsDrawerOpen(false)} my={1}>
-                  {i.title}
-                </Typography>
-                </Link>
+                <Box key={i.title} sx={{borderBottom: '1px solid lightgray', py: 1}}>
+                  <Link to={`/products/${i.category}`} >
+                    <Typography marginLeft='30px' onClick={() => setIsDrawerOpen(false)} my={1}>
+                     {i.title}
+                    </Typography>
+                  </Link>
+                </Box>
               )
             })
           }

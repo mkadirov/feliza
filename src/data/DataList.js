@@ -54,7 +54,28 @@ export const productList = [
             'dress', 'new', 'summer'
         ],
         color: 'yellow',
-        size: ['XS','S', 'M', 'L', 'XL']
+        sizes: [
+            {
+                size: 'XS',
+                quantity: 6
+            },
+            {
+                size: 'S',
+                quantity: 6
+            },
+            {
+                size: 'M',
+                quantity: 0
+            },
+            {
+                size: 'L',
+                quantity: 6
+            },
+            {
+                size: 'XL',
+                quantity: 6
+            }
+        ]
     },
     {
         id: 2,
@@ -73,7 +94,28 @@ export const productList = [
             'dress', 'new', 'summer'
         ],
         color: 'black',
-        size: ['XS','S', 'M', 'L', 'XL']
+        sizes: [
+            {
+                size: 'XS',
+                quantity: 6
+            },
+            {
+                size: 'S',
+                quantity: 6
+            },
+            {
+                size: 'M',
+                quantity: 0
+            },
+            {
+                size: 'L',
+                quantity: 6
+            },
+            {
+                size: 'XL',
+                quantity: 6
+            }
+        ]
     },
     {
         id: 3,
@@ -92,7 +134,28 @@ export const productList = [
             'dress', 'new', 'summer'
         ],
         color: 'blue',
-        size: ['XS','S', 'M', 'L', 'XL']
+        sizes: [
+            {
+                size: 'XS',
+                quantity: 6
+            },
+            {
+                size: 'S',
+                quantity: 6
+            },
+            {
+                size: 'M',
+                quantity: 0
+            },
+            {
+                size: 'L',
+                quantity: 6
+            },
+            {
+                size: 'XL',
+                quantity: 6
+            }
+        ]
     },
     {
         id: 4,
@@ -111,7 +174,28 @@ export const productList = [
             'dress', 'new', 'summer'
         ],
         color: 'white',
-        size: ['XS','S', 'M', 'L', 'XL']
+        sizes: [
+            {
+                size: 'XS',
+                quantity: 6
+            },
+            {
+                size: 'S',
+                quantity: 6
+            },
+            {
+                size: 'M',
+                quantity: 0
+            },
+            {
+                size: 'L',
+                quantity: 6
+            },
+            {
+                size: 'XL',
+                quantity: 6
+            }
+        ]
     },
     {
         id: 5,
@@ -130,7 +214,28 @@ export const productList = [
             'dress', 'new', 'summer'
         ],
         color: 'black',
-        size: ['XS','S', 'M', 'L', 'XL']
+        sizes: [
+            {
+                size: 'XS',
+                quantity: 6
+            },
+            {
+                size: 'S',
+                quantity: 6
+            },
+            {
+                size: 'M',
+                quantity: 0
+            },
+            {
+                size: 'L',
+                quantity: 6
+            },
+            {
+                size: 'XL',
+                quantity: 6
+            }
+        ]
     },
     {
         id: 6,
@@ -149,7 +254,28 @@ export const productList = [
             'dress', 'new', 'summer'
         ],
         color: 'red',
-        size: ['XS','S', 'M', 'L', 'XL']
+        sizes: [
+            {
+                size: 'XS',
+                quantity: 6
+            },
+            {
+                size: 'S',
+                quantity: 6
+            },
+            {
+                size: 'M',
+                quantity: 0
+            },
+            {
+                size: 'L',
+                quantity: 6
+            },
+            {
+                size: 'XL',
+                quantity: 6
+            }
+        ]
     },
     {
         id: 7,
@@ -167,7 +293,28 @@ export const productList = [
             't_shirt', 'new', 'summer', 'street'
         ],
         color: 'blue',
-        size: ['XS','S', 'M', 'L', 'XL']
+        sizes: [
+            {
+                size: 'XS',
+                quantity: 6
+            },
+            {
+                size: 'S',
+                quantity: 6
+            },
+            {
+                size: 'M',
+                quantity: 0
+            },
+            {
+                size: 'L',
+                quantity: 6
+            },
+            {
+                size: 'XL',
+                quantity: 6
+            }
+        ]
     },
     {
         id: 8,
@@ -185,7 +332,28 @@ export const productList = [
             't_shirt', 'summer', 'new', 'street'
         ],
         color: 'white',
-        size: ['XS','S', 'M', 'L', 'XL']
+        sizes: [
+            {
+                size: 'XS',
+                quantity: 6
+            },
+            {
+                size: 'S',
+                quantity: 6
+            },
+            {
+                size: 'M',
+                quantity: 0
+            },
+            {
+                size: 'L',
+                quantity: 6
+            },
+            {
+                size: 'XL',
+                quantity: 6
+            }
+        ]
     },
     {
         id: 9,
@@ -203,7 +371,28 @@ export const productList = [
             't_shirt', 'summer', 'new', 'street'
         ],
         color: 'white',
-        size: ['XS','S', 'M', 'L', 'XL']
+        sizes: [
+            {
+                size: 'XS',
+                quantity: 6
+            },
+            {
+                size: 'S',
+                quantity: 6
+            },
+            {
+                size: 'M',
+                quantity: 0
+            },
+            {
+                size: 'L',
+                quantity: 6
+            },
+            {
+                size: 'XL',
+                quantity: 6
+            }
+        ]
     },
     {
         id: 10,
@@ -221,7 +410,28 @@ export const productList = [
             't_shirt', 'summer', 'new', 'street'
         ],
         color: 'black',
-        size: ['XS','S', 'M', 'L', 'XL']
+        sizes: [
+            {
+                size: 'XS',
+                quantity: 6
+            },
+            {
+                size: 'S',
+                quantity: 6
+            },
+            {
+                size: 'M',
+                quantity: 0
+            },
+            {
+                size: 'L',
+                quantity: 6
+            },
+            {
+                size: 'XL',
+                quantity: 6
+            }
+        ]
     },
     {
         id: 11,
@@ -240,7 +450,28 @@ export const productList = [
             't_shirt', 'summer', 'new', 'street'
         ],
         color: 'white',
-        size: ['XS','S', 'M', 'L', 'XL']
+        sizes: [
+            {
+                size: 'XS',
+                quantity: 6
+            },
+            {
+                size: 'S',
+                quantity: 6
+            },
+            {
+                size: 'M',
+                quantity: 0
+            },
+            {
+                size: 'L',
+                quantity: 6
+            },
+            {
+                size: 'XL',
+                quantity: 6
+            }
+        ]
     },
     {
         id: 12,
@@ -259,7 +490,28 @@ export const productList = [
             't_shirt', 'summer', 'new', 'street'
         ],
         color: 'black',
-        size: ['XS','S', 'M', 'L', 'XL']
+        sizes: [
+            {
+                size: 'XS',
+                quantity: 6
+            },
+            {
+                size: 'S',
+                quantity: 6
+            },
+            {
+                size: 'M',
+                quantity: 0
+            },
+            {
+                size: 'L',
+                quantity: 6
+            },
+            {
+                size: 'XL',
+                quantity: 6
+            }
+        ]
     },
     {
         id: 13,
@@ -277,7 +529,28 @@ export const productList = [
             'jeans', 'summer', 'new'
         ],
         color: 'blue',
-        size: ['XS','S', 'M', 'L', 'XL']
+        sizes: [
+            {
+                size: 'XS',
+                quantity: 6
+            },
+            {
+                size: 'S',
+                quantity: 6
+            },
+            {
+                size: 'M',
+                quantity: 0
+            },
+            {
+                size: 'L',
+                quantity: 6
+            },
+            {
+                size: 'XL',
+                quantity: 6
+            }
+        ]
     },
     {
         id: 14,
@@ -295,7 +568,28 @@ export const productList = [
             'jeans', 'summer', 'new'
         ],
         color: 'white',
-        size: ['XS','S', 'M', 'L', 'XL']
+        sizes: [
+            {
+                size: 'XS',
+                quantity: 6
+            },
+            {
+                size: 'S',
+                quantity: 6
+            },
+            {
+                size: 'M',
+                quantity: 0
+            },
+            {
+                size: 'L',
+                quantity: 6
+            },
+            {
+                size: 'XL',
+                quantity: 6
+            }
+        ]
     },
     {
         id: 15,
@@ -314,7 +608,28 @@ export const productList = [
             'jeans', 'summer', 'new'
         ],
         color: 'black',
-        size: ['XS','S', 'M', 'L', 'XL']
+        sizes: [
+            {
+                size: 'XS',
+                quantity: 6
+            },
+            {
+                size: 'S',
+                quantity: 6
+            },
+            {
+                size: 'M',
+                quantity: 0
+            },
+            {
+                size: 'L',
+                quantity: 6
+            },
+            {
+                size: 'XL',
+                quantity: 6
+            }
+        ]
     },
     {
         id: 16,
@@ -332,7 +647,28 @@ export const productList = [
             'bluse', 'summer', 'new', 'classic'
         ],
         color: 'violet',
-        size: ['XS','S', 'M', 'L', 'XL']
+        sizes: [
+            {
+                size: 'XS',
+                quantity: 6
+            },
+            {
+                size: 'S',
+                quantity: 6
+            },
+            {
+                size: 'M',
+                quantity: 0
+            },
+            {
+                size: 'L',
+                quantity: 6
+            },
+            {
+                size: 'XL',
+                quantity: 6
+            }
+        ]
     },
     {
         id: 17,
@@ -350,7 +686,28 @@ export const productList = [
             'bluse', 'summer', 'new', 'classic'
         ],
         color: 'green',
-        size: ['XS','S', 'M', 'L', 'XL']
+        sizes: [
+            {
+                size: 'XS',
+                quantity: 6
+            },
+            {
+                size: 'S',
+                quantity: 6
+            },
+            {
+                size: 'M',
+                quantity: 0
+            },
+            {
+                size: 'L',
+                quantity: 6
+            },
+            {
+                size: 'XL',
+                quantity: 6
+            }
+        ]
     },
     {
         id: 18,
@@ -369,7 +726,28 @@ export const productList = [
             'bluse', 'summer', 'new', 'classic'
         ],
         color: 'white',
-        size: ['XS','S', 'M', 'L', 'XL']
+        sizes: [
+            {
+                size: 'XS',
+                quantity: 6
+            },
+            {
+                size: 'S',
+                quantity: 6
+            },
+            {
+                size: 'M',
+                quantity: 0
+            },
+            {
+                size: 'L',
+                quantity: 6
+            },
+            {
+                size: 'XL',
+                quantity: 6
+            }
+        ]
     },
     {
         id: 19,
@@ -387,7 +765,28 @@ export const productList = [
             'bluse', 'summer', 'new', 'classic'
         ],
         color: 'blue',
-        size: ['XS','S', 'M', 'L', 'XL']
+        sizes: [
+            {
+                size: 'XS',
+                quantity: 6
+            },
+            {
+                size: 'S',
+                quantity: 6
+            },
+            {
+                size: 'M',
+                quantity: 0
+            },
+            {
+                size: 'L',
+                quantity: 6
+            },
+            {
+                size: 'XL',
+                quantity: 6
+            }
+        ]
     },
     
 ]

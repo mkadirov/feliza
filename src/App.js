@@ -59,9 +59,9 @@ function App() {
       if(list.length >= 10) {
         list.shift();
       }
-      list.push(id);
+      const newList = [id, ...list]
       
-      setLastSeenList(list)
+      setLastSeenList(newList)
     }
     
   }
@@ -72,17 +72,17 @@ function App() {
       const newList = likedList.filter(item => item != id);
       setLikedList(newList)
     } else {
-      setLikedList([...likedList, id]);
+      setLikedList([id, ...likedList]);
     }
   };
 
-  const addToBasket = (id) => {  
+  const addToBasket = (id, size) => {  
     if(basketList.some(item => item.id == id)) {
       setBasketList(prevList => prevList.map(
         item => item.id == id? {...item, quantity: (item.quantity + 1)} : item
       ))
     } else {
-      setBasketList([...basketList, {id: id, quantity: 1}])
+      setBasketList([...basketList, {id: id, quantity: 1, size: size}])
     }
   }
 

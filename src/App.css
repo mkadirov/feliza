@@ -53,4 +53,11 @@ a{
 
   .MuiAccordion-root:before {
     background-color: inherit !important;
+    
   }
+
+  .smallSliderBox {
+    width: 40vw !important;
+  }
+
+  

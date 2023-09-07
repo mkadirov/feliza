@@ -13,14 +13,14 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 
 
 
-export default function ProductCard({item}) {
+export default function SmallSliderCards({item}) {
 
     const {likedList, changeLikedList} = useContext(MyContext)
   return (
     
     <Card sx={{ maxWidth: 445, border: 0}} >
       <Link to={`/product/${item.id}`}>
-      <Box sx={{height: {xs: '300px', md: '500px'}, overflow: 'hidden'}}>
+      <Box sx={{height: {xs: '200px', md: '350px'}, overflow: 'hidden'}} >
         <img src={item.url} alt="" />
       </Box>
       </Link>
