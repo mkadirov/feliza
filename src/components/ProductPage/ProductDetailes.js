@@ -17,11 +17,10 @@ function ProductDetailes() {
     const lastSeenProducts = list.filter(item => lastSeenList.includes(('' + item.id)))
     const likedProducts = list.filter(item => likedList.includes(item.id))
 
-    console.log(likedList);
-    console.log(lastSeenList);
     
     
   return (
+
     <Box marginTop={3}>
         <Box sx={{borderBottom: '1px solid lightgray'}}>
             <Accordion>
@@ -30,13 +29,16 @@ function ProductDetailes() {
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                 >
-                <Typography>Mahsulot haqida to'liqroq</Typography>
+                    <Typography>Mahsulot haqida to'liqroq</Typography>
+
                 </AccordionSummary>
                 <AccordionDetails>
+
                     <Typography>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
                         malesuada lacus ex, sit amet blandit leo lobortis eget.
                     </Typography>
+
                 </AccordionDetails>
             </Accordion>
         </Box>

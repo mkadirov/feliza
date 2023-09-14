@@ -50,10 +50,9 @@ export default function HomePageHeader() {
     };
   }, [isSearchOpen]);
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      
+    <>
       <AppBar position="fixed" sx={{backgroundColor: 'white', boxShadow: 'none', height: {xs: '8vh', sm: '70px', lg: '80px'}, borderBottom: ' 1px solid rgb(234, 87, 116)'}}>
-        <Toolbar sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '100%'}}>
+        <Toolbar sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '100%', px: {md: '20px', lg: '50px', xl: '200px'}}}>
          <Box display='flex' alignItems='center' >
          <IconButton
             size="large"
@@ -62,7 +61,7 @@ export default function HomePageHeader() {
             aria-label="menu"
             sx={{ mr: 2, 
                 color: 'black' , 
-                '&:hover': { backgroundColor: 'white'},
+                '&:hover': { backgroundColor: 'white'}, 
                 height: '4vh',
                 width: '4vh',
                 marginLeft: 1
@@ -79,33 +78,33 @@ export default function HomePageHeader() {
           </Link>
          </Box>
         <Box sx={{display: 'flex', gap: 3}}>
-            <Box className= 'searchBox' sx={{ textAlign: 'center'}} onClick={() => setIsSearchOpen(true)}>
+            <Box className= 'searchBox' sx={{ display: 'flex', alignItems: 'center', gap: 1}} onClick={() => setIsSearchOpen(true)}>
                 <SearchIcon sx={{color: 'primary.main'}}/>
                 
-                <IconText sx={{display: {xs: 'none', md: 'block'}}}>
+                <IconText sx={{display: {xs: 'none', lg: 'inline'}}}>
                     Qidiruv
                 </IconText>
             </Box>
-            <Box sx={{color: 'coral', textAlign: 'center'}} onClick= {() => setIsLoginPageOpen(true)}>
+            <Box sx={{color: 'coral', display: 'flex', alignItems: 'center', gap: 1}} onClick= {() => setIsLoginPageOpen(true)}>
                 <PermIdentityIcon sx={{color: 'primary.main'}}/>
-                <IconText sx={{display: {xs: 'none', md: 'block'}}}>
+                <IconText sx={{display: {xs: 'none', lg: 'inline'}}}>
                     Kirish
                 </IconText>
             </Box>
 
             <Link to='/favorite/#favorite_page'>
-            <Box sx={{color: 'coral', textAlign: 'center'}}>
+            <Box sx={{color: 'coral', display: 'flex', alignItems: 'center', gap: 1}}>
                 <FavoriteBorderIcon sx={{color: 'primary.main'}}/>
-                <IconText sx={{display: {xs: 'none', md: 'block'}}}>
+                <IconText sx={{display: {xs: 'none', lg: 'inline'}}}>
                     Saralangan
                 </IconText>
             </Box>
             </Link>
 
             <Link to='/basket'>
-            <Box sx={{color: 'coral', textAlign: 'center'}}>
+            <Box sx={{color: 'coral', display: 'flex', alignItems: 'center', gap: 1}}>
                 <ShoppingCartOutlinedIcon sx={{color: 'primary.main'}}/>
-                <IconText sx={{display: {xs: 'none', md: 'block'}}}>
+                <IconText sx={{display: {xs: 'none', lg: 'inline'}}}>
                     Savatcha
                 </IconText>
             </Box>
@@ -160,6 +159,6 @@ export default function HomePageHeader() {
         </Box>
       </Drawer>
       
-    </Box>
+    </>
   );
 }

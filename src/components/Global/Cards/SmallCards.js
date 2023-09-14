@@ -14,9 +14,11 @@ function SmallCards({item}) {
         <Grid container spacing={2}>
             <Grid item xs={4}>
                 <Link to={`/product/${item.id}`}>
-                    <Box sx={{height: {xs: '180px', md: '600px'}, overflow: 'hidden'}}>
-                       <img src={item.url} alt="" />
-                    </Box>
+                    
+                        <Box sx={{height: {xs: '180px', md: '600px'}, overflow: 'hidden'}}>
+                           <img src={item.url} alt="" />
+                        </Box>
+                    
                 </Link>
             </Grid>
             <Grid item xs={8}>

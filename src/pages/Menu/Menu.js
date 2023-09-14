@@ -1,6 +1,5 @@
 import { Box, Typography, Accordion} from '@mui/material'
 import React from 'react'
-import { Link } from 'react-router-dom';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -14,7 +13,6 @@ import phoneIcon from  '../../assets/icons/phone.png'
 
 function Menu({setIsDrawerOpen}) {
   const clothesCategory = clothCategoryList;
-
   return (
 
     <Box>
@@ -76,7 +74,6 @@ function Menu({setIsDrawerOpen}) {
           <Box sx={{width: '25px', height: '25px'}}>
             <img src={orderIcon} alt="" />
           </Box>
-
           <Typography>
             Shaxsiy kabinet
           </Typography>
