@@ -9,7 +9,7 @@ import SmallSlider from '../Sliders/SmallSlider';
 import MyContext from '../Context/MyContext';
 import { productList } from '../../data/DataList';
 
-function ProductDetailes() {
+function ProductDetailes({descriptionUZB, descriptionRUS}) {
 
 
     const {likedList, lastSeenList} = useContext(MyContext)
@@ -35,8 +35,7 @@ function ProductDetailes() {
                 <AccordionDetails>
 
                     <Typography>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                        malesuada lacus ex, sit amet blandit leo lobortis eget.
+                        {descriptionUZB}
                     </Typography>
 
                 </AccordionDetails>

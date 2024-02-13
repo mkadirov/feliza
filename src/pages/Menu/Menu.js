@@ -14,7 +14,6 @@ import phoneIcon from  '../../assets/icons/phone.png'
 function Menu({setIsDrawerOpen}) {
   const clothesCategory = clothCategoryList;
   return (
-
     <Box>
       <Box sx={{borderBottom: '1px solid black', py: 2}}>
       {

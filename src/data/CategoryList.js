@@ -6,103 +6,31 @@ import islamicIcon from '../assets/icons/woman.png'
 
 export const clothCategoryList = [
     {
-        title: 'Kyimlar',
-        icon: dressIcon,
-        list: [
-            {
-                title: 'Barcha mahsulotlar',
-                category: 'all_products'
-            },
-            {
-                title: 'Fudbolka va toplar',
-                category: 't_shirt'
-            },
-            {
-                title:  "Ko'ylaklar",
-                category: 'dress'
-            },
-            {
-                title: 'Shimlar va jinsilar',
-                category: 'jeans'
-            },
-            {
-                title: 'Islomiy kyimlar',
-                category: 'islamic'
-            },
-            {
-                title: 'Rubashka',
-                category: 'bluse'
-            },
-        
-        ]
+        nameUZB: 'Kiyimlar',
+        nameRUS: 'Odejdi',
+        icon: dressIcon
     },
 
     {
-        title: 'Islomiy Kyimlar',
-        icon: islamicIcon,
-        list: [
-            {
-                title: 'Barcha mahsulotlar',
-                category: 'islamic'
-            },
-            {
-                title: 'Hijoblar',
-                category: 'khijab'
-            },
-            {
-                title:  "Ko'ylaklar",
-                category: 'islamic_dress'
-            },
-            {
-                title: 'Taqinchoqlar',
-                category: 'islamic_jawellery'
-            }
-        ]
+        nameUZB: 'Islomiy Kiyimlar',
+        nameRUS: 'Religioznie odejdi',
+        icon: islamicIcon
     },
 
     {
-        title: 'Poyabzallar',
-        icon: footwear,
-        list: [
-            {
-                title: 'Barcha mahsulotlar',
-                category: 'footwear'
-            },
-            {
-                title: 'Bazimlar uchun',
-                category: 'party_foot_wear'
-            },
-            {
-                title:  "Sport poyabzallari",
-                category: 'sport_foot_wear'
-            },
-            {
-                title: 'Shippaklar',
-                category: 'slipper'
-            }
-        ]
+        nameUZB: 'Poyabzallar',
+        nameRUS: 'Obuvi',
+        icon: footwear
     },
 
     {
-        title: 'Aksessuarlar',
-        icon: accsessoires,
-        list: [
-            {
-                title: 'Barcha mahsulotlar',
-                category: 'accsessoires'
-            },
-            {
-                title: 'Sumkalar',
-                category: 'bags'
-            },
-            {
-                title:  "Ko'zoynaklar",
-                category: 'sun_glasses'
-            },
-            {
-                title: "Belbog'lar",
-                category: 'belt'
-            }
-        ]
+        nameUZB: 'Aksessuarlar',
+        nameRUS: 'Akksesuari',
+        icon: accsessoires
+    },
+    {
+        nameUZB: 'Sumkalar',
+        nameRUS: 'Sumki',
+        icon: accsessoires
     }
 ]

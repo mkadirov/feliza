@@ -4,19 +4,27 @@ import React, { useContext } from 'react'
 import MyContext from '../../Context/MyContext'
 import { grey } from '@mui/material/colors'
 import { Link } from 'react-router-dom'
+import ColorCircle from '../ColorCircle'
+import { deleteCartItem } from '../../../api/Basket'
 
-function BasketCard({item}) {
+function BasketCard({item, setListSize}) {
 
-    const {basketList, deleteFromBasket} = useContext(MyContext)
-    const product = basketList.find(b => b.id == item.id)
+
+    const deleteCartItemById = async() => {
+        const res = await deleteCartItem(item.cartItemId)
+        if(res.success) {
+            setListSize(prevSize => prevSize -1)
+        }
+    }
+    
   return (
     <Box sx={{height: {xs: '180px', md: '600px'}, marginBottom: 2, overflow: 'hidden', pr: 2,pb:2,   borderBottom: '1px solid grey'}}>
         <Grid container spacing={2}>
             <Grid item xs={4}>
-                <Link to={`/product/${item.id}`}>
-                <Box sx={{height: {xs: '180px', md: '600px'}, overflow: 'hidden'}}>
-                    <img src={item.url} alt="" />
-                </Box>
+                <Link to={`/product/${item.productId}`}>
+                    <Box sx={{height: {xs: '180px', md: '600px'}, overflow: 'hidden'}}>
+                        <img src={item.productImages[0].url} alt="" />
+                    </Box>
                 </Link>
             </Grid>
             <Grid item xs={8}>
@@ -24,32 +32,36 @@ function BasketCard({item}) {
 
                     <Box display='flex' justifyContent='space-between' >
                         <Box>
-                        <Typography>
-                           {item.title}
-                        </Typography>
-                        <Typography color={grey[400]}>
-                          Ref:  {item.barcode}
-                        </Typography>
-                        <Typography>
-                            Soni: {product.quantity}
-                        </Typography>
-                        <Typography>
-                            O'lchami: {product.size}
-                        </Typography>
+                            <Typography sx={{marginBottom: 3}}>
+                               {item.nameUZB}
+                            </Typography>
+                            <Typography >
+                                Soni: {item.quantity}
+                            </Typography>
+                            <Typography>
+                                O'lchami: {item.productSizeVariant.size}
+                            </Typography>
+
+                            <Box display= 'flex'>
+                                <ColorCircle color = {item.colorCode}/>
+                                <Typography sx={{marginLeft: 2}}>
+                                    {item.colorNameUZB}
+                                </Typography>
+                            </Box>
+                            <Typography>
+                                Art.NR: {item.productSizeVariant.barCode}
+                            </Typography>
                         </Box>
 
                         <Typography>
-                            {item.price * product.quantity} so'm
+                            {item.sellPrice * item.quantity} so'm
                         </Typography>
-
-                        
-                        
                     </Box>
 
                     <Box display='flex' justifyContent='end'>
                         
                         <Box>
-                            <IconButton sx={{marginRight: 1, color: 'primary.main'}} onClick={() => deleteFromBasket(item.id)}>
+                            <IconButton sx={{marginRight: 1, color: 'primary.main'}} onClick={deleteCartItemById}>
                                 <DeleteOutline/>
                             </IconButton>
                         </Box>

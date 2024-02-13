@@ -10,27 +10,19 @@ import Product from './pages/Product/Product';
 import FavoritePage from './pages/FavoritePage/FavoritePage';
 import BasketPage from './pages/BasketPage/BasketPage';
 import MyContext from './components/Context/MyContext';
-
-
+import { addProductToBasket, deleteCartItem } from './api/Basket';
+import UserPage from './pages/UserPage/UserPage';
+import { addLikedItem, deleteLikedItem, getLikedItems } from './api/LikedList';
+import CheckOut from './pages/CheckOut/CheckOut';
 
 
 function App() {
 
-  const initialLikeList = [];
-  const initialBasketList = [];
   const initialLastSeenList = [];
-
+  const [isLoginPageOpen, setIsLoginPageOpen] = useState(false);
   const [isUserActive, setIsUserActive] = useState(false)
-  
-  const [likedList, setLikedList] = useState(() => {
-    const storedLikedList = localStorage.getItem('likeList');
-    return storedLikedList? JSON.parse(storedLikedList) : initialLikeList;
-  });
-
-  const [basketList, setBasketList] = useState(() => {
-    const storedBasketList = localStorage.getItem('myBasketList');
-    return storedBasketList? JSON.parse(storedBasketList) : initialBasketList;
-  });
+  const [user, setUser] = useState(1);
+  const [likedList, setLikedList] = useState([]);
 
   const [lastSeenList, setLastSeenList] = useState(() => {
     const storedLastSeenList = localStorage.getItem('lastSeen');
@@ -38,12 +30,16 @@ function App() {
   })
   
   useEffect(() => {
-    localStorage.setItem('likeList', JSON.stringify(likedList))
-  }, [likedList]);
+    refreshLikedList()
+  }, []);
 
-  useEffect(() => {
-    localStorage.setItem('myBasketList', JSON.stringify(basketList))
-  }, [basketList]);
+  const refreshLikedList = async() => {
+    const res = await getLikedItems(user);
+    if(res.success) {
+      setLikedList(res.data)
+      
+    }
+  }
 
   useEffect(() => {
     localStorage.setItem('lastSeen', JSON.stringify(lastSeenList))
@@ -60,35 +56,68 @@ function App() {
         list.shift();
       }
       const newList = [id, ...list]
-      
       setLastSeenList(newList)
     }
-    
   }
 
-  const  changeLikedList =(id) =>{
-
-    if(likedList.includes(id)) {
-      const newList = likedList.filter(item => item != id);
-      setLikedList(newList)
+  const changeLikedList =(id) => {
+    const idex = getIndexById(id)
+    console.log(idex);
+    if(checkIfIdExists(id)) {
+      console.log('Öchirish');
+      const likedItem = getObjectById(id)
+      deleteLikedItemFromList(likedItem.id)
     } else {
-      setLikedList([id, ...likedList]);
+      addLikedItemToList(id)
     }
   };
 
-  const addToBasket = (id, size) => {  
-    if(basketList.some(item => item.id == id)) {
-      setBasketList(prevList => prevList.map(
-        item => item.id == id? {...item, quantity: (item.quantity + 1)} : item
-      ))
-    } else {
-      setBasketList([...basketList, {id: id, quantity: 1, size: size}])
+  const checkIfIdExists = (targetId) => {
+    console.log(likedList[0]?.product?.id);
+    return likedList.some(obj => obj.product.id == targetId);
+  };
+
+  const getObjectById = (targetId) => {
+    return likedList.find(obj => obj.product.id == targetId);
+  };
+
+  const getIndexById = (targetId) => {
+    return likedList.findIndex(obj => obj.product.id == targetId);
+  };
+
+  const deleteLikedItemFromList = async(id) => {
+    const res = await deleteLikedItem(id);
+    if(res.success) {
+      // setLikedList(prevArray => prevArray.filter(item => item.))
+      refreshLikedList()
     }
   }
 
-  const deleteFromBasket = (id) => {
-    const newList = basketList.filter(item => item.id !=id);
-    setBasketList(newList);
+  const addLikedItemToList = async(id) => {
+    const jsonBody = {
+      customerId: user,
+      productId: id
+    }
+    const res = await addLikedItem(jsonBody)
+    if(res.success) {
+      setLikedList([...likedList, jsonBody])
+      refreshLikedList()
+    }
+  }
+
+  const addToBasket = async(productSizeVariantId) => {  
+    const cartItem = {
+      customerId: user,
+      productSizeVariantId: productSizeVariantId,
+      quantity: 1
+    }
+
+    const res = await addProductToBasket(cartItem);
+    if(res.success) {
+      alert("Maxsulot savatchaga qo'shildi")
+    } else {
+      console.log('Xatolik');
+    }
   }
 
   
@@ -107,18 +136,19 @@ function App() {
 });
 
   return (
-
       <MyContext.Provider 
       value={{
         likedList, 
         changeLikedList,
-        basketList,
         addToBasket,
-        deleteFromBasket,
         lastSeenList,
         addToLastSeenList,
         isUserActive,
-        setIsUserActive
+        setIsUserActive,
+        user,
+        setUser,
+        isLoginPageOpen,
+        setIsLoginPageOpen
         }}>
         <ThemeProvider theme={theme}>
         <Box>
@@ -126,11 +156,13 @@ function App() {
       <HomePageHeader/>
         <Routes>
           <Route path='/' element={<Homepage/>}/>
-          <Route path='/products/:category' element={<Products/>}/>
+          <Route path='/products/:id' element={<Products/>}/>
           <Route path='/menu' element={<Menu/>}/>
           <Route path='/product/:id' element={<Product/>}/>
           <Route path='/favorite' element={<FavoritePage/>}/>
           <Route path='/basket' element={<BasketPage/>}/>
+          <Route path='/user_page' element = {<UserPage/>}/>
+          <Route path='/checkout' element = {<CheckOut/>}/>
         </Routes>
       </BrowserRouter>
     </Box>

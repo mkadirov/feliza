@@ -1,14 +1,31 @@
 import { Box, Typography } from '@mui/material'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import MyContext from '../../components/Context/MyContext'
 import BasketCard from '../../components/Global/Cards/BasketCard'
 import { productList } from '../../data/DataList';
 import Footer from '../../components/Footer/Footer';
+import { getCartItemsByCustomerId } from '../../api/Basket';
 
 function BasketPage() {
 
-  const {basketList} = useContext(MyContext);
-  const list = productList;
+  const {user} = useContext(MyContext);
+  const [productList, setProductList] = useState([])
+  const [listSize, setListSize] = useState(0)
+
+  console.log(user);
+
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      
+      const res = await getCartItemsByCustomerId(user);
+      if(res.success) {
+        setProductList(res.data)
+        setListSize(res.data.length)
+      }
+    }
+    fetchData();
+  }, [listSize])
 
   let sum = 0;
 
@@ -16,13 +33,15 @@ function BasketPage() {
     <Box sx={{marginTop: '12vh', minHeight: '75vh', paddingBottom: '5vh'}}>
         <Box aligen= 'center'>
             {
-              basketList.map(item => {
-                const product = list.find(p => p.id == item.id)
-                sum = sum + (product.price * item.quantity);
+              productList.map(item => {
+                sum = sum + (item.sellPrice * item.quantity);
                 return(
-                  <BasketCard key={item.id} item= {product}/>
+                  <BasketCard key={item.id} item= {item} setListSize= {setListSize}/>
                 )
               })
+            }
+            {
+              console.log(productList)
             }
         </Box>
 

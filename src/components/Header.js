@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -17,6 +17,7 @@ import Menu from '../pages/Menu/Menu';
 import logo from '../assets/icons/Feliza-logo.png'
 import SearchPage from '../pages/SearchPage/SearchPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
+import MyContext from './Context/MyContext';
 
 
 
@@ -24,7 +25,8 @@ import LoginPage from '../pages/LoginPage/LoginPage';
 export default function HomePageHeader() {
   const[isDrawerOpen, setIsDrawerOpen] = useState(false);
   const[isSearchOpen, setIsSearchOpen] = useState(false);
-  const [isLoginPageOpen, setIsLoginPageOpen] = useState(false);
+  const {user, isLoginPageOpen, setIsLoginPageOpen} = useContext(MyContext)
+  const navigate = useNavigate();
 
   const IconText = styled(Typography)({
     color: 'black',
@@ -32,6 +34,22 @@ export default function HomePageHeader() {
     fontSize: '12px'
     
   })
+
+  const navigateUser = () => {
+    if(user === 0) {
+      setIsLoginPageOpen(true)
+    } else {
+      navigate('/user_page')
+    }
+  }
+
+  const navigateUserToBasket = () => {
+    if(user === 0) {
+      setIsLoginPageOpen(true)
+    } else {
+      navigate('/basket')
+    }
+  }
 
   useEffect(() => {
     // Function to handle the "popstate" event
@@ -85,30 +103,31 @@ export default function HomePageHeader() {
                     Qidiruv
                 </IconText>
             </Box>
-            <Box sx={{color: 'coral', display: 'flex', alignItems: 'center', gap: 1}} onClick= {() => setIsLoginPageOpen(true)}>
+            <Box sx={{display: 'flex', alignItems: 'center', gap: 1}} 
+                onClick= {() => navigateUser()}>
                 <PermIdentityIcon sx={{color: 'primary.main'}}/>
                 <IconText sx={{display: {xs: 'none', lg: 'inline'}}}>
                     Kirish
                 </IconText>
             </Box>
 
-            <Link to='/favorite/#favorite_page'>
-            <Box sx={{color: 'coral', display: 'flex', alignItems: 'center', gap: 1}}>
+            <Link to='/favorite'>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1}}>
                 <FavoriteBorderIcon sx={{color: 'primary.main'}}/>
-                <IconText sx={{display: {xs: 'none', lg: 'inline'}}}>
+                <IconText sx={{display: {xs: 'none', lg: 'inline'}, color: 'primary.main'}}>
                     Saralangan
                 </IconText>
             </Box>
             </Link>
 
-            <Link to='/basket'>
-            <Box sx={{color: 'coral', display: 'flex', alignItems: 'center', gap: 1}}>
+            
+            <Box sx={{color: 'coral', display: 'flex', alignItems: 'center', gap: 1}} onClick = {() => navigateUserToBasket()}>
                 <ShoppingCartOutlinedIcon sx={{color: 'primary.main'}}/>
                 <IconText sx={{display: {xs: 'none', lg: 'inline'}}}>
                     Savatcha
                 </IconText>
             </Box>
-            </Link>
+            
         </Box>
         </Toolbar>
       </AppBar>
@@ -154,8 +173,8 @@ export default function HomePageHeader() {
       open = {isLoginPageOpen}
       onClose={() => setIsLoginPageOpen(false)}
       >
-        <Box sx={{height: '60vh', width: '100vw'}}>
-          <LoginPage setIsLoginPageOpen= {setIsLoginPageOpen}/>
+        <Box sx={{height: '60vh', width: '95vw'}}>
+          <LoginPage />
         </Box>
       </Drawer>
       

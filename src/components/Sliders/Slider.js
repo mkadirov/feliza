@@ -28,7 +28,7 @@ export default class SliderMain extends Component {
           {
             list.map((item, idx)=> {
               return(
-                <div className="slide" >
+                <div className="slide" key={idx} >
                   <img src={item} alt="" />
                 </div>
               )

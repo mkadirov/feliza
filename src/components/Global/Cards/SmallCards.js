@@ -13,10 +13,10 @@ function SmallCards({item}) {
     <Box sx={{height: {xs: '180px', md: '600px'}, marginBottom: 2, overflow: 'hidden', pr: 2,pb:2,   borderBottom: '1px solid rgb(234, 87, 116)'}}>
         <Grid container spacing={2}>
             <Grid item xs={4}>
-                <Link to={`/product/${item.id}`}>
+                <Link to={`/product/${item?.product?.id}`}>
                     
                         <Box sx={{height: {xs: '180px', md: '600px'}, overflow: 'hidden'}}>
-                           <img src={item.url} alt="" />
+                           <img src={item?.productImagesList[0]?.url} alt="" />
                         </Box>
                     
                 </Link>
@@ -27,32 +27,29 @@ function SmallCards({item}) {
                     <Box display='flex' justifyContent='space-between' >
                         <Box>
                         <Typography>
-                           {item.title}
+                           {item?.product?.nameUZB}
                         </Typography>
                         <Typography color={grey[400]}>
-                          Ref:  {item.barcode}
+                          Ref:  {item?.product?.referenceNumber}
                         </Typography>
                         
                         </Box>
 
                         <Typography>
-                            {item.price} so'm
-                        </Typography>
-
-                        
-                        
+                            {item?.product?.sellPrice} so'm
+                        </Typography>    
                     </Box>
 
                     <Box display='flex' justifyContent='end'>
                         
                         <Box>
                             <IconButton onClick={()=> {
-                                addToBasket(item.id)
-                                changeLikedList(item.id)
+                                addToBasket(item.product.id)
+                                changeLikedList(item.product.id)
                             }} sx={{color:'primary.main'}}>
                                 <AddShoppingCart/>
                             </IconButton>
-                            <IconButton sx={{marginRight: 1, color: 'primary.main'}} onClick={() => changeLikedList(item.id)}>
+                            <IconButton sx={{marginRight: 1, color: 'primary.main'}} onClick={() => changeLikedList(item?.product?.id)}>
                                 <DeleteOutline/>
                             </IconButton>
                         </Box>

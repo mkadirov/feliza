@@ -1,36 +1,71 @@
 import { Box, Button, Drawer, Grid, IconButton, Typography, styled } from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-import { productList } from '../../data/DataList';
+import { useParams } from 'react-router-dom'
 import ProductSlider from '../../components/Sliders/ProductSlider';
-import { AddShoppingCart } from '@mui/icons-material';
+import { AddShoppingCart, TurnedIn } from '@mui/icons-material';
 import MyContext from '../../components/Context/MyContext';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import ColorCircle from '../../components/Global/ColorCircle';
 import ProductDetailes from '../../components/ProductPage/ProductDetailes';
+import { getProductByID, getProductsByRefNumber } from '../../api/Product';
+import ProductColorCards from '../../components/Global/Cards/ProductColorCards';
 
 function Product() {
 
 
     const {id} = useParams();
-    const list = productList;
-    const product = list.find(item => item.id == id);
+    const [item, setItem] = useState('')
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
     const [buy, setBuy] = useState(false);
-    const navigate = useNavigate();
     const {addToBasket, addToLastSeenList, likedList, changeLikedList} = useContext(MyContext);
+    const [products, setProducts] = useState([])
+    const [isLiked, setIsLiked] = useState(false)
     
+
     
+    useEffect(() => {
+      const index = getIndexById(id)
+      console.log(index);
+      if( index >= 0){
+        setIsLiked(true)
+        console.log('effect ishladi');
+      }
+    }, [likedList, id])
+
+    const getIndexById = (targetId) => {
+      return likedList.findIndex(obj => obj?.product?.id == targetId);
+    };
+
     
 
     useEffect(() => {
-      addToLastSeenList(id);
-    }, [])
+      const fetchData = async()=> {
+        const res = await getProductByID(id);
+        if(res.success) {
+          setItem(res.data)
+          console.log(res.data);
+          window.scrollTo({  
+            top: 0,
+            behavior: "smooth" // Optional: adds smooth scrolling effect
+        });
+        }
+      }
+      fetchData();
+    }, [id])
+
+    useEffect(() => {
+      const fetchData = async() => {
+          const res = await getProductsByRefNumber(item.product?.referenceNumber);
+          if(res.success) {
+              setProducts(res.data)
+          }
+      }
+      fetchData();
+  }, [item])
 
 
-    function addProductToBasket(size) {
-      addToBasket(id, size)
+    function addProductToBasket(sizeId) {
+      addToBasket(sizeId)
       setIsDrawerOpen(false)
     }
 
@@ -54,19 +89,21 @@ function Product() {
       justifyContent: 'center',
       alignItems: 'center'
     })
-
-    const colors = list.filter(item => item.barcode == product.barcode)
     
 
   return (
     <Box sx={{marginTop: '7vh'}} id='page-head'>
 
         <SliderContainer >
-          <ProductSlider list = {product?.url}/>
+          <ProductSlider list = {item.productImagesList}/>
           <Box sx={{position: 'absolute', right: '10px', bottom: '10px'}}>
-            <FavoriteBox sx={{color: 'primary.main',}} onClick = {() => changeLikedList(id)}>
+            <FavoriteBox sx={{color: 'primary.main',}} onClick = {() => {
+
+                changeLikedList(id)
+                setIsLiked(!isLiked)
+              }}>
               {
-                likedList.includes(id)? <FavoriteIcon/> :<FavoriteBorderIcon />
+                isLiked? <FavoriteIcon/> :<FavoriteBorderIcon />
               }
             </FavoriteBox>
           </Box>
@@ -79,33 +116,26 @@ function Product() {
             <Box display='flex' justifyContent='space-between'>
               <Typography>
                 {
-                  product.title
+                  item.product?.nameUZB
                 }
               </Typography>
               <Typography>
                 {
-                  product.price
+                  item.product?.sellPrice
                 }
                 {" So'm"}
               </Typography>
             </Box>
 
             <Box marginY={1} display='flex' justifyContent='space-between'>
-              <Box display='flex' gap={1}>
-                {
-                  colors.map(item => {
-                    return (
-                      <Box key={item.color} onClick = {() => navigate(`/product/${item.id}`)}>
-                        <ColorCircle color={item.color} key={item.color}/>
-                      </Box>
-                    )
-                  })
-                }
+              <Box flex={1}>
+                <ProductColorCards products={products} id= {id}/>
               </Box>
 
               <Typography>
-                {product.color}
+                {item.product?.color.nameUZB}
               </Typography>
+              
             </Box>
 
             <Button fullWidth variant='contained' sx={{mr: 2}} onClick={() => {
@@ -114,16 +144,15 @@ function Product() {
             }}>
               Savatchaga
             </Button>
-            <Button fullWidth sx={{mt: 1}} variant='outlined' endIcon= {<AddShoppingCart/>} onClick={() => {
-              setBuy(true)
+            {/* <Button fullWidth sx={{mt: 1}} variant='outlined' endIcon= {<AddShoppingCart/>} onClick={() => {
+              
               setIsDrawerOpen(true)
             }}>
               Sotib olish
-            </Button>
+            </Button> */}
           </Box>
-
           <Box  sx={{ mb: 2}}>
-            <ProductDetailes/> 
+            <ProductDetailes descriptionUZB = {item.product?.descriptionUZB} descriptionRUS = {item.product?.descriptionRUS}/> 
           </Box>
         </Grid>
        </Grid>
@@ -144,7 +173,7 @@ function Product() {
           
           <Box marginTop={3} px={1}>
             {
-              product.sizes.map(item => {
+              item.productSizeVariantList?.map(item => {
                 const isActive = item.quantity > 0
                 return (
                   <Box key={item.size}
@@ -152,7 +181,7 @@ function Product() {
                        sx={{borderBottom: '1px solid lightgray'}} 
                        display='flex' 
                        justifyContent='space-between'
-                       onClick= {() => (isActive? (buy ?buyProduct(item.size) : addProductToBasket(item.size)  ) : null)}
+                       onClick= {() => (isActive? (buy ?buyProduct(item.id) : addProductToBasket(item.id)  ) : null)}
                        >
                     <Typography color={isActive? 'primary.main': 'secondary'} sx={{ml: 1}}>
                      {item.size}

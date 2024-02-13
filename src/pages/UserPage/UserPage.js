@@ -1,25 +1,18 @@
 import { Close } from '@mui/icons-material'
 import { Box, IconButton, Typography } from '@mui/material'
-import React from 'react'
+import React, { useContext } from 'react'
+import MyContext from '../../components/Context/MyContext'
 
 function UserPage() {
+
+  const {user} = useContext(MyContext)
   return (
-    <Box sx={{width: '100%'}} align = 'center'>
-        <Box  sx={{width: '100%'}}>
-            <Box display='flex'   padding={2} alignItems='center'>
-                <Box flex={1} align= 'center'>
-                 <Typography>
-                   Kirish
-                 </Typography>
-                </Box>
-                <IconButton >
-                     <Close/>
-                </IconButton>
-            </Box>
+    <Box sx={{width: '100%'}} align = 'center' >
+        <Box  sx={{width: '100%', marginTop: 10}}>
            
 
             <Typography variant='h5'>
-                Telefon raqamingizni kriting
+               UserID: {user}
             </Typography>
         </Box>
     </Box>

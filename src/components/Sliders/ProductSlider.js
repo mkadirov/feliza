@@ -19,7 +19,7 @@ const ProductSlider = ({list}) => {
                 return(
 
                     <Box sx={{width: '100%', height: '60vh', overflow: 'hidden'}} key={idx + '123'}>
-                        <img src={item} alt="" />
+                        <img src={item.url} alt="" />
                     </Box>
                 )
             })
