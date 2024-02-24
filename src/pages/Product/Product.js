@@ -29,6 +29,8 @@ function Product() {
       if( index >= 0){
         setIsLiked(true)
         console.log('effect ishladi');
+      } else {
+        setIsLiked(false)
       }
     }, [likedList, id])
 

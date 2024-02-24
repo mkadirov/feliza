@@ -85,8 +85,9 @@ function App() {
   }
 
   const changeLikedList =(id) => {
+    console.log(id);
     const idex = getIndexById(id)
-    console.log(idex);
+   
     if(checkIfIdExists(id)) {
       console.log('Öchirish');
       const likedItem = getObjectById(id)

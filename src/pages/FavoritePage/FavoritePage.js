@@ -38,7 +38,7 @@ function FavoritePage() {
       {
         likedList.length == 0 && <Box marginTop={12}>
         <Grid container spacing={2} display={'flex'} textAlign={'center'} justifyContent={'center'}>
-          <Grid item xs= {4}>
+          <Grid item xs= {7}>
             <Box sx={{width: '50%', margin: 'auto'}}>
               <img src={boxIcon} alt="" />
             </Box>
