@@ -13,7 +13,7 @@ import { useEffect } from 'react';
 
 export default function ProductCard({item}) {
 
-  const {likedList, changeLikedList} = useContext(MyContext)
+  const {likedList, changeLikedList, user, setIsLoginPageOpen} = useContext(MyContext)
   const [isLiked, setIsLiked] = useState(false)
 
   useEffect(() => {
@@ -26,6 +26,15 @@ export default function ProductCard({item}) {
   const getIndexById = (targetId) => {
     return likedList.findIndex(obj => obj?.product?.id == targetId);
   };
+
+  const handelLikeList = () => {
+    if(user === 0 || user === undefined) {
+      setIsLoginPageOpen(true)
+    } else {
+      changeLikedList(item.product.id)
+      setIsLiked(!isLiked)
+    }
+  }
   
   return (
     
@@ -44,11 +53,7 @@ export default function ProductCard({item}) {
             </Typography>
           </Link>
 
-          <Box sx={{color: 'primary.main'}} onClick = {() => {
-              changeLikedList(item.product.id)
-              setIsLiked(!isLiked)
-            }
-          }>
+          <Box sx={{color: 'primary.main'}} onClick = {handelLikeList}>
               {
                 isLiked? <FavoriteIcon/> :<FavoriteBorderIcon />
               }
