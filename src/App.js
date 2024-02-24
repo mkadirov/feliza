@@ -21,23 +21,46 @@ function App() {
   const initialLastSeenList = [];
   const [isLoginPageOpen, setIsLoginPageOpen] = useState(false);
   const [isUserActive, setIsUserActive] = useState(false)
-  const [user, setUser] = useState(1);
+  //const [user, setUser] = useState(0);
   const [likedList, setLikedList] = useState([]);
 
   const [lastSeenList, setLastSeenList] = useState(() => {
     const storedLastSeenList = localStorage.getItem('lastSeen');
     return storedLastSeenList? JSON.parse(storedLastSeenList) : initialLastSeenList;
   })
+
+
+  const [user, setUser] = useState(() => {
+    const storedUserData = localStorage.getItem('userData');
+
+    if (storedUserData) {
+      const userData = JSON.parse(storedUserData);
+
+      if (userData.expirationTime > new Date().getTime()) {
+        return userData.userId
+      } else {
+        localStorage.removeItem('userData');
+        return 0
+      }
+    } else {
+      return 0
+    }
+  })
   
   useEffect(() => {
+    console.log(user);
     refreshLikedList()
-  }, []);
+  }, [user]);
+
 
   const refreshLikedList = async() => {
-    const res = await getLikedItems(user);
-    if(res.success) {
-      setLikedList(res.data)
-      
+    if(user !== 0) {
+      const res = await getLikedItems(user);
+      if(res.success) {
+        setLikedList(res.data)
+      }
+    } else {
+      setLikedList([])
     }
   }
 
@@ -50,13 +73,14 @@ function App() {
     const list = [...lastSeenList];
     
     if(list.includes(id)){
-      return;
+      list.filter(item => item !== id)
+      list.unshift(id)
     } else {
       if(list.length >= 10) {
-        list.shift();
+        list.pop();
       }
-      const newList = [id, ...list]
-      setLastSeenList(newList)
+      list.unshift(id)
+      setLastSeenList(list)
     }
   }
 

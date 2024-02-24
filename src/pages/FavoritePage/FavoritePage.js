@@ -10,7 +10,6 @@ function FavoritePage() {
 
     const {likedList, changeLikedList} = useContext(MyContext)
     const [list, setList] = useState([])
-    const [currentTime, setCurrentTime] = useState(new Date());
 
     useEffect(() => {
       const fetchData = async() => {
@@ -23,16 +22,6 @@ function FavoritePage() {
       }
       fetchData();
     }, [likedList])
-
-    console.log(list);
-
-    useEffect(() => {
-      setCurrentTime(new Date());
-      // Clean up (optional): If you want to perform any actions when the component unmounts
-      return () => {
-        // Cleanup code (if needed)
-      };
-    }, []);
     
 
   return (

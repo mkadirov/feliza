@@ -9,19 +9,31 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+
 
 
 
 
 export default function Footer({sum}) {
+  const navigate = useNavigate();
+
+  const navigateUser = () => {
+    navigate('/checkout');
+  }
   return (
     <Box >
         <React.Fragment>
       <AppBar position="fixed" className='footer'  sx={{ top: 'auto', bottom: 0, borderTop: '1px solid rgba(49, 47, 47, 0.603)', backgroundColor: 'white', boxShadow: 'none' }}>
         <Toolbar >
           <Box display='flex' sx={{justifyContent: {xs: 'space-between', md: 'center'}}} flex={1} alignItems='center'>
-            <Button variant='contained' sx={{backgroundColor: 'primary.main'}}>
-               Sotib olish
+            <Button 
+              disabled = {sum <= 0} 
+              variant='contained' 
+              sx={{backgroundColor: 'primary.main'}}
+              onClick={navigateUser}
+            >
+                 Sotib olish
             </Button>
 
           <Typography sx={{color: 'black', ml:2}}>

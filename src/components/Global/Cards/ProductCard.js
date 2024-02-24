@@ -30,7 +30,7 @@ export default function ProductCard({item}) {
   return (
     
     <Card sx={{ maxWidth: 445, border: 0}} >
-      <Link to={`/product/${item.product.id}`}>
+      <Link to={`/product/${item.product?.id}`}>
       <Box sx={{height: {xs: '300px', md: '500px'}, overflow: 'hidden'}}>
         <img src={item.productImagesList[0]?.url} alt="" /> 
       </Box>

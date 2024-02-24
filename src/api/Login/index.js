@@ -32,7 +32,7 @@ const createNewUser = async(user) => {
 
 const loginUserWithPassword = async(userDetailes) => {
     try {
-        const res = await axios.post(baseURL + 'login', userDetailes);
+        const res = await axios.post(baseURL + 'loginCustomer', userDetailes);
         if(res.status == 200) {
             const token = res.data.accessToken;
             console.log(token);

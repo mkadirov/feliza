@@ -5,7 +5,7 @@ const baseURL = 'https://felizabackend.de/api/product'
 
 const getAllProduct = async() => {
     try {
-        const res = await axios.get(baseURL)
+        const res = await axios.get(baseURL + '/getAllProducts')
         if(res.status == 200) {
             return {success: true, data: res.data}
         } else {
@@ -31,10 +31,10 @@ const getProductListByCategoryID = async(id) => {
 
 const getProductByID = async(id) => {
     try {
-        const res = await axios.get(baseURL + '/' + id);
+        const res = await axios.get(baseURL + '/getProductById/' + id);
         if(res.status == 200) {
             return {success: true, data: res.data}
-            console.log('Success');
+            
         } else {
             return {success: false}
         }
@@ -48,7 +48,7 @@ const getProductsByRefNumber = async(refNumber) => {
         const res = await axios.get(baseURL + '/getProductsByReferenceNumber/' + refNumber);
         if(res.status == 200) {
             return {success: true, data: res.data}
-            console.log('Success');
+            
         } else {
             return {success: false}
         }

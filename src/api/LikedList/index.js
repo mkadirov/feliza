@@ -45,7 +45,7 @@ const getLikedItems = async(id) => {
 const deleteLikedItem = async(id) => {
     try {
         const token = localStorage.getItem('token');
-        const res = await axios.delete(baseURL + id, {
+        const res = await axios.delete(baseURL+ 'deleteLikedItem/' + id, {
             headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${token}`

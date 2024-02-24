@@ -5,6 +5,7 @@ import { createNewUser, isRegistretedUser, loginUserWithPassword } from '../../a
 import MyContext from '../../components/Context/MyContext';
 
 
+
 function LoginPage() {
     const [isRegistreted, setIsRegistreted] = useState(0);
     const [tel, setTel] = useState('');
@@ -14,6 +15,7 @@ function LoginPage() {
     const [birthDate, setBirthDate] = useState('');
     const [verifyCode, setVerifyCode] = useState('');
     const {user, setUser, setIsLoginPageOpen} = useContext(MyContext)
+    
 
     
     const checkUser = async() => {
@@ -37,7 +39,18 @@ function LoginPage() {
         const res = await loginUserWithPassword(userDetailes);
         if(res.success) {
             console.log('Tizimga kirildi');
-            setUser(res.data.customerId)
+            const userId = res.data.customerId
+
+            const currentTime = new Date().getTime();
+            const expirationTime = currentTime + 24 * 60 * 60 * 1000;
+
+            const userData = {
+              userId: userId,
+              expirationTime: expirationTime,
+            };
+
+            localStorage.setItem('userData', JSON.stringify(userData));
+            setUser(userId);
             setIsLoginPageOpen(false)
         } else {
             console.log(res.message);

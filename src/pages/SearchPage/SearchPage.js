@@ -1,24 +1,43 @@
 import { Close, Search } from '@mui/icons-material'
 import { Box, Button, Grid, IconButton, TextField, Typography } from '@mui/material'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { productList } from '../../data/DataList'
 import ProductCard from '../../components/Global/Cards/ProductCard';
 import MyContext from '../../components/Context/MyContext';
+import SmallSlider from '../../components/Sliders/SmallSlider';
+import { getAllProduct } from '../../api/Product';
 
 
 function SearchPage({setIsSearchOpen}) {
     const [searchState, setSearchState] = useState('');
     const [searchResult, setSearchResult] = useState([])
-    const list = productList;
+    const [lastSeenProducts, setLastSeenProducts] = useState([]);
+    const [likedProducts, setLikedProducts] = useState([]);
+    const {likedList, lastSeenList} = useContext(MyContext)
+    const [list, setList]  = useState([]);
+    
+    
+    useEffect(() => {
+        const fetchData = async() => {
+            const res = await getAllProduct();
+            if(res.success) {
+                const list = [...res.data]
+                setList(list)
+                const newArray = list.filter(item => lastSeenList && lastSeenList.includes(item.product.id.toString()));
+                console.log(newArray);
+                setLastSeenProducts(newArray);
+            }
+        }
 
-    const {lastSeenList} = useContext(MyContext);
+        fetchData();
+    }, [lastSeenList])
 
     const removeApostrophes = (word) => word.replace(/'/g, '');
     
     function searchProduct(value){
 
         const filtredList = list.filter(item => {
-            const title = removeApostrophes(item.title);
+            const title = removeApostrophes(item.product.nameUZB);
             const wordToFind = removeApostrophes(value);
             return(
                 title.toLocaleLowerCase().includes(wordToFind.toLocaleLowerCase())
@@ -73,21 +92,14 @@ function SearchPage({setIsSearchOpen}) {
         </Grid>
 
         <Box sx={{marginTop: 8}}>
-            <Typography variant='h5'>
-                Ko'rilgan mahsulotlar
+        
+
+        <Box marginTop={3}>
+            <Typography variant='h5' paddingY={1}>
+                Oxirgi ko'rilgan mahsulotlar
             </Typography>
-        <Grid container spacing={2} sx={{mt: 4}}>
-        {
-         lastSeenList.map((item) => {
-            const product = list.find(p => p.id == item)
-             return(
-                 <Grid key={product.id} item xs={6} md={4} lg={3} onClick= {()=> setIsSearchOpen(false)}>
-                     <ProductCard item={product} />
-                 </Grid>
-             )
-         })
-        }
-        </Grid>
+            <SmallSlider list= {lastSeenProducts}/>
+        </Box>
         </Box>
        
     </Box>

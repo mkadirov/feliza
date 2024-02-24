@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
+import {Box} from '@mui/material'
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import { SliderImage } from "../../data/DataList";
@@ -28,9 +29,9 @@ export default class SliderMain extends Component {
           {
             list.map((item, idx)=> {
               return(
-                <div className="slide" key={idx} >
+                <Box className="slide" sx={{height: {xs: '40vh', md: '60vh'}}} key={idx} >
                   <img src={item} alt="" />
-                </div>
+                </Box>
               )
             })
           }

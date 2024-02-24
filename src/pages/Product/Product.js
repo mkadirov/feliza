@@ -17,7 +17,7 @@ function Product() {
     const [item, setItem] = useState('')
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
     const [buy, setBuy] = useState(false);
-    const {addToBasket, addToLastSeenList, likedList, changeLikedList} = useContext(MyContext);
+    const {addToBasket, addToLastSeenList, likedList, changeLikedList, user, setIsLoginPageOpen} = useContext(MyContext);
     const [products, setProducts] = useState([])
     const [isLiked, setIsLiked] = useState(false)
     
@@ -43,7 +43,7 @@ function Product() {
         const res = await getProductByID(id);
         if(res.success) {
           setItem(res.data)
-          console.log(res.data);
+          addToLastSeenList(res.data.product.id)
           window.scrollTo({  
             top: 0,
             behavior: "smooth" // Optional: adds smooth scrolling effect
@@ -89,6 +89,15 @@ function Product() {
       justifyContent: 'center',
       alignItems: 'center'
     })
+
+    const handelLikeList = () => {
+      if(user === 0 || user === undefined) {
+        setIsLoginPageOpen(true)
+      } else {
+        changeLikedList(id)
+        setIsLiked(!isLiked)
+      }
+    }
     
 
   return (
@@ -97,11 +106,7 @@ function Product() {
         <SliderContainer >
           <ProductSlider list = {item.productImagesList}/>
           <Box sx={{position: 'absolute', right: '10px', bottom: '10px'}}>
-            <FavoriteBox sx={{color: 'primary.main',}} onClick = {() => {
-
-                changeLikedList(id)
-                setIsLiked(!isLiked)
-              }}>
+            <FavoriteBox sx={{color: 'primary.main',}} onClick = {handelLikeList}>
               {
                 isLiked? <FavoriteIcon/> :<FavoriteBorderIcon />
               }

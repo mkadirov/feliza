@@ -44,10 +44,18 @@ export default function HomePageHeader() {
   }
 
   const navigateUserToBasket = () => {
-    if(user === 0) {
+    if(user === 0 || user === undefined) {
       setIsLoginPageOpen(true)
     } else {
       navigate('/basket')
+    }
+  }
+
+  const navigateUserToFovoritePage = () => {
+    if(user === 0 || user === undefined) {
+      setIsLoginPageOpen(true)
+    } else {
+      navigate('/favorite')
     }
   }
 
@@ -111,15 +119,13 @@ export default function HomePageHeader() {
                 </IconText>
             </Box>
 
-            <Link to='/favorite'>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1}}>
+            
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1}} onClick = {() => navigateUserToFovoritePage()}>
                 <FavoriteBorderIcon sx={{color: 'primary.main'}}/>
                 <IconText sx={{display: {xs: 'none', lg: 'inline'}, color: 'primary.main'}}>
                     Saralangan
                 </IconText>
             </Box>
-            </Link>
-
             
             <Box sx={{color: 'coral', display: 'flex', alignItems: 'center', gap: 1}} onClick = {() => navigateUserToBasket()}>
                 <ShoppingCartOutlinedIcon sx={{color: 'primary.main'}}/>
