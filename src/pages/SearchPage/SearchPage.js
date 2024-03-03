@@ -23,12 +23,11 @@ function SearchPage({setIsSearchOpen}) {
             if(res.success) {
                 const list = [...res.data]
                 setList(list)
-                const newArray = list.filter(item => lastSeenList && lastSeenList.includes(item.product.id.toString()));
+                const newArray = list.filter(item => lastSeenList && lastSeenList.includes(item.product.id));
                 console.log(newArray);
                 setLastSeenProducts(newArray);
             }
         }
-
         fetchData();
     }, [lastSeenList])
 

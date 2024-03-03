@@ -8,7 +8,7 @@ export const SliderImage = [
 
 export const CategoryCardList = [
     {
-        url: 'https://images.unsplash.com/photo-1549062573-edc78a53ffa6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTAyfHxmYXNoaW9ufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60',
+        url: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2xvdGhlc3xlbnwwfHwwfHx8MA%3D%3D',
         title: 'Yangi Kolleksiya',
         link: 'new'
     },

@@ -6,6 +6,8 @@ import SliderMain from '../../components/Sliders/Slider'
 import CategoryCard from '../../components/HomePage/CategoryCard'
 import SaleBox from '../../components/HomePage/SaleBox'
 import { CategoryCardList } from '../../data/DataList'
+import MainFooter from '../../components/Footer/MainFooter'
+import SmallCards from '../../components/Global/Cards/SmallCards'
 
 
 function Homepage() {
@@ -18,6 +20,7 @@ function Homepage() {
             <Grid item xs={12} md= {12} lg={10} sx={{marginTop: {xs: '8vh', sm: '70px', lg: '80px'}}}>
               <SliderMain/>
               <SaleBox/>
+              
               {
                 list.map((item, idx) => {
                     return(
@@ -27,6 +30,7 @@ function Homepage() {
               }
             </Grid>
         </Grid>
+        
     </Box>
     
     

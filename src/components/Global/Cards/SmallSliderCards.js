@@ -18,9 +18,9 @@ export default function SmallSliderCards({item}) {
     const {likedList, changeLikedList} = useContext(MyContext)
   return (
     
-    <Card sx={{ maxWidth: 445, border: 0}} >
+    <Card sx={{ maxWidth: 445, border: 0, minHeight: 330}} >
       <Link to={`/product/${item.product.id}`}>
-      <Box sx={{height: {xs: '200px', md: '350px'}, overflow: 'hidden'}} >
+      <Box sx={{height: {xs: '220px', md: '350px'}, overflow: 'hidden'}} >
         <img src={item.productImagesList[0]?.url} alt="" />
       </Box>
       </Link>
@@ -28,7 +28,7 @@ export default function SmallSliderCards({item}) {
 
         <Box display='flex' justifyContent='space-between'>
           <Link to={`/product/${item.product.id}`}>
-            <Typography gutterBottom  fontSize={16} component="div">
+            <Typography gutterBottom  fontSize={14} component="div">
               {item.product.nameUZB}
             </Typography>
           </Link>

@@ -5,15 +5,19 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import { getSubCategoriesByParent } from '../../api/Category';
+import { useContext } from 'react';
+import MyContext from '../Context/MyContext';
 
 
 function AccordionBtn({setIsDrawerOpen, item}) {
   const [list, setList] = useState([]);
+  const {isUzbek} = useContext(MyContext)
   
 
   useEffect(() => {
 
     const fetchData = async() => {
+      console.log(item);
       const res = await getSubCategoriesByParent(item.nameUZB);
       if(res.success) {
         setList(res.data);
@@ -21,7 +25,6 @@ function AccordionBtn({setIsDrawerOpen, item}) {
     }
     fetchData();
   }, [])
-
 
 
   return (
@@ -35,17 +38,24 @@ function AccordionBtn({setIsDrawerOpen, item}) {
             <Box sx={{width: '25px', height: '25px'}}>
               <img src={item.icon} alt="" />
             </Box>
-            <Typography>{item.nameUZB}</Typography>
+            <Typography>{isUzbek? item.nameUZB : item.nameRUS}</Typography>
           </Box>
         </AccordionSummary>
         <AccordionDetails>
+          <Box sx={{borderBottom: '1px solid lightgray', py: 1}}>
+            <Link to={`/products/${item.id}`} >
+              <Typography marginLeft='30px' onClick={() => setIsDrawerOpen(false)} my={1}>
+                Barcha {item.nameUZB}
+              </Typography>
+            </Link>
+          </Box>
         {
             list.map((i, idx) => {
               return(
                 <Box key={i.id} sx={{borderBottom: '1px solid lightgray', py: 1}}>
                   <Link to={`/products/${i.id}`} >
                     <Typography marginLeft='30px' onClick={() => setIsDrawerOpen(false)} my={1}>
-                     {i.nameUZB}
+                     {isUzbek? i.nameUZB: i.nameRUS}
                     </Typography>
                   </Link>
                 </Box>

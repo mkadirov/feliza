@@ -1,6 +1,6 @@
 import './App.css';
 import {Box, ThemeProvider, createTheme} from '@mui/material'
-import {Route, Routes, BrowserRouter, useNavigate} from 'react-router-dom'
+import {Route, Routes, BrowserRouter} from 'react-router-dom'
 import Homepage from './pages/HomePage/Homepage';
 import HomePageHeader from './components/Header';
 import Products from './pages/Products/Products';
@@ -10,10 +10,11 @@ import Product from './pages/Product/Product';
 import FavoritePage from './pages/FavoritePage/FavoritePage';
 import BasketPage from './pages/BasketPage/BasketPage';
 import MyContext from './components/Context/MyContext';
-import { addProductToBasket, deleteCartItem } from './api/Basket';
+import { addProductToBasket } from './api/Basket';
 import UserPage from './pages/UserPage/UserPage';
 import { addLikedItem, deleteLikedItem, getLikedItems } from './api/LikedList';
 import CheckOut from './pages/CheckOut/CheckOut';
+import MainFooter from './components/Footer/MainFooter';
 
 
 function App() {
@@ -21,8 +22,8 @@ function App() {
   const initialLastSeenList = [];
   const [isLoginPageOpen, setIsLoginPageOpen] = useState(false);
   const [isUserActive, setIsUserActive] = useState(false)
-  //const [user, setUser] = useState(0);
   const [likedList, setLikedList] = useState([]);
+  const [isUzbek, setIsUzbek] = useState(false)
 
   const [lastSeenList, setLastSeenList] = useState(() => {
     const storedLastSeenList = localStorage.getItem('lastSeen');
@@ -86,7 +87,7 @@ function App() {
 
   const changeLikedList =(id) => {
     console.log(id);
-    const idex = getIndexById(id)
+    //const idex = getIndexById(id)
    
     if(checkIfIdExists(id)) {
       console.log('Öchirish');
@@ -106,9 +107,9 @@ function App() {
     return likedList.find(obj => obj.product.id == targetId);
   };
 
-  const getIndexById = (targetId) => {
-    return likedList.findIndex(obj => obj.product.id == targetId);
-  };
+  // const getIndexById = (targetId) => {
+  //   return likedList.findIndex(obj => obj.product.id == targetId);
+  // };
 
   const deleteLikedItemFromList = async(id) => {
     const res = await deleteLikedItem(id);
@@ -156,7 +157,7 @@ function App() {
     },
   },
   shape: {
-    borderRadius: 0,
+    borderRadius: '5px',
   }
 });
 
@@ -173,23 +174,26 @@ function App() {
         user,
         setUser,
         isLoginPageOpen,
-        setIsLoginPageOpen
+        setIsLoginPageOpen,
+        isUzbek, 
+        setIsUzbek
         }}>
         <ThemeProvider theme={theme}>
         <Box>
-      <BrowserRouter>
-      <HomePageHeader/>
-        <Routes>
-          <Route path='/' element={<Homepage/>}/>
-          <Route path='/products/:id' element={<Products/>}/>
-          <Route path='/menu' element={<Menu/>}/>
-          <Route path='/product/:id' element={<Product/>}/>
-          <Route path='/favorite' element={<FavoritePage/>}/>
-          <Route path='/basket' element={<BasketPage/>}/>
-          <Route path='/user_page' element = {<UserPage/>}/>
-          <Route path='/checkout' element = {<CheckOut/>}/>
-        </Routes>
-      </BrowserRouter>
+          <BrowserRouter>
+            <HomePageHeader/>
+            <Routes>
+              <Route path='/' element={<Homepage/>}/>
+              <Route path='/products/:id' element={<Products/>}/>
+              <Route path='/menu' element={<Menu/>}/>
+              <Route path='/product/:id' element={<Product/>}/>
+              <Route path='/favorite' element={<FavoritePage/>}/>
+              <Route path='/basket' element={<BasketPage/>}/>
+              <Route path='/user_page' element = {<UserPage/>}/>
+              <Route path='/checkout' element = {<CheckOut/>}/>
+            </Routes>
+            <MainFooter/>
+          </BrowserRouter>
     </Box>
         </ThemeProvider>
       </MyContext.Provider>

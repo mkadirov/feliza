@@ -6,31 +6,36 @@ import islamicIcon from '../assets/icons/woman.png'
 
 export const clothCategoryList = [
     {
+        id: 9,
         nameUZB: 'Kiyimlar',
-        nameRUS: 'Odejdi',
+        nameRUS: 'Одежды',
         icon: dressIcon
     },
 
     {
+        id: 0,
         nameUZB: 'Islomiy Kiyimlar',
-        nameRUS: 'Religioznie odejdi',
+        nameRUS: 'Хиджаб',
         icon: islamicIcon
     },
 
     {
-        nameUZB: 'Poyabzallar',
-        nameRUS: 'Obuvi',
+        id: 0,
+        nameUZB: 'Oyoq kiyimlari',
+        nameRUS: 'Обувь',
         icon: footwear
     },
 
     {
-        nameUZB: 'Aksessuarlar',
-        nameRUS: 'Akksesuari',
+        id: 0,
+        nameUZB: 'Aksesuar',
+        nameRUS: 'Аксессуар',
         icon: accsessoires
     },
     {
-        nameUZB: 'Sumkalar',
-        nameRUS: 'Sumki',
+        id: 0,
+        nameUZB: 'Sumka',
+        nameRUS: 'Сумка',
         icon: accsessoires
     }
 ]

@@ -18,6 +18,7 @@ import logo from '../assets/icons/Feliza-logo.png'
 import SearchPage from '../pages/SearchPage/SearchPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import MyContext from './Context/MyContext';
+import Switch from '@mui/material/Switch';
 
 
 
@@ -25,7 +26,7 @@ import MyContext from './Context/MyContext';
 export default function HomePageHeader() {
   const[isDrawerOpen, setIsDrawerOpen] = useState(false);
   const[isSearchOpen, setIsSearchOpen] = useState(false);
-  const {user, isLoginPageOpen, setIsLoginPageOpen} = useContext(MyContext)
+  const {user, isLoginPageOpen, setIsLoginPageOpen, isUzbek, setIsUzbek} = useContext(MyContext)
   const navigate = useNavigate();
 
   const IconText = styled(Typography)({
@@ -69,8 +70,6 @@ export default function HomePageHeader() {
     };
 
     window.addEventListener('popstate', handlePopstate);
-
-    // Clean up event listeners on component unmount
     return () => {
       window.removeEventListener('popstate', handlePopstate);
     };
@@ -104,33 +103,33 @@ export default function HomePageHeader() {
           </Link>
          </Box>
         <Box sx={{display: 'flex', gap: 3}}>
-            <Box className= 'searchBox' sx={{ display: 'flex', alignItems: 'center', gap: 1}} onClick={() => setIsSearchOpen(true)}>
+            <Box className= 'cursorPointer' sx={{ display: 'flex', alignItems: 'center', gap: 1}} onClick={() => setIsSearchOpen(true)}>
                 <SearchIcon sx={{color: 'primary.main'}}/>
                 
-                <IconText sx={{display: {xs: 'none', lg: 'inline'}}}>
-                    Qidiruv
+                <IconText sx={{display: {xs: 'none', lg: 'inline'}, color: 'primary.main'}}>
+                    {isUzbek? 'Qidiruv' : 'Поиск'}
                 </IconText>
             </Box>
-            <Box sx={{display: 'flex', alignItems: 'center', gap: 1}} 
+            <Box className= 'cursorPointer' sx={{display: 'flex', alignItems: 'center', gap: 1}} 
                 onClick= {() => navigateUser()}>
                 <PermIdentityIcon sx={{color: 'primary.main'}}/>
-                <IconText sx={{display: {xs: 'none', lg: 'inline'}}}>
-                    Kirish
+                <IconText sx={{display: {xs: 'none', lg: 'inline'}, color: 'primary.main'}}>
+                    {isUzbek? 'Kirish' : 'Войти'}
                 </IconText>
             </Box>
 
             
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1}} onClick = {() => navigateUserToFovoritePage()}>
+            <Box className= 'cursorPointer' sx={{ display: 'flex', alignItems: 'center', gap: 1}} onClick = {() => navigateUserToFovoritePage()}>
                 <FavoriteBorderIcon sx={{color: 'primary.main'}}/>
                 <IconText sx={{display: {xs: 'none', lg: 'inline'}, color: 'primary.main'}}>
-                    Saralangan
+                    {isUzbek? 'Saralangan' : 'Избранные'}
                 </IconText>
             </Box>
             
-            <Box sx={{color: 'coral', display: 'flex', alignItems: 'center', gap: 1}} onClick = {() => navigateUserToBasket()}>
+            <Box className= 'cursorPointer' sx={{color: 'coral', display: 'flex', alignItems: 'center', gap: 1}} onClick = {() => navigateUserToBasket()}>
                 <ShoppingCartOutlinedIcon sx={{color: 'primary.main'}}/>
-                <IconText sx={{display: {xs: 'none', lg: 'inline'}}}>
-                    Savatcha
+                <IconText sx={{display: {xs: 'none', lg: 'inline'}, color: 'primary.main'}}>
+                   {isUzbek? 'Savatcha' : 'Корзина'}
                 </IconText>
             </Box>
             
@@ -151,9 +150,7 @@ export default function HomePageHeader() {
               <ArrowBackIosIcon sx={{color: 'black'}}/>
             </Button>
 
-            <Typography >
-              Kirish / Röyhatdan ötish
-            </Typography>
+          <Switch  defaultChecked  onChange={() => setIsUzbek(prev => !prev)}/>
           </Box>
             <Menu setIsDrawerOpen= {setIsDrawerOpen}/>
           </Box>

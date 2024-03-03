@@ -11,9 +11,10 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 
-export default function ProductCard({item}) {
 
-  const {likedList, changeLikedList, user, setIsLoginPageOpen} = useContext(MyContext)
+export default function ProductCard({item, bigSize}) {
+
+  const {likedList, changeLikedList, user, setIsLoginPageOpen, isUzbek} = useContext(MyContext)
   const [isLiked, setIsLiked] = useState(false)
 
   useEffect(() => {
@@ -40,17 +41,18 @@ export default function ProductCard({item}) {
     
     <Card sx={{ maxWidth: 445, border: 0}} >
       <Link to={`/product/${item.product?.id}`}>
-      <Box sx={{height: {xs: '300px', md: '500px'}, overflow: 'hidden'}}>
+      <Box sx={{height: {xs: bigSize ? '500px' : '300px', md: '500px'}, overflow: 'hidden'}}>
         <img src={item.productImagesList[0]?.url} alt="" /> 
       </Box>
       </Link>
-      <CardContent>
+      <CardContent sx={{minHeight: '60px'}}>
 
         <Box display='flex' justifyContent='space-between'>
           <Link to={`/product/${item.product.id}`}>
-            <Typography gutterBottom  fontSize={16} component="div">
-              {item.product.nameUZB}
+            <Typography gutterBottom  fontSize={14} component="div">
+              {isUzbek? item.product.nameUZB : item.product.nameRUS}
             </Typography>
+            
           </Link>
 
           <Box sx={{color: 'primary.main'}} onClick = {handelLikeList}>
@@ -63,6 +65,7 @@ export default function ProductCard({item}) {
         <Typography fontSize={12}>
             {item.product.sellPrice} so'm
         </Typography>
+        
         
       </CardContent>
     </Card>
