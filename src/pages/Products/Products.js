@@ -7,8 +7,8 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { getProductListByCategoryID } from '../../api/Product';
 import TuneIcon from '@mui/icons-material/Tune';
-import FilterDetailes from '../../components/Products/FilterDetailes';
 import SortMenuButton from '../../components/Products/SortMenuButton';
+import FilterDetailes from '../../components/Products/FilterDetailes/FilterDetailes';
 
 
 function Products() {

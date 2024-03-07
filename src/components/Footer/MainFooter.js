@@ -19,7 +19,7 @@ function MainFooter() {
       };
 
   return (
-    <Box marginTop={5} >
+    <Box marginTop={5}>
         
 
         <Grid container justifyContent={'center'}>

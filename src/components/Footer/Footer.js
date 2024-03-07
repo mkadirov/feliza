@@ -1,13 +1,8 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
-import MoreIcon from '@mui/icons-material/MoreVert';
+import Typography from '@mui/material/Typography'
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
@@ -23,7 +18,7 @@ export default function Footer({sum}) {
   }
   return (
     <Box >
-        <React.Fragment>
+      <React.Fragment>
       <AppBar position="fixed" className='footer'  sx={{ top: 'auto', bottom: 0, borderTop: '1px solid rgba(49, 47, 47, 0.603)', backgroundColor: 'white', boxShadow: 'none' }}>
         <Toolbar >
           <Box display='flex' sx={{justifyContent: {xs: 'space-between', md: 'center'}}} flex={1} alignItems='center'>
