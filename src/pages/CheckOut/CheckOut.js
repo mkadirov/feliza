@@ -11,6 +11,7 @@ import { useContext } from 'react'
 import MyContext from '../../components/Context/MyContext'
 import AddressList from '../../components/CheckOut/AddressList'
 import SelectedAddress from '../../components/CheckOut/SelectedAddress'
+import { addOrder } from '../../api/Order'
 
 
 function CheckOut() {
@@ -18,12 +19,13 @@ function CheckOut() {
   const [adresseList, setAdresseList] = useState([]);
   const [hasAdress, setHasAdress] = useState(false);
   const [payment, setPayment] = useState('payme');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [fullName, setFullName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const {user} = useContext(MyContext)
-  const [addressId, setAddressId] = useState('')
+  const {user, orderItems} = useContext(MyContext)
+  const [addressId, setAddressId] = useState(0)
   const [newAddress, setNewAddress] = useState('')
+  const [errorList, setErrorList] = useState([])
+
 
   
   
@@ -46,7 +48,50 @@ function CheckOut() {
 
   
   const createOrder = () => {
-    console.log('Order');
+    setErrorList([]);
+    const order = {
+      receiverName : fullName,
+      receiverPhoneNumber : phoneNumber,
+      orderTime : "2024-03-07",
+      paymentMethod : 'PAYME',
+      orderCost : 200000,
+      shippingCost : 0,
+      deliveryDays : 3,
+      deliveryDate : "2024-03-07",
+      addressId : addressId,
+      couponCustomerId : null,
+      customerId : user,
+      cartItemIds : orderItems
+    }
+
+    console.log(fullName);
+
+    const fetchData = async () => {
+      
+      const res = await addOrder(order)
+
+      if(res.success) {
+      console.log('Buyurtma berildi');
+      window.open(res.data.object, "_blank");
+      }
+    }
+    if(fullName.trim() == '') {
+      errorList.push('Iltimos ismin va familiyangizni kriting')
+    }
+
+    if(addressId == 0) {
+      errorList.push("Iltimos manzilingizni kriting")
+    }
+
+    if(phoneNumber.trim() == '') {
+      errorList.push('Iltimos telefon raqamingizni kriting')
+    }
+
+    if(errorList.length == 0) {
+      fetchData();
+    } else {
+      alert(errorList[0]);
+    }
   }
 
 
@@ -75,9 +120,17 @@ function CheckOut() {
                   Kontakt ma'lumotlari
                 </Typography>
               </Box>
-              <ContactForm setFirstName={setFirstName} setLastName={setLastName} 
-                  setPayment={setPayment} setPhoneNumber={setPhoneNumber} 
-                  createOrder = {createOrder} payment = {payment}/>
+
+
+              <ContactForm setFullName = {setFullName} setPhoneNumber={setPhoneNumber} fullName = {fullName} phoneNumber = {phoneNumber}/>
+
+              <PaymentMethod setPayment = {setPayment} payment={payment}/>
+
+              <Box sx={{display: 'flex', justifyContent: 'end'}}>
+                <Button  size='small'  variant='contained'   sx={{marginTop: 2, marginBottom: 1}} onClick={createOrder}>
+                  Tölovni amalga oshirish
+                </Button>
+              </Box>
             </Box>
           </Grid>
         </Grid>

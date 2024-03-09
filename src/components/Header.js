@@ -37,7 +37,7 @@ export default function HomePageHeader() {
   })
 
   const navigateUser = () => {
-    if(user === 0) {
+    if(!user) {
       setIsLoginPageOpen(true)
     } else {
       navigate('/user_page')
@@ -45,7 +45,7 @@ export default function HomePageHeader() {
   }
 
   const navigateUserToBasket = () => {
-    if(user === 0 || user === undefined) {
+    if(!user) {
       setIsLoginPageOpen(true)
     } else {
       navigate('/basket')
@@ -53,7 +53,7 @@ export default function HomePageHeader() {
   }
 
   const navigateUserToFovoritePage = () => {
-    if(user === 0 || user === undefined) {
+    if(!user) {
       setIsLoginPageOpen(true)
     } else {
       navigate('/favorite')
@@ -77,7 +77,7 @@ export default function HomePageHeader() {
   return (
     <>
       <AppBar position="fixed" sx={{backgroundColor: 'white', boxShadow: 'none', height: {xs: '8vh', sm: '70px', lg: '80px'}, borderBottom: ' 1px solid rgb(234, 87, 116)'}}>
-        <Toolbar sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '100%', px: {md: '20px', lg: '50px', xl: '200px'}}}>
+        <Toolbar sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '100%'}}>
          <Box display='flex' alignItems='center' >
          <IconButton
             size="large"

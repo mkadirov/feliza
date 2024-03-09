@@ -1,5 +1,5 @@
 import { Box, Typography, Accordion} from '@mui/material'
-import React from 'react'
+import React, {useContext} from 'react'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -9,9 +9,12 @@ import contactIcon from  '../../assets/icons/communicate.png'
 import AccordionBtn from '../../components/MenuPage/Accordion';
 import { clothCategoryList } from '../../data/CategoryList';
 import phoneIcon from  '../../assets/icons/phone.png'
+import MyContext from '../../components/Context/MyContext';
 
 
 function Menu({setIsDrawerOpen}) {
+
+  const {isUzbek} = useContext(MyContext)
   const clothesCategory = clothCategoryList;
   return (
     <Box>
@@ -34,7 +37,7 @@ function Menu({setIsDrawerOpen}) {
             <Box sx={{width: '25px', height: '25px'}}>
               <img src={contactIcon} alt="" />
             </Box>
-            <Typography>Biz bilan bog'lanish</Typography>
+            <Typography>{isUzbek ? "Biz bilan bog'lanish" : 'Контакты'}</Typography>
           </Box>
         </AccordionSummary>
         <AccordionDetails>
@@ -57,7 +60,7 @@ function Menu({setIsDrawerOpen}) {
             <Box sx={{width: '25px', height: '25px'}}>
               <img src={filialIcon} alt="" />
             </Box>
-            <Typography>Filiallarimiz</Typography>
+            <Typography>{ isUzbek? 'Filiallarimiz' : 'Наши магазины'}</Typography>
           </Box>
         </AccordionSummary>
         <AccordionDetails>
@@ -74,7 +77,7 @@ function Menu({setIsDrawerOpen}) {
             <img src={orderIcon} alt="" />
           </Box>
           <Typography>
-            Shaxsiy kabinet
+            {isUzbek? 'Shaxsiy kabinet' : 'Личный кабинет'}
           </Typography>
         </Box>
       </Box>

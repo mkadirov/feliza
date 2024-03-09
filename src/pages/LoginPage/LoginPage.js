@@ -39,18 +39,19 @@ function LoginPage() {
         const res = await loginUserWithPassword(userDetailes);
         if(res.success) {
             console.log('Tizimga kirildi');
-            const userId = res.data.customerId
+            
+            // const userId = res.data.customerId
 
             const currentTime = new Date().getTime();
             const expirationTime = currentTime + 24 * 60 * 60 * 1000;
 
             const userData = {
-              userId: userId,
+              user: res.data,
               expirationTime: expirationTime,
             };
 
             localStorage.setItem('userData', JSON.stringify(userData));
-            setUser(userId);
+            setUser(res.data);
             setIsLoginPageOpen(false)
         } else {
             console.log(res.message);

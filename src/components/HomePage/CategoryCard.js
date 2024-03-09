@@ -9,7 +9,7 @@ function CategoryCard({item}) {
 
   return (
     <Link to={`/products/${item.link}`}>
-    <Box sx={{width: '100%', height: {xs: '60vh', md: '70vh'}, position: 'relative', overflow: 'hidden', mb: 2}}>
+    <Box sx={{width: '100%', height: {xs: '60vh', md: '90vh'}, position: 'relative', overflow: 'hidden'}}>
         <img src={item.url} alt="" />
         <Box sx={{
             position: 'absolute',

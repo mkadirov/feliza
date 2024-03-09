@@ -14,16 +14,16 @@ function SmallSlider({list}) {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        variableWidth: true
+        variableWidth: true, 
     };
   return (
-    <div>
+    <div className='slider-box'>
         
         <Slider {...settings}>
           {
             list.map(item => {
                 return(
-                    <Box className='smallSliderBox' sx={{width: '100px', pr: 1}} key={item?.product.referenceNumber}>
+                    <Box className='smallSliderBox' sx={{pr: 1}} key={item?.product.referenceNumber}>
                         <SmallSliderCards item = {item}/>
                     </Box>
                 )

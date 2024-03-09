@@ -24,6 +24,7 @@ function App() {
   const [isUserActive, setIsUserActive] = useState(false)
   const [likedList, setLikedList] = useState([]);
   const [isUzbek, setIsUzbek] = useState(false)
+  const [orderItems, setOrderItems] = useState([])
 
   const [lastSeenList, setLastSeenList] = useState(() => {
     const storedLastSeenList = localStorage.getItem('lastSeen');
@@ -38,25 +39,24 @@ function App() {
       const userData = JSON.parse(storedUserData);
 
       if (userData.expirationTime > new Date().getTime()) {
-        return userData.userId
+        return userData.user
       } else {
         localStorage.removeItem('userData');
-        return 0
+        return null
       }
     } else {
-      return 0
+      return null
     }
   })
   
   useEffect(() => {
-    console.log(user);
     refreshLikedList()
   }, [user]);
 
 
   const refreshLikedList = async() => {
-    if(user !== 0) {
-      const res = await getLikedItems(user);
+    if(user) {
+      const res = await getLikedItems(user.customerId);
       if(res.success) {
         setLikedList(res.data)
       }
@@ -121,7 +121,7 @@ function App() {
 
   const addLikedItemToList = async(id) => {
     const jsonBody = {
-      customerId: user,
+      customerId: user.customerId,
       productId: id
     }
     const res = await addLikedItem(jsonBody)
@@ -133,7 +133,7 @@ function App() {
 
   const addToBasket = async(productSizeVariantId) => {  
     const cartItem = {
-      customerId: user,
+      customerId: user.customerId,
       productSizeVariantId: productSizeVariantId,
       quantity: 1
     }
@@ -157,7 +157,7 @@ function App() {
     },
   },
   shape: {
-    borderRadius: '5px',
+    borderRadius: 5,
   }
 });
 
@@ -176,7 +176,9 @@ function App() {
         isLoginPageOpen,
         setIsLoginPageOpen,
         isUzbek, 
-        setIsUzbek
+        setIsUzbek,
+        orderItems,
+        setOrderItems
         }}>
         <ThemeProvider theme={theme}>
         <Box>

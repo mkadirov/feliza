@@ -1,33 +1,26 @@
 import React, {useContext} from 'react';
-import {Box, Button} from '@mui/material'
-import { useForm, Controller } from 'react-hook-form';
-import PaymentMethod from './PaymentMethod';
+import {Box, TextField} from '@mui/material'
 import MyContext from '../Context/MyContext'
-const ContactForm = ({setFirstName, setLastName, setPhoneNumber, setPayment, createOrder, payment}) => {
-    const { control, handleSubmit } = useForm();
-    const {user} = useContext(MyContext)
 
-    const onSubmit = (data) => {
-        setFirstName(data.firstName);
-        setLastName(data.lastName);
-        setPhoneNumber(data.phoneNumber);
-        createOrder();
-      };
-  
+
+const ContactForm = ({setFullName, setPhoneNumber, fullName, phoneNumber}) => {
+    
+
+    
     return (
-      <Box>
-        <form onSubmit={handleSubmit(onSubmit)} >
+      <Box marginTop={2}>
+        {/* <form onSubmit={handleSubmit(onSubmit)} >
         <div>
             <Box  display={'flex'} sx={{border: '1px solid grey' , overflow: 'hidden', marginTop: 2}}>
                 <Box  flex={1} display={'flex'} alignItems={'center'} sx={{paddingLeft: 1}} >
                 <Controller
-                    name="firstName"
+                    name="fullName"
                     control={control}
                     defaultValue={user?.firstName || ''}
                     rules={{ required: 'Iltimos ismingizni kriting' }}
                     render={({ field, fieldState }) => (
                       <div>
-                        <input type="text" {...field} placeholder='Ismingiz...'/>
+                        <input type="text" {...field} placeholder='Ism va Familiyangiz'/>
                         {fieldState?.error && <p style={{color: 'red'}}>{fieldState?.error?.message}</p>}
                       </div>
                     )}
@@ -38,6 +31,7 @@ const ContactForm = ({setFirstName, setLastName, setPhoneNumber, setPayment, cre
                 </Button>
             </Box>  
         </div>
+
         <div>
             <Box  display={'flex'} sx={{border: '1px solid grey' , overflow: 'hidden', marginTop: 2}}>
                 <Box  flex={1} display={'flex'} alignItems={'center'} sx={{paddingLeft: 1}} >
@@ -60,6 +54,7 @@ const ContactForm = ({setFirstName, setLastName, setPhoneNumber, setPayment, cre
             </Box>  
           
         </div>
+
         <div>
             <Box  display={'flex'} sx={{border: '1px solid grey' , overflow: 'hidden', marginTop: 2}}>
                 <Box  flex={1} display={'flex'} alignItems={'center'} sx={{paddingLeft: 1}} >
@@ -70,7 +65,7 @@ const ContactForm = ({setFirstName, setLastName, setPhoneNumber, setPayment, cre
                   rules={{ required: 'Iltimos telefon raqamingizni kriting' }}
                   render={({ field, fieldState }) => (
                     <div>
-                      <input type="text" {...field} placeholder='Telefon raqamingiz...'/>
+                      <input type="text" {...field} placeholder='Telefon raqamingiz'/>
                       {fieldState?.error && <p style={{color: 'red'}}>{fieldState?.error?.message}</p>}
                     </div>
                   )}
@@ -82,14 +77,27 @@ const ContactForm = ({setFirstName, setLastName, setPhoneNumber, setPayment, cre
              </Box>  
           
            </div> 
-             <PaymentMethod setPayment = {setPayment} payment={payment}/>
-            <Box sx={{display: 'flex', justifyContent: 'end'}}>
-                <Button type='submit' size='small'  variant='contained'   sx={{marginTop: 2, marginBottom: 1}}>
-                  Tölovni amalga oshirish
-                </Button>
-              </Box>
-      </form>
-      
+              
+        </form> */}
+        <TextField 
+          variant='outlined' 
+          size='small' 
+          label = 'Ism va familiyangiz' 
+          fullWidth
+          // defaultValue={user? user.name: ''}
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
+        />
+        <TextField 
+          sx={{marginTop: 2}}
+          variant='outlined' 
+          size='small' 
+          label = 'Telefon raqamingiz' 
+          fullWidth
+          //defaultValue={user? user.name: ''}
+          value={phoneNumber}
+          onChange={(e) => setPhoneNumber(e.target.value)}
+        />
       
       </Box>
     );

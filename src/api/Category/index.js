@@ -27,6 +27,19 @@ const getSubCategoriesByParent = async(parent) => {
     } catch (error) {
       return {success: false}
     }
-  }
+}
 
-export {getParentCategory, getSubCategoriesByParent}
+const getCategoryById = async (id) => {
+  try {
+    const res = await axios.get(baseURL +  '/getCategoryById/' + id)
+    if(res.status == 200) {
+        return {success: true, data: res.data}
+    } else {
+        return {success: false, message: 'Xatolik'}
+    }
+} catch (error) {
+    return {success: false, message: error.message}
+}
+}
+
+export {getParentCategory, getSubCategoriesByParent, getCategoryById}

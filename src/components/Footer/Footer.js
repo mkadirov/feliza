@@ -1,20 +1,27 @@
-import * as React from 'react';
+import React, {useContext} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography'
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import MyContext from '../Context/MyContext';
 
 
 
 
 
-export default function Footer({sum}) {
+export default function Footer({sum, productList}) {
   const navigate = useNavigate();
+  const {setOrderItems} = useContext(MyContext)
 
   const navigateUser = () => {
-    navigate('/checkout');
+
+    if(productList.length > 0) {
+      const orderItemList = productList.map(item => item.cartItemId)
+      setOrderItems(orderItemList)
+      navigate('/checkout');
+    }
   }
   return (
     <Box >
@@ -28,12 +35,12 @@ export default function Footer({sum}) {
               sx={{backgroundColor: 'primary.main'}}
               onClick={navigateUser}
             >
-                 Sotib olish
+              Sotib olish
             </Button>
 
-          <Typography sx={{color: 'black', ml:2}}>
-            Jami: {sum} so'm
-          </Typography>
+            <Typography sx={{color: 'black', ml:2}}>
+              Jami: {sum} so'm
+            </Typography>
           </Box>
         </Toolbar>
       </AppBar>

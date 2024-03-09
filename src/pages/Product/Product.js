@@ -2,13 +2,15 @@ import { Box, Button, Drawer, Grid, IconButton, Typography, styled } from '@mui/
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ProductSlider from '../../components/Sliders/ProductSlider';
-import { AddShoppingCart, TurnedIn } from '@mui/icons-material';
 import MyContext from '../../components/Context/MyContext';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ProductDetailes from '../../components/ProductPage/ProductDetailes';
 import { getProductByID, getProductsByRefNumber } from '../../api/Product';
 import ProductColorCards from '../../components/Global/Cards/ProductColorCards';
+import ProductImagesDesktop from '../../components/ProductPage/ProductImagesDesktop';
+import LastSeenSLider from '../../components/Global/SliderContainer/LastSeenSLider';
+import DesktopProductContainer from '../../components/ProductPage/DesktopProductContainer';
 
 function Product() {
 
@@ -93,11 +95,20 @@ function Product() {
     })
 
     const handelLikeList = () => {
-      if(user === 0 || user === undefined) {
+      if(!user) {
         setIsLoginPageOpen(true)
       } else {
         changeLikedList(id)
         setIsLiked(!isLiked)
+      }
+    }
+
+    const handelClick = () => {
+      if(!user) {
+        setIsLoginPageOpen(true)
+      } else {
+        setBuy(false);
+        setIsDrawerOpen(true)
       }
     }
     
@@ -105,64 +116,68 @@ function Product() {
   return (
     <Box sx={{marginTop: '7vh'}} id='page-head'>
 
-        <SliderContainer >
-          <ProductSlider list = {item.productImagesList}/>
-          <Box sx={{position: 'absolute', right: '10px', bottom: '10px'}}>
-            <FavoriteBox sx={{color: 'primary.main',}} onClick = {handelLikeList}>
-              {
-                isLiked? <FavoriteIcon/> :<FavoriteBorderIcon />
-              }
-            </FavoriteBox>
-          </Box>
-        </SliderContainer>
-
-       <Grid container display='flex' justifyContent='center'>
-        <Grid item xs= {11}>
-          <Box sx={{mt: 4}} >
-
-            <Box display='flex' justifyContent='space-between'>
-              <Typography>
+      {/*  Mobil qurulmalar uchun moslashgan Slider, katta ekranlarda körinmaydi */}
+        <Box sx={{display: {xs: 'block', md: 'none'}}}>
+          <SliderContainer >  
+            <ProductSlider list = {item.productImagesList}/>
+            <Box sx={{position: 'absolute', right: '10px', bottom: '10px'}}>
+              <FavoriteBox sx={{color: 'primary.main',}} onClick = {handelLikeList}>
                 {
-                  item.product?.nameUZB
+                  isLiked? <FavoriteIcon/> :<FavoriteBorderIcon />
                 }
-              </Typography>
-              <Typography>
-                {
-                  item.product?.sellPrice
-                }
-                {" So'm"}
-              </Typography>
+              </FavoriteBox>
             </Box>
+          </SliderContainer>
 
-            <Box marginY={1} display='flex' justifyContent='space-between'>
-              <Box flex={1}>
-                <ProductColorCards products={products} id= {id}/>
-              </Box>
+            <Box>
+              <Grid container display='flex' justifyContent='center'>        
+                <Grid item xs= {11}>
+                  <Box sx={{mt: 4}} >
+        
+                    <Box display='flex' justifyContent='space-between'>
+                      <Typography>
+                        {
+                          item.product?.nameUZB
+                        }
+                      </Typography>
+                      <Typography>
+                        {
+                          item.product?.sellPrice        
+                        }
+                        {" So'm"}
+                      </Typography>
+                    </Box>
 
-              <Typography>
-                {item.product?.color.nameUZB}
-              </Typography>
+                    <Box marginY={1} display='flex' justifyContent='space-between'>
+                    <Box flex={1}>
+                      <ProductColorCards products={products} id= {id}/>
+                    </Box>
+
+                    <Typography>
+                      {item.product?.color.nameUZB}
+                    </Typography>
               
+                    </Box>
+
+                    <Button fullWidth variant='contained' sx={{mr: 2}} onClick={handelClick}>
+                      Savatchaga
+                    </Button>
+                  </Box>
+                  <Box  sx={{ mb: 2}}>
+                    <ProductDetailes descriptionUZB = {item.product?.descriptionUZB} descriptionRUS = {item.product?.descriptionRUS}/> 
+                  </Box>
+                </Grid>
+              </Grid>
             </Box>
+        </Box>
 
-            <Button fullWidth variant='contained' sx={{mr: 2}} onClick={() => {
-              setBuy(false);
-              setIsDrawerOpen(true)
-            }}>
-              Savatchaga
-            </Button>
-            {/* <Button fullWidth sx={{mt: 1}} variant='outlined' endIcon= {<AddShoppingCart/>} onClick={() => {
-              
-              setIsDrawerOpen(true)
-            }}>
-              Sotib olish
-            </Button> */}
-          </Box>
-          <Box  sx={{ mb: 2}}>
-            <ProductDetailes descriptionUZB = {item.product?.descriptionUZB} descriptionRUS = {item.product?.descriptionRUS}/> 
-          </Box>
-        </Grid>
-       </Grid>
+        <Box sx={{display: {xs: 'none', md: 'block'}}}>
+          <DesktopProductContainer item={item} products={products} id={id} handelClick={handelClick}/>
+        </Box>
+
+        <Box>
+          <LastSeenSLider/>
+        </Box>
 
        <Drawer
        anchor='bottom'

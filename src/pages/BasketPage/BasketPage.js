@@ -12,13 +12,13 @@ function BasketPage() {
   const [productList, setProductList] = useState([])
   const [listSize, setListSize] = useState(0)
 
-  console.log(user);
+  
 
   useEffect(() => {
     
     const fetchData = async () => {
       
-      const res = await getCartItemsByCustomerId(user);
+      const res = await getCartItemsByCustomerId(user.customerId);
       if(res.success) {
         setProductList(res.data)
         setListSize(res.data.length)
@@ -45,7 +45,7 @@ function BasketPage() {
             }
         </Box>
 
-        <Footer sum = {sum}/>
+        <Footer sum = {sum} productList = {productList}/>
     </Box>
   )
 }

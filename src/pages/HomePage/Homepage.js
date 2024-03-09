@@ -17,17 +17,21 @@ function Homepage() {
     
       <Box>
         <Grid container justifyContent='center'>
-            <Grid item xs={12} md= {12} lg={10} sx={{marginTop: {xs: '8vh', sm: '70px', lg: '80px'}}}>
+            <Grid item xs={12}  sx={{marginTop: {xs: '8vh', sm: '70px', lg: '80px'}}}>
               <SliderMain/>
               <SaleBox/>
               
+              <Grid container spacing={1}>
               {
                 list.map((item, idx) => {
                     return(
-                        <CategoryCard key={idx + item.title} item={item}/>
+                        <Grid item xs = {12} md = {4}>
+                          <CategoryCard key={idx + item.title} item={item}/>
+                        </Grid>
                     )
                 })
               }
+              </Grid>
             </Grid>
         </Grid>
         

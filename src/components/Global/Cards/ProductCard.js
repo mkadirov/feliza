@@ -9,6 +9,7 @@ import MyContext from '../../Context/MyContext';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { grey } from '@mui/material/colors'
 
 
 
@@ -49,7 +50,7 @@ export default function ProductCard({item, bigSize}) {
 
         <Box display='flex' justifyContent='space-between'>
           <Link to={`/product/${item.product.id}`}>
-            <Typography gutterBottom  fontSize={14} component="div">
+            <Typography gutterBottom  fontSize={14} component="div" sx={{color: grey[600]}}>
               {isUzbek? item.product.nameUZB : item.product.nameRUS}
             </Typography>
             

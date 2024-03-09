@@ -9,12 +9,14 @@ import { getProductListByCategoryID } from '../../api/Product';
 import TuneIcon from '@mui/icons-material/Tune';
 import SortMenuButton from '../../components/Products/SortMenuButton';
 import FilterDetailes from '../../components/Products/FilterDetailes/FilterDetailes';
+import { getCategoryById } from '../../api/Category';
 
 
 function Products() {
 
   const [products, setProducts] = useState([])
   const [isFilterOpen, setIsFilterOpen] = useState(false)
+  const [category, setCategory] = useState('')
   const {id} = useParams();
 
   useEffect(() => {
@@ -30,22 +32,25 @@ function Products() {
 
   useEffect(() => {
     const fetchData = async() => {
-      const res = await getProductListByCategoryID(id);
+      const res = await getCategoryById(id);
       if(res.success) {
-        setProducts(res.data)
+        
+        setCategory(res.data)
       }
     }
 
     fetchData();
   }, [id])
+
+
   
     
   return (
-    <Box sx={{pt: '50px'}} id='product_page' >
-       <Box align='center'> 
-       <h4 className="logo" >
-           {id} 
-        </h4>
+    <Box sx={{pt: '12vh'}} id='product_page' >
+       <Box align='center' marginY={2}> 
+       <Typography variant='h5' className="logo" >
+           {category?.object?.nameUZB} 
+        </Typography>
        </Box>
 
        <Box sx={{display: 'flex', justifyContent: 'space-between', paddingX: 1}}>

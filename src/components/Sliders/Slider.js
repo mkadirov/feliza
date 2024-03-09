@@ -29,7 +29,7 @@ export default class SliderMain extends Component {
           {
             list.map((item, idx)=> {
               return(
-                <Box className="slide" sx={{height: {xs: '40vh', md: '60vh'}}} key={idx} >
+                <Box className="slide" sx={{height: {xs: '40vh', md: '92vh'}}} key={idx} >
                   <img src={item} alt="" />
                 </Box>
               )
