@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Slider, Typography } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-function PriceAccardion() {
+function PriceAccardion({setMinMaxPrice}) {
 
     const [value, setValue] = useState([0, 3000000]);
 
@@ -12,6 +12,7 @@ function PriceAccardion() {
 
     const handelClick = () => {
         document.getElementById('panel2-header').click();
+        setMinMaxPrice(value)
     }
   return (
     

@@ -85,7 +85,7 @@ function Products() {
         onClose={() => setIsFilterOpen(false)}
       >
         <Box sx={{height: '100vh', width: '100vw'}}>
-          <FilterDetailes setIsFilterOpen = {setIsFilterOpen}/>
+          <FilterDetailes setIsFilterOpen = {setIsFilterOpen} setProducts = {setProducts}/>
         </Box>
       </Drawer>
     </Box>

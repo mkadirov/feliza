@@ -1,7 +1,8 @@
 import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material'
 import React from 'react'
 
-function FooterFilterDetailes() {
+function FooterFilterDetailes({list, setProducts}) {
+  
   return (
     <Box >
       
@@ -11,9 +12,9 @@ function FooterFilterDetailes() {
             <Button 
               variant='contained' 
               sx={{backgroundColor: 'primary.main'}}
-            //   onClick={navigateUser}
+              onClick={() => setProducts(list)}
             >
-                Ko'rish
+                Ko'rish {list?.length}
             </Button>
 
             <Button variant='outlined'>

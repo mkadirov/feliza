@@ -57,4 +57,18 @@ const getProductsByRefNumber = async(refNumber) => {
     }
 }
 
-export {getAllProduct, getProductListByCategoryID, getProductByID, getProductsByRefNumber}
+
+const getFilteredProducts = async(filterRequest, pageable) => {
+    try {
+        const res = await axios.get(baseURL + '/filterProducts', filterRequest, pageable)
+        if(res.status == 200) {
+            return {success: true, data: res.data}
+        } else {
+            return {success: false}
+        }
+    } catch (error) {
+        return {success: false}
+    }
+}
+
+export {getAllProduct, getProductListByCategoryID, getProductByID, getProductsByRefNumber, getFilteredProducts}

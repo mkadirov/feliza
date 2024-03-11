@@ -32,7 +32,7 @@ function CheckOut() {
   useEffect(() => {
     const fetchData = async () => {
       console.log(user);
-      const res = await getAdressByCustomer(user)
+      const res = await getAdressByCustomer(user.customerId)
       if(res.success) {
         setAdresseList(res.data)
       }

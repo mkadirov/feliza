@@ -5,22 +5,30 @@ import ColorCircle from '../../Global/ColorCircle';
 import MyContext from '../../Context/MyContext';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-function ColorAccardion() {
+function ColorAccardion({colors, setColors}) {
 
-  const [colors, setColors] = useState([]);
+  const [colorList, setColorList] = useState([]);
   const {isUzbek} = useContext(MyContext)
 
   useEffect(() => {
     const fetchData = async () => {
       const res = await getAllColors();
-      if(res.success) {
-        console.log(res.data);
-        setColors(res.data)
+      if(res?.success) {
+        setColorList(res.data)
       }
     }
 
     fetchData();
   }, [])
+
+
+  const handelClick = (id) => {
+    if(colors.includes(id)) {
+      setColors(colors.filter(item => item != id))
+    } else {
+      setColors(prev => [...prev, id])
+    }
+  }
 
   return (
     <Accordion>
@@ -34,17 +42,19 @@ function ColorAccardion() {
         <AccordionDetails>
         <Grid container spacing={2} sx={{paddingX: 2}}>
         {
-         colors.map(item => {
+         colorList.map(item => {
+          const isSelected = colors.includes(item.id);
             return(
-            <Grid item xs={6} md = {4}>
+            <Grid item xs={6} md = {4} key={item.colorCode}>
                 <Box 
-                display={'flex'} 
-                alignItems={'center'} 
-                gap={2} 
-                sx={{cursor: 'pointer'}}
+                  display={'flex'} 
+                  alignItems={'center'} 
+                  gap={2} 
+                  sx={{cursor: 'pointer'}}
+                  onClick = {() => handelClick(item.id)}
                 >
                 <ColorCircle key={item.colorCode} color={item.colorCode}/>
-                <Typography>
+                <Typography style={{ textDecoration: isSelected?  'underline' : 'none' }}>
                     {
                         isUzbek? item.nameUZB : item.nameRUS
                     }

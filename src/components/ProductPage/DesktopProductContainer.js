@@ -32,8 +32,7 @@ function DesktopProductContainer({item, products, id, handelClick}) {
           
         };
     
-        handleScroll(); // Call initially to set the initial state
-    
+        handleScroll(); 
         window.addEventListener('scroll', handleScroll);
     
         return () => {
