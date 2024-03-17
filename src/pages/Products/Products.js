@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { getProductListByCategoryID } from '../../api/Product';
 import TuneIcon from '@mui/icons-material/Tune';
-import SortMenuButton from '../../components/Products/SortMenuButton';
+import SortMenuButton from '../../components/Products/FilterDetailes/SortMenuButton';
 import FilterDetailes from '../../components/Products/FilterDetailes/FilterDetailes';
 import { getCategoryById } from '../../api/Category';
 

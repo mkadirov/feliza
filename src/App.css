@@ -100,9 +100,26 @@ a{
     }
   }
 
-  /* .header-slide {
-    height: 100% !important;
-  } */
+  @media only screen and (max-width: 375px) {
+
+    .clothes-container {
+      height: 150vh;
+    }
+
+    .main-box {
+      margin-top: 80px !important;
+    }
+  }
+  @media only screen and (min-width: 401px) and (max-width: 600px) {
+    
+    .clothes-container {
+      height: 120vh;
+    }
+  }
+
+  
+
+  
 
   .main-box {
     width: 100%;
