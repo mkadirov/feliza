@@ -790,3 +790,36 @@ export const productList = [
     },
     
 ]
+
+export const categorySliderList = [
+    {
+        id: 9,
+        nameUZ: "Barcha Kyimlar",
+        nameRU: 'Platii',
+        url: 'https://www.ralphlauren.de/on/demandware.static/-/Library-Sites-RalphLauren_EU_Library/de_DE/v1710659067908/img/202312/12292023-eu-w-polo-hub/1228_w_polo_hub_m_c02a_img.jpg'
+    },
+    {
+        id: 12,
+        nameUZ: "Fudbolkalar",
+        nameRU: 'Platii',
+        url: 'https://www.optimized-rlmedia.io/is/image/PoloGSI/s7-1500917_alternate10?$rl_df_pdp_5_7_a10$'
+    },
+    {
+        id: 10,
+        nameUZ: "Ko'ylaklar",
+        nameRU: 'Platii',
+        url: 'https://images.hugoboss.com/is/image/hugobosscsprod/240221_HBME_112_SP24_BOSS_Tier3_BWB_021_733x1222?%24large%24&fmt=webp&align=0,-1&fit=crop,1&ts=1710512145450&qlt=80&wid=350&hei=585'
+    },
+    {
+        id: 13,
+        nameUZ: "Shimlar",
+        nameRU: 'Platii',
+        url: 'https://images.hugoboss.com/is/image/hugobosscsprod/240221_hbeu50512831_992_350_1_733x1222?%24large%24&fmt=webp&align=0,-1&fit=crop,1&ts=1710512145674&qlt=80&wid=350&hei=585'
+    },
+    {
+        id: 14,
+        nameUZ: "Palto",
+        nameRU: 'Platii',
+        url: 'https://www.ralphlauren.de/on/demandware.static/-/Library-Sites-RalphLauren_EU_Library/de_DE/v1710659067908/img/202312/12292023-eu-w-polo-hub/1228_w_polo_hub_c07c_img.jpg'
+    }
+]

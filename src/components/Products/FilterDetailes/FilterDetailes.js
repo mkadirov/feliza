@@ -9,38 +9,38 @@ import { getFilteredProducts } from '../../../api/Product';
 
 
 
-function FilterDetailes({setIsFilterOpen, setProducts}) {
-
-  const [sizes, setSizes] = useState([]);
-  const [brands, setBrands] = useState([]);
-  const [colors, setColors] = useState([]);
-  const [minMaxPrice, setMinMaxPrice] = useState([])
-  const [list, setList] = useState([])
-
-
+function FilterDetailes({setIsFilterOpen, setProducts, categoryId, colors, setColors, 
+  brands, setBrands, minMaxPrice, setMinMaxPrice, sizes, setSizes, list, setList, refreshFilter}) {
 
   useEffect(() => {
 
     const filterRequset = {
 
-      colors: colors,
-      minPrice: minMaxPrice[0]? minMaxPrice[0] : null,
-      maxPrice: minMaxPrice[1]? minMaxPrice[1] : null,
-      brands: brands,
-      sizes: sizes
+      colorIds: colors,
+      minPrice: minMaxPrice[0]? minMaxPrice[0] : 1000,
+      maxPrice: minMaxPrice[1]? minMaxPrice[1] : 1000000,
+      brandIds: brands,
+      sizes: sizes,
+      categoryId: +categoryId
     }
-    // const fetchData = async() => {
-    //   const res = await getFilteredProducts(filterRequset, 1);
+    
+    const fetchData = async() => {
+      console.log(filterRequset);
+      const res = await getFilteredProducts(filterRequset, 1);
+      if(res?.success) {
+        
+        setList(res.data)
+      }
+    }
 
-    //   if(res?.success) {
-    //     setList(res.data)
-    //   }
-    // }
+    if(sizes.length !== 0 || brands.length !== 0 || colors.length !== 0 || minMaxPrice.length !== 0) {
+      fetchData();
+    }
 
-    // fetchData();
-
-    console.log(filterRequset);
+   
   }, [minMaxPrice, sizes, colors, brands])
+
+  
 
   
   
@@ -62,7 +62,8 @@ function FilterDetailes({setIsFilterOpen, setProducts}) {
 
         <BrendAccardion setBrands = {setBrands} brands = {brands}/>
         
-        <FooterFilterDetailes list= {list} setProducts = {setProducts}/>
+        <FooterFilterDetailes list= {list} setProducts = {setProducts} setIsFilterOpen = {setIsFilterOpen} 
+        refreshFilter = {refreshFilter}/>
     </Box>
   )
 }

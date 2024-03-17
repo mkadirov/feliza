@@ -46,6 +46,7 @@ const getProductByID = async(id) => {
 const getProductsByRefNumber = async(refNumber) => {
     try {
         const res = await axios.get(baseURL + '/getProductsByReferenceNumber/' + refNumber);
+        console.log(res.data);
         if(res.status == 200) {
             return {success: true, data: res.data}
             
@@ -58,17 +59,25 @@ const getProductsByRefNumber = async(refNumber) => {
 }
 
 
-const getFilteredProducts = async(filterRequest, pageable) => {
+const getFilteredProducts = async (filterRequest, pageable) => {
     try {
-        const res = await axios.get(baseURL + '/filterProducts', filterRequest, pageable)
-        if(res.status == 200) {
-            return {success: true, data: res.data}
+        const res = await axios.post(baseURL + '/filterAndSortProducts', filterRequest, {
+            params: {
+                page: 1, // Change this according to the desired page
+                size: 10, // Change this according to the desired page size
+            }
+        });
+        
+        if (res.status === 200) {
+            return { success: true, data: res.data, message: 'Success'};
         } else {
-            return {success: false}
+            return { success: false, message: 'resError' };
         }
     } catch (error) {
-        return {success: false}
+        return { success: false, message: 'catchError' };
     }
-}
+};
 
+
+ 
 export {getAllProduct, getProductListByCategoryID, getProductByID, getProductsByRefNumber, getFilteredProducts}

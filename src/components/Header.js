@@ -19,6 +19,7 @@ import SearchPage from '../pages/SearchPage/SearchPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import MyContext from './Context/MyContext';
 import Switch from '@mui/material/Switch';
+import HeaderSlider from './Sliders/HeaderSlider';
 
 
 
@@ -76,8 +77,11 @@ export default function HomePageHeader() {
   }, [isSearchOpen]);
   return (
     <>
-      <AppBar position="fixed" sx={{backgroundColor: 'white', boxShadow: 'none', height: {xs: '8vh', sm: '70px', lg: '80px'}, borderBottom: ' 1px solid rgb(234, 87, 116)'}}>
-        <Toolbar sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '100%'}}>
+      <AppBar position="fixed" sx={{backgroundColor: 'black', boxShadow: 'none', }}>
+        <Box sx={{width: '100%', height: '4vh', backgroundColor: 'white', display: {xs: 'block', sm: 'none'}}}>
+          <HeaderSlider/>
+        </Box>
+        <Toolbar sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
          <Box display='flex' alignItems='center' >
          <IconButton
             size="large"
@@ -89,34 +93,40 @@ export default function HomePageHeader() {
                 '&:hover': { backgroundColor: 'white'}, 
                 height: '4vh',
                 width: '4vh',
-                marginLeft: 1
+                '&:hover': {
+                  backgroundColor: 'none', // Override hover effect to none
+                },
+                
             }}
             onClick={() => setIsDrawerOpen(true)}
           >
             <MenuIcon sx={{color: 'primary.main'}}/>
           </IconButton>
-          
-          <Link to='/'>
-            <Box width={80}>
-              <img src={logo} alt="" />
-            </Box>
-          </Link>
-         </Box>
-        <Box sx={{display: 'flex', gap: 3}}>
-            <Box className= 'cursorPointer' sx={{ display: 'flex', alignItems: 'center', gap: 1}} onClick={() => setIsSearchOpen(true)}>
+          <Box className= 'cursorPointer' sx={{ display: 'flex', alignItems: 'center', gap: 1}} onClick={() => setIsSearchOpen(true)}>
                 <SearchIcon sx={{color: 'primary.main'}}/>
                 
                 <IconText sx={{display: {xs: 'none', lg: 'inline'}, color: 'primary.main'}}>
                     {isUzbek? 'Qidiruv' : 'Поиск'}
                 </IconText>
             </Box>
-            <Box className= 'cursorPointer' sx={{display: 'flex', alignItems: 'center', gap: 1}} 
+          
+         </Box>
+         <Box>
+         <Link to='/'>
+            <Box width={60}>
+              <img src={logo} alt="" />
+            </Box>
+          </Link>
+         </Box>
+        <Box sx={{display: 'flex', gap: 3}}>
+            
+            {/* <Box className= 'cursorPointer' sx={{display: 'flex', alignItems: 'center', gap: 1}} 
                 onClick= {() => navigateUser()}>
                 <PermIdentityIcon sx={{color: 'primary.main'}}/>
                 <IconText sx={{display: {xs: 'none', lg: 'inline'}, color: 'primary.main'}}>
                     {isUzbek? 'Kirish' : 'Войти'}
                 </IconText>
-            </Box>
+            </Box> */}
 
             
             <Box className= 'cursorPointer' sx={{ display: 'flex', alignItems: 'center', gap: 1}} onClick = {() => navigateUserToFovoritePage()}>
@@ -176,7 +186,7 @@ export default function HomePageHeader() {
       open = {isLoginPageOpen}
       onClose={() => setIsLoginPageOpen(false)}
       >
-        <Box sx={{height: '60vh', width: '95vw'}}>
+        <Box sx={{height: '60vh', width: '100vw'}}>
           <LoginPage />
         </Box>
       </Drawer>

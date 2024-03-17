@@ -159,7 +159,7 @@ function Product() {
               
                     </Box>
 
-                    <Button fullWidth variant='contained' sx={{mr: 2}} onClick={handelClick}>
+                    <Button fullWidth variant='contained' sx={{mr: 2, backgroundColor: 'black'}} onClick={handelClick}>
                       Savatchaga
                     </Button>
                   </Box>

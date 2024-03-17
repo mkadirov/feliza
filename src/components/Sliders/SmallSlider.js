@@ -23,7 +23,7 @@ function SmallSlider({list}) {
           {
             list.map(item => {
                 return(
-                    <Box className='smallSliderBox' sx={{pr: 1}} key={item?.product.referenceNumber}>
+                    <Box className='smallSliderBox' sx={{pr: 1, paddingY: 1}} key={item?.product.referenceNumber}>
                         <SmallSliderCards item = {item}/>
                     </Box>
                 )

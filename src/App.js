@@ -23,14 +23,8 @@ function App() {
   const [isLoginPageOpen, setIsLoginPageOpen] = useState(false);
   const [isUserActive, setIsUserActive] = useState(false)
   const [likedList, setLikedList] = useState([]);
-  const [isUzbek, setIsUzbek] = useState(false)
+  const [isUzbek, setIsUzbek] = useState(true)
   const [orderItems, setOrderItems] = useState([])
-
-  const [lastSeenList, setLastSeenList] = useState(() => {
-    const storedLastSeenList = localStorage.getItem('lastSeen');
-    return storedLastSeenList? JSON.parse(storedLastSeenList) : initialLastSeenList;
-  })
-
 
   const [user, setUser] = useState(() => {
     const storedUserData = localStorage.getItem('userData');
@@ -52,6 +46,11 @@ function App() {
   useEffect(() => {
     refreshLikedList()
   }, [user]);
+
+  const [lastSeenList, setLastSeenList] = useState(() => {
+    const storedLastSeenList = localStorage.getItem('lastSeen');
+    return storedLastSeenList? JSON.parse(storedLastSeenList) : initialLastSeenList;
+  })
 
 
   const refreshLikedList = async() => {
@@ -107,14 +106,9 @@ function App() {
     return likedList.find(obj => obj.product.id == targetId);
   };
 
-  // const getIndexById = (targetId) => {
-  //   return likedList.findIndex(obj => obj.product.id == targetId);
-  // };
-
   const deleteLikedItemFromList = async(id) => {
     const res = await deleteLikedItem(id);
     if(res.success) {
-      // setLikedList(prevArray => prevArray.filter(item => item.))
       refreshLikedList()
     }
   }

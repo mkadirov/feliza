@@ -17,7 +17,6 @@ function AccordionBtn({setIsDrawerOpen, item}) {
   useEffect(() => {
 
     const fetchData = async() => {
-      console.log(item);
       const res = await getSubCategoriesByParent(item.nameUZB);
       if(res.success) {
         setList(res.data);

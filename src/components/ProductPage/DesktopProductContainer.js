@@ -23,12 +23,8 @@ function DesktopProductContainer({item, products, id, handelClick}) {
           if(largeBoxHeight < smallBoxHeight) {
             largeBoxHeight = 4000
           }
-          console.log(largeBoxHeight);
-          console.log(smallBoxHeight);
-          console.log(window.scrollY);
           const shouldFix = window.scrollY > (largeBoxHeight - smallBoxHeight);
           setIsFixed(shouldFix);
-          console.log(shouldFix);
           
         };
     

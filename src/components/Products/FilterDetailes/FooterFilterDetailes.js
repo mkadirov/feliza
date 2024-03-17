@@ -1,8 +1,17 @@
 import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material'
 import React from 'react'
 
-function FooterFilterDetailes({list, setProducts}) {
+function FooterFilterDetailes({list, setProducts, setIsFilterOpen, refreshFilter}) {
   
+  const handelClick = () => {
+    setProducts(list);
+    setIsFilterOpen(false)
+  }
+
+  const handelCancelBtn = () => {
+    refreshFilter(prev => prev + 1)
+    setIsFilterOpen(false)
+  }
   return (
     <Box >
       
@@ -12,12 +21,12 @@ function FooterFilterDetailes({list, setProducts}) {
             <Button 
               variant='contained' 
               sx={{backgroundColor: 'primary.main'}}
-              onClick={() => setProducts(list)}
+              onClick={handelClick}
             >
                 Ko'rish {list?.length}
             </Button>
 
-            <Button variant='outlined'>
+            <Button variant='outlined' onClick={handelCancelBtn}>
                 Bekor qilish
             </Button>
           </Box>

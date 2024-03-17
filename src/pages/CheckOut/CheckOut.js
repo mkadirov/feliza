@@ -60,7 +60,7 @@ function CheckOut() {
       deliveryDate : "2024-03-07",
       addressId : addressId,
       couponCustomerId : null,
-      customerId : user,
+      customerId : user.customerId,
       cartItemIds : orderItems
     }
 

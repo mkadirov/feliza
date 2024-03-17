@@ -36,15 +36,11 @@ function BasketPage() {
               productList.map(item => {
                 sum = sum + (item.sellPrice * item.quantity);
                 return(
-                  <BasketCard key={item.id} item= {item} setListSize= {setListSize}/>
+                  <BasketCard key={item.cartItemId} item= {item} setListSize= {setListSize}/>
                 )
               })
             }
-            {
-              console.log(productList)
-            }
         </Box>
-
         <Footer sum = {sum} productList = {productList}/>
     </Box>
   )
