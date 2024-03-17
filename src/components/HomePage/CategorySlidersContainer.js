@@ -48,7 +48,7 @@ function CategorySlidersContainer() {
   return (
     <Box  style={{
         width: '100%',
-        minHeight: '100vh',
+        minHeight: '50vh',
         backgroundImage: `url(${image})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',

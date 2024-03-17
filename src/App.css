@@ -102,20 +102,22 @@ a{
 
   @media only screen and (max-width: 375px) {
 
-    .clothes-container {
+    /* .clothes-container {
       height: 150vh;
-    }
+    } */
 
     .main-box {
       margin-top: 80px !important;
     }
   }
-  @media only screen and (min-width: 401px) and (max-width: 600px) {
+  /* @media only screen and (min-width: 401px) and (max-width: 600px) {
     
     .clothes-container {
       height: 120vh;
     }
-  }
+  } */
+
+  
 
   
 
@@ -149,11 +151,12 @@ a{
   
   .scrollable-content {
     display: inline-block;
-    width: 60vw !important; /* 25% width for each content */
+    width: 60vw; /* 25% width for each content */
     height: 400px;
     background-color: #ccc; /* Just for demonstration */
     margin-right: 10px;
     position: relative;
   }
 
+ 
   

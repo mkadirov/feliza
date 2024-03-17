@@ -15,13 +15,15 @@ function MainCategoryContainer({image, list, mainImage}) {
   return (
     <Box className = 'clothes-container' style={{
       width: '100%',
+      minHeight: '90vh',
       backgroundImage: `url(${image})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
+      paddingBottom: '30px'
     }}>
 
       <Box display={'flex'} justifyContent={'center'}>
-        <Box sx={{width: '60vw', height: '50vh', marginTop: 5}}>
+        <Box sx={{width: {xs: '60vw' , md: '40vw', lg: '30vw'}, marginTop: 5}}>
            <Box >
               <img src={mainImage} alt="" />
            </Box>
