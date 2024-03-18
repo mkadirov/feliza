@@ -9,7 +9,6 @@ function CategorySlidersContainer() {
     const [list, setList] = useState([])
     const [list2, setList2] = useState([])
     const navigate = useNavigate();
-    const image = 'https://images.unsplash.com/photo-1528459061998-56fd57ad86e3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGNsb3RofGVufDB8fDB8fHww'
 
     useEffect(() => {
         const fetchData = async() => {
@@ -47,16 +46,12 @@ function CategorySlidersContainer() {
 
   return (
     <Box  style={{
-        width: '100%',
-        minHeight: '50vh',
-        backgroundImage: `url(${image})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
         paddingTop: '20px',
         paddingBottom: '20px'
       }}>
         <Box sx={{display: 'flex', justifyContent: 'space-between', 
-        alignItems: 'center', color: 'black', backgroundColor: 'rgba(255, 255, 255, 0.6)', marginX: 1, paddingX: 1}}
+            alignItems: 'center', color: 'black', backgroundColor: 'rgba(255, 255, 255, 0.6)', 
+            marginX: 1, paddingX: 1, border: '1px solid black'}}
             onClick = {() => handelNavigate(10)}
         >
             <Typography variant='h5'>
@@ -68,7 +63,8 @@ function CategorySlidersContainer() {
         <SmallSlider list={list}/>
 
         <Box sx={{display: 'flex', justifyContent: 'space-between', 
-        alignItems: 'center', color: 'black', backgroundColor: 'rgba(255, 255, 255, 0.6)', marginX: 1, paddingX: 1}}
+        alignItems: 'center', color: 'black', backgroundColor: 'rgba(255, 255, 255, 0.6)', 
+        marginX: 1, paddingX: 1, border: '1px solid black', marginTop: 2}}
             onClick = {() => handelNavigate(13)}
         >
             <Typography variant='h5'>

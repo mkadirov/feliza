@@ -823,3 +823,58 @@ export const categorySliderList = [
         url: 'https://www.ralphlauren.de/on/demandware.static/-/Library-Sites-RalphLauren_EU_Library/de_DE/v1710659067908/img/202312/12292023-eu-w-polo-hub/1228_w_polo_hub_c07c_img.jpg'
     }
 ]
+
+export const shoesSliderList = [
+    {
+        id: 9,
+        nameUZ: "Barcha poyabzallar",
+        nameRU: 'Obuv',
+        url: 'https://st.mngbcn.com/rcs/pics/static/T6/fotos/outfit/S20/67080451_OR-99999999_01.jpg?ts=1699005776448&imwidth=630&imdensity=2'
+    },
+    {
+        id: 12,
+        nameUZ: "Klassik",
+        nameRU: 'Klassik',
+        url: 'https://shop.mango.com/assets/rcs/pics/static/T6/fotos/S20/67056751_99_D9.jpg?ts=1709804224045&imwidth=480&imdensity=2'
+    },
+    {
+        id: 10,
+        nameUZ: "Krassovkalar",
+        nameRU: 'Krassovki',
+        url: 'https://images.hugoboss.com/is/image/hugobosscsprod/240221_HBME_112_SP24_BOSS_Tier3_BWB_021_733x1222?%24large%24&fmt=webp&align=0,-1&fit=crop,1&ts=1710512145450&qlt=80&wid=350&hei=585'
+    },
+    {
+        id: 13,
+        nameUZ: "Shippaklar",
+        nameRU: 'Tapochki',
+        url: 'https://images.hugoboss.com/is/image/hugobosscsprod/240221_hbeu50512831_992_350_1_733x1222?%24large%24&fmt=webp&align=0,-1&fit=crop,1&ts=1710512145674&qlt=80&wid=350&hei=585'
+    }
+]
+
+export const categoryIconList = [
+    {
+        id: 9,
+        nameUZ: 'Kiyimlar',
+        nameRU: 'Odejda',
+        url: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Y2xvdGhlc3xlbnwwfHwwfHx8MA%3D%3D'
+    },
+    {
+        id: 0,
+        nameUZ: 'Poyabzal',
+        nameRU: 'Obuv',
+        url: 'https://images.unsplash.com/photo-1499013819532-e4ff41b00669?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDN8fHNob2VzfGVufDB8fDB8fHww'
+    }, 
+    {
+        id: 0,
+        nameUZ: 'Sumkalar',
+        nameRU: 'Sumki',
+        url: 'https://images.unsplash.com/photo-1591561954555-607968c989ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fGJhZ3N8ZW58MHx8MHx8fDA%3D'
+    }, 
+    {
+        id: 0,
+        nameUZ: 'Aksessuar',
+        nameRU: 'Aksessuar',
+        url: 'https://images.unsplash.com/photo-1576053139778-7e32f2ae3cfd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGFjY2Vzc29yaWVzfGVufDB8fDB8fHww'
+    } 
+
+]

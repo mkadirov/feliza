@@ -77,10 +77,10 @@ export default function HomePageHeader() {
   }, [isSearchOpen]);
   return (
     <>
-      <AppBar position="fixed" sx={{backgroundColor: 'black', boxShadow: 'none', }}>
-        <Box sx={{width: '100%', height: '4vh', backgroundColor: 'white', display: {xs: 'block', sm: 'none'}}}>
+      <AppBar position="fixed" sx={{backgroundColor: 'white', }}>
+        {/* <Box sx={{width: '100%', height: '4vh', backgroundColor: 'white', display: {xs: 'block', sm: 'none'}}}>
           <HeaderSlider/>
-        </Box>
+        </Box> */}
         <Toolbar sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
          <Box display='flex' alignItems='center' >
          <IconButton
@@ -88,7 +88,7 @@ export default function HomePageHeader() {
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2, 
+            sx={{ mr: 1, 
                 color: 'black' , 
                 '&:hover': { backgroundColor: 'white'}, 
                 height: '4vh',

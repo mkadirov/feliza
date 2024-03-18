@@ -141,7 +141,7 @@ a{
    white-space: nowrap;
    scroll-behavior: smooth;
    overflow-y: hidden;
-   margin-left: 20px;
+   /* margin-left: 10px; */
   }
 
   .look-slider::-webkit-scrollbar {
