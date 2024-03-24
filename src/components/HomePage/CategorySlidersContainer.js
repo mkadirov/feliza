@@ -51,8 +51,8 @@ function CategorySlidersContainer({categoryId}) {
         paddingBottom: '20px'
       }}>
         <Box sx={{display: 'flex', justifyContent: 'space-between', 
-            alignItems: 'center', color: 'black', backgroundColor: 'rgba(255, 255, 255, 0.6)', 
-            marginX: 1, paddingX: 1, border: '1px solid black'}}
+            alignItems: 'center', color: 'black', 
+            marginX: 1, paddingX: 1, borderWidth: '1px', borderStyle: 'solid'}}
             onClick = {() => handelNavigate(categoryId)}
         >
             <Typography variant='h5'>

@@ -86,7 +86,11 @@ function Menu({setIsDrawerOpen}) {
       </Accordion>
 
 
-        <Box sx={{marginLeft: '17px'}} marginTop={1} display='flex' gap={1}>
+        <Box sx={{marginLeft: '17px'}} marginTop={1} display='flex' gap={1} onClick = {() => {
+          navigate('/user_page')
+          setIsDrawerOpen(false)
+          }
+        }>
           <Box sx={{width: '25px', height: '25px'}}>
             <img src={orderIcon} alt="" />
           </Box>
@@ -95,6 +99,8 @@ function Menu({setIsDrawerOpen}) {
           </Typography>
         </Box>
       </Box>
+
+      
     </Box>
   )
 }

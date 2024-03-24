@@ -145,13 +145,17 @@ a{
 
   @media only screen and (max-width: 375px) {
 
-    /* .clothes-container {
-      height: 150vh;
-    } */
-
     .main-box {
       margin-top: 80px !important;
     }
+  }
+
+  .look-box {
+    width: 100%;
+    height: 320px;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
   }
 
  

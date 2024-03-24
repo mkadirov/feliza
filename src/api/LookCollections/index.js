@@ -11,4 +11,13 @@ const getAllCollections = async() => {
     }
 }
 
-export {getAllCollections}
+const getAllCollectionByID = async(id) => {
+    try {
+        const res = await axios.get(apiUrl + 'getLookCollectionById/' + id)
+        return {success: true, data: res.data}
+    } catch (error) {
+        return {success: false}
+    }
+}
+
+export {getAllCollections, getAllCollectionByID}
