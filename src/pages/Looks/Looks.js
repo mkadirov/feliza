@@ -26,8 +26,8 @@ function Looks() {
             {
                 list.map((item, idx) => {
                     return(
-                        <Grid item key={item.id} xs= {6}>
-                            <Box className = 'look-box'>
+                        <Grid item key={item.id} xs= {6} lg = {4}>
+                            <Box className = 'look-box' sx={{height: {xs: '320px', md: '420px', lg: '700px', xl: '800px'}}}>
                                 <img src={item.images[0]?.url} alt="" />
                             </Box>
                         </Grid>
