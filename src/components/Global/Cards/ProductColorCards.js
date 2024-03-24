@@ -10,10 +10,10 @@ function ProductColorCards({products, id}) {
             {
                 products.map(item => {
                     return (
-                        <Grid item xs={2} md= {2} key={item.product?.id}>
-                            <Link to={`/product/${item.product?.id}`}>
-                                <Box sx={{height: {xs:'80px'},  overflow: 'hidden', border: item?.product.id == id ? '1px solid black' : '1px solid white'}} >
-                                    <img src={item.productImagesList[0]?.url} alt="" />
+                        <Grid item xs={2} md= {2} key={item.id}>
+                            <Link to={`/product/${item?.id}`}>
+                                <Box sx={{height: {xs:'80px'},  overflow: 'hidden', border: item?.id == id ? '1px solid black' : '1px solid white'}} >
+                                    <img src={item.productImages[0]?.url} alt="" />
                                 </Box>
                             </Link>
                         </Grid>

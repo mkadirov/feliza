@@ -49,9 +49,6 @@ function Products() {
     fetchData();
   }, [id])
 
-  // useEffect(() => {
-    
-  // }, [id])
 
   const refreshFilter = () => {
     console.log('refreshed');
@@ -97,7 +94,7 @@ function Products() {
           products.map((item, idx) => {
             const bigSize = (idx +1)%5==0
             return(
-              <Grid item xs={bigSize? 12 : 6} md= {4} xl={3} key={item.product.id}>
+              <Grid item xs={bigSize? 12 : 6} md= {4} xl={3} key={item.id}>
                 <ProductCard item={item} bigSize = {bigSize}/>
               </Grid>
             )

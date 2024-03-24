@@ -7,7 +7,6 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import {Drawer, styled} from '@mui/material'
-import SearchIcon from '@mui/icons-material/Search';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { Link,  useNavigate } from 'react-router-dom';
@@ -19,7 +18,10 @@ import SearchPage from '../pages/SearchPage/SearchPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import MyContext from './Context/MyContext';
 import Switch from '@mui/material/Switch';
-import HeaderSlider from './Sliders/HeaderSlider';
+import { CiSearch } from "react-icons/ci";
+import { CiHeart } from "react-icons/ci";
+import { PiShoppingCartThin } from "react-icons/pi";
+import { CiBoxList } from "react-icons/ci";
 
 
 
@@ -82,33 +84,15 @@ export default function HomePageHeader() {
           <HeaderSlider/>
         </Box> */}
         <Toolbar sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-         <Box display='flex' alignItems='center' >
-         <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 1, 
-                color: 'black' , 
-                '&:hover': { backgroundColor: 'white'}, 
-                height: '4vh',
-                width: '4vh',
-                '&:hover': {
-                  backgroundColor: 'none', // Override hover effect to none
-                },
-                
-            }}
-            onClick={() => setIsDrawerOpen(true)}
-          >
-            <MenuIcon sx={{color: 'primary.main'}}/>
+         <Box>
+
+          <IconButton onClick={() => setIsDrawerOpen(true)} >
+             <CiBoxList style={{color: 'black'}}/>
           </IconButton>
-          <Box className= 'cursorPointer' sx={{ display: 'flex', alignItems: 'center', gap: 1}} onClick={() => setIsSearchOpen(true)}>
-                <SearchIcon sx={{color: 'primary.main'}}/>
-                
-                <IconText sx={{display: {xs: 'none', lg: 'inline'}, color: 'primary.main'}}>
-                    {isUzbek? 'Qidiruv' : 'Поиск'}
-                </IconText>
-            </Box>
+
+          <IconButton onClick={() => setIsSearchOpen(true)}>
+            <CiSearch style={{color: 'black'}}/>
+          </IconButton>
           
          </Box>
          <Box>
@@ -118,30 +102,14 @@ export default function HomePageHeader() {
             </Box>
           </Link>
          </Box>
-        <Box sx={{display: 'flex', gap: 3}}>
-            
-            {/* <Box className= 'cursorPointer' sx={{display: 'flex', alignItems: 'center', gap: 1}} 
-                onClick= {() => navigateUser()}>
-                <PermIdentityIcon sx={{color: 'primary.main'}}/>
-                <IconText sx={{display: {xs: 'none', lg: 'inline'}, color: 'primary.main'}}>
-                    {isUzbek? 'Kirish' : 'Войти'}
-                </IconText>
-            </Box> */}
+        <Box>
+            <IconButton onClick = {() => navigateUserToFovoritePage()}>
+              <CiHeart style={{color: 'black'}}/>
+            </IconButton>
 
-            
-            <Box className= 'cursorPointer' sx={{ display: 'flex', alignItems: 'center', gap: 1}} onClick = {() => navigateUserToFovoritePage()}>
-                <FavoriteBorderIcon sx={{color: 'primary.main'}}/>
-                <IconText sx={{display: {xs: 'none', lg: 'inline'}, color: 'primary.main'}}>
-                    {isUzbek? 'Saralangan' : 'Избранные'}
-                </IconText>
-            </Box>
-            
-            <Box className= 'cursorPointer' sx={{color: 'coral', display: 'flex', alignItems: 'center', gap: 1}} onClick = {() => navigateUserToBasket()}>
-                <ShoppingCartOutlinedIcon sx={{color: 'primary.main'}}/>
-                <IconText sx={{display: {xs: 'none', lg: 'inline'}, color: 'primary.main'}}>
-                   {isUzbek? 'Savatcha' : 'Корзина'}
-                </IconText>
-            </Box>
+            <IconButton onClick = {() => navigateUserToBasket()}>
+               <PiShoppingCartThin style={{color: 'black'}}/>
+            </IconButton>
             
         </Box>
         </Toolbar>

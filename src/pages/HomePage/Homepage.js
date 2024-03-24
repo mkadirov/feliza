@@ -5,7 +5,7 @@ import Slider from '../../components/Sliders/Slider'
 import SliderMain from '../../components/Sliders/Slider'
 import CategoryCard from '../../components/HomePage/CategoryCard'
 import SaleBox from '../../components/HomePage/SaleBox'
-import { CategoryCardList, categorySliderList, shoesSliderList } from '../../data/DataList'
+import { CategoryCardList, accessoiresSliderList, categorySliderList, shoesSliderList } from '../../data/DataList'
 import MainFooter from '../../components/Footer/MainFooter'
 import SmallCards from '../../components/Global/Cards/SmallCards'
 import BestSellerBox from '../../components/HomePage/BestSellerBox'
@@ -28,8 +28,14 @@ function Homepage() {
               <CategoryIconsBox/>
               {/* <BestSellerBox/> */}
               <MainCategoryContainer list={clothesCategoryList} />
-              <CategorySlidersContainer/>
+              <CategorySlidersContainer categoryId={5}/>
+              <CategorySlidersContainer categoryId={6}/>
+              <MainCategoryContainer list={accessoiresSliderList} />
+              <CategorySlidersContainer categoryId={5}/>
+              <CategorySlidersContainer categoryId={6}/>
               <MainCategoryContainer list={shoesSliderList} />
+              <CategorySlidersContainer categoryId={5}/>
+              <CategorySlidersContainer categoryId={6}/>
               <Grid container spacing={1}>
               {
                 list.map((item, idx) => {

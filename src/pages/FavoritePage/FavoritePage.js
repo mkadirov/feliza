@@ -16,8 +16,8 @@ function FavoritePage() {
       const fetchData = async() => {
         const res = await getAllProduct();
         if(res.success) {
-          const arr = likedList.map(item => item.product.id)
-          const newArray = res.data.filter(obj => arr.includes(obj.product.id));
+          const arr = likedList.map(item => item.id)
+          const newArray = res.data.filter(obj => arr.includes(obj.id));
           setList(newArray)
         }
       }
@@ -30,7 +30,7 @@ function FavoritePage() {
       <Box sx={{marginTop: '12vh'}} id='favorite_page'>
         {
             list.map((item, idx) => 
-                 <SmallCards key={item.product.id} item={item}/> 
+                 <SmallCards key={item.id} item={item}/> 
             )
         }
       </Box>

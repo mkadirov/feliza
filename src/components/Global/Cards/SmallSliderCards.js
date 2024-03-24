@@ -19,29 +19,23 @@ export default function SmallSliderCards({item}) {
   return (
     
     <Card sx={{ maxWidth: 445, border: 0, minHeight: 330}} >
-      <Link to={`/product/${item.product.id}`}>
+      <Link to={`/product/${item.id}`}>
       <Box sx={{height: {xs: '220px', md: '350px'}, overflow: 'hidden'}} >
-        <img src={item.productImagesList[0]?.url} alt="" />
+        <img src={item.productImages[0]?.url} alt="" />
       </Box>
       </Link>
       <CardContent>
 
         <Box display='flex' justifyContent='space-between'>
-          <Link to={`/product/${item.product.id}`}>
+          <Link to={`/product/${item.id}`}>
             <Typography gutterBottom  fontSize={14} component="div">
-              {item.product.nameUZB}
+              {item.nameUZB}
             </Typography>
           </Link>
-
-          {/* <Box  onClick = {() => changeLikedList(item.id)} sx={{color: 'primary.main'}}>
-            {
-                likedList.includes(item.id)? <FavoriteIcon/> :<FavoriteBorderIcon />
-            }
-          </Box> */}
         </Box>
 
         <Typography fontSize={12}>
-          {item.product.sellPrice} so'm
+          {item.sellPrice} so'm
         </Typography>
         
       </CardContent>

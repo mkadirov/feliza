@@ -47,7 +47,8 @@ function Product() {
         const res = await getProductByID(id);
         if(res.success) {
           setItem(res.data)
-          addToLastSeenList(res.data.product.id)
+          addToLastSeenList(res.data.id)
+          console.log(item);
           window.scrollTo({  
             top: 0,
             behavior: "smooth" // Optional: adds smooth scrolling effect
@@ -59,7 +60,7 @@ function Product() {
 
     useEffect(() => {
       const fetchData = async() => {
-          const res = await getProductsByRefNumber(item.product?.referenceNumber);
+          const res = await getProductsByRefNumber(item?.referenceNumber);
           if(res.success) {
               setProducts(res.data)
           }
@@ -111,6 +112,8 @@ function Product() {
         setIsDrawerOpen(true)
       }
     }
+
+    
     
 
   return (
@@ -119,7 +122,7 @@ function Product() {
       {/*  Mobil qurulmalar uchun moslashgan Slider, katta ekranlarda körinmaydi */}
         <Box sx={{display: {xs: 'block', md: 'none'}}}>
           <SliderContainer >  
-            <ProductSlider list = {item.productImagesList}/>
+            <ProductSlider list = {item.productImages}/>
             <Box sx={{position: 'absolute', right: '10px', bottom: '10px'}}>
               <FavoriteBox sx={{color: 'primary.main',}} onClick = {handelLikeList}>
                 {
@@ -137,12 +140,12 @@ function Product() {
                     <Box display='flex' justifyContent='space-between'>
                       <Typography>
                         {
-                          item.product?.nameUZB
+                          item?.nameUZB
                         }
                       </Typography>
                       <Typography>
                         {
-                          item.product?.sellPrice        
+                          item?.sellPrice        
                         }
                         {" So'm"}
                       </Typography>
@@ -154,7 +157,7 @@ function Product() {
                     </Box>
 
                     <Typography>
-                      {item.product?.color.nameUZB}
+                      {item?.color?.nameUZB}
                     </Typography>
               
                     </Box>
@@ -164,7 +167,7 @@ function Product() {
                     </Button>
                   </Box>
                   <Box  sx={{ mb: 2}}>
-                    <ProductDetailes descriptionUZB = {item.product?.descriptionUZB} descriptionRUS = {item.product?.descriptionRUS}/> 
+                    <ProductDetailes descriptionUZB = {item?.descriptionUZB} descriptionRUS = {item.product?.descriptionRUS}/> 
                   </Box>
                 </Grid>
               </Grid>

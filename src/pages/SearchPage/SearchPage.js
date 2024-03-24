@@ -23,7 +23,7 @@ function SearchPage({setIsSearchOpen}) {
             if(res.success) {
                 const list = [...res.data]
                 setList(list)
-                const newArray = list.filter(item => lastSeenList && lastSeenList.includes(item.product.id));
+                const newArray = list.filter(item => lastSeenList && lastSeenList.includes(item.id));
                 console.log(newArray);
                 setLastSeenProducts(newArray);
             }
@@ -36,7 +36,7 @@ function SearchPage({setIsSearchOpen}) {
     function searchProduct(value){
 
         const filtredList = list.filter(item => {
-            const title = removeApostrophes(item.product.nameUZB);
+            const title = removeApostrophes(item.nameUZB);
             const wordToFind = removeApostrophes(value);
             return(
                 title.toLocaleLowerCase().includes(wordToFind.toLocaleLowerCase())

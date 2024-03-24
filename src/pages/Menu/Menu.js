@@ -10,15 +10,29 @@ import AccordionBtn from '../../components/MenuPage/Accordion';
 import { clothCategoryList } from '../../data/CategoryList';
 import phoneIcon from  '../../assets/icons/phone.png'
 import MyContext from '../../components/Context/MyContext';
+import lookIcon from '../../assets/icons/look.png'
+import { useNavigate } from 'react-router-dom';
 
 
 function Menu({setIsDrawerOpen}) {
 
   const {isUzbek} = useContext(MyContext)
   const clothesCategory = clothCategoryList;
+  const navigate = useNavigate();
+
+  const handelNavigate = (link) => {
+    navigate(link);
+    setIsDrawerOpen(false)
+  }
   return (
     <Box>
       <Box sx={{borderBottom: '1px solid black', py: 2}}>
+        <Box display='flex' alignItems='center' gap={1} marginLeft={2} sx={{cursor: 'pointer'}} onClick = {() => handelNavigate('/looks')}>
+            <Box sx={{width: '25px', height: '25px'}}>
+              <img src={lookIcon} alt="" />
+            </Box>
+            <Typography>{isUzbek ? "Look" : 'Look'}</Typography>
+        </Box>
       {
         clothesCategory.map((item, idx) => {
           return <AccordionBtn setIsDrawerOpen= {setIsDrawerOpen} item = {item} key={idx}/>

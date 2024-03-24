@@ -15,6 +15,7 @@ import UserPage from './pages/UserPage/UserPage';
 import { addLikedItem, deleteLikedItem, getLikedItems } from './api/LikedList';
 import CheckOut from './pages/CheckOut/CheckOut';
 import MainFooter from './components/Footer/MainFooter';
+import Looks from './pages/Looks/Looks';
 
 
 function App() {
@@ -98,12 +99,12 @@ function App() {
   };
 
   const checkIfIdExists = (targetId) => {
-    console.log(likedList[0]?.product?.id);
-    return likedList.some(obj => obj.product.id == targetId);
+    console.log(likedList[0]?.id);
+    return likedList.some(obj => obj.id == targetId);
   };
 
   const getObjectById = (targetId) => {
-    return likedList.find(obj => obj.product.id == targetId);
+    return likedList.find(obj => obj.id == targetId);
   };
 
   const deleteLikedItemFromList = async(id) => {
@@ -187,6 +188,7 @@ function App() {
               <Route path='/basket' element={<BasketPage/>}/>
               <Route path='/user_page' element = {<UserPage/>}/>
               <Route path='/checkout' element = {<CheckOut/>}/>
+              <Route path='/looks' element = {<Looks/>}/>
             </Routes>
             <MainFooter/>
           </BrowserRouter>

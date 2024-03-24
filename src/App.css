@@ -85,6 +85,49 @@ a{
   }
   
   /* Media query for phones (max-width: 600px) */
+ 
+  /* @media only screen and (min-width: 401px) and (max-width: 600px) {
+    
+    .clothes-container {
+      height: 120vh;
+    }
+  } */
+
+  .main-box {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    /* padding-left: 20px; */
+  }
+
+  .look-slider {
+    /* width: 100%; */
+    height: 100%;
+    overflow-x: scroll;
+   white-space: nowrap;
+   scroll-behavior: smooth;
+   overflow-y: hidden;
+   /* margin-left: 10px; */
+  }
+
+  .look-slider::-webkit-scrollbar {
+    display: none;
+  }
+  
+  
+  .scrollable-content {
+    display: inline-block;
+    width: 60vw; /* 25% width for each content */
+    height: 100%;
+    background-color: #ccc; /* Just for demonstration */
+    margin-right: 10px;
+    position: relative;
+  }
+
   @media only screen and (max-width: 600px) {
     .slider-box {
       margin-left: 0 !important;
@@ -109,53 +152,6 @@ a{
     .main-box {
       margin-top: 80px !important;
     }
-  }
-  /* @media only screen and (min-width: 401px) and (max-width: 600px) {
-    
-    .clothes-container {
-      height: 120vh;
-    }
-  } */
-
-  
-
-  
-
-  
-
-  .main-box {
-    width: 100%;
-    height: 400px;
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    /* padding-left: 20px; */
-  }
-
-  .look-slider {
-    /* width: 100%; */
-    height: 400px;
-    overflow-x: scroll;
-   white-space: nowrap;
-   scroll-behavior: smooth;
-   overflow-y: hidden;
-   /* margin-left: 10px; */
-  }
-
-  .look-slider::-webkit-scrollbar {
-    display: none;
-  }
-  
-  
-  .scrollable-content {
-    display: inline-block;
-    width: 60vw; /* 25% width for each content */
-    height: 400px;
-    background-color: #ccc; /* Just for demonstration */
-    margin-right: 10px;
-    position: relative;
   }
 
  

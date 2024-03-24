@@ -19,21 +19,21 @@ export default function ProductCard({item, bigSize}) {
   const [isLiked, setIsLiked] = useState(false)
 
   useEffect(() => {
-    const index = getIndexById(item.product.id)
+    const index = getIndexById(item.id)
     if( index >= 0){
       setIsLiked(true)
     }
   }, [likedList])
 
   const getIndexById = (targetId) => {
-    return likedList.findIndex(obj => obj?.product?.id == targetId);
+    return likedList?.findIndex(obj => obj?.id == targetId);
   };
 
   const handelLikeList = () => {
-    if(user === 0 || user === undefined) {
+    if(user == 0 || user == undefined) {
       setIsLoginPageOpen(true)
     } else {
-      changeLikedList(item.product.id)
+      changeLikedList(item.id)
       setIsLiked(!isLiked)
     }
   }
@@ -41,17 +41,17 @@ export default function ProductCard({item, bigSize}) {
   return (
     
     <Card sx={{ maxWidth: 445, border: 0}} >
-      <Link to={`/product/${item.product?.id}`}>
+      <Link to={`/product/${item?.id}`}>
       <Box sx={{height: {xs: bigSize ? '500px' : '300px', md: '500px'}, overflow: 'hidden'}}>
-        <img src={item.productImagesList[0]?.url} alt="" /> 
+        <img src={item.productImages[0]?.url} alt="" /> 
       </Box>
       </Link>
       <CardContent sx={{minHeight: '60px'}}>
 
         <Box display='flex' justifyContent='space-between'>
-          <Link to={`/product/${item.product.id}`}>
+          <Link to={`/product/${item.id}`}>
             <Typography gutterBottom  fontSize={14} component="div" sx={{color: grey[600]}}>
-              {isUzbek? item.product.nameUZB : item.product.nameRUS}
+              {isUzbek? item.nameUZB : item.nameRUS}
             </Typography>
             
           </Link>
@@ -64,7 +64,7 @@ export default function ProductCard({item, bigSize}) {
         </Box>
 
         <Typography fontSize={12}>
-            {item.product.sellPrice} so'm
+            {item.sellPrice} so'm
         </Typography>
         
         

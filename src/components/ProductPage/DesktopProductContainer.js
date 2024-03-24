@@ -10,6 +10,8 @@ function DesktopProductContainer({item, products, id, handelClick}) {
   const [isFixed, setIsFixed] = useState(false);
   const [largeBoxHeight, setLargeBoxHeight] = useState(0);
 
+  console.log(item);
+
     useEffect(() => {
         const handleScroll = () => {
           const largeBox = document.querySelector('.largeBox');
@@ -55,7 +57,7 @@ function DesktopProductContainer({item, products, id, handelClick}) {
     <Box className="largeBox" sx={{position: 'relative'}}>
       <Grid container spacing={1}>
         <Grid item xs={8}>
-          <ProductImagesDesktop list = {item?.productImagesList}/>
+          <ProductImagesDesktop list = {item?.productImages}/>
         </Grid>
 
         <Grid item xs={4}>
@@ -75,12 +77,12 @@ function DesktopProductContainer({item, products, id, handelClick}) {
                     <Box display='flex' justifyContent='space-between'>
                       <Typography>
                         {
-                          item.product?.nameUZB
+                          item?.nameUZB
                         }
                       </Typography>
                       <Typography>
                         {
-                          item.product?.sellPrice        
+                          item?.sellPrice        
                         }
                         {" So'm"}
                       </Typography>
@@ -92,7 +94,7 @@ function DesktopProductContainer({item, products, id, handelClick}) {
                     </Box>
 
                     <Typography>
-                      {item.product?.color.nameUZB}
+                      {item?.color?.nameUZB}
                     </Typography>
               
                     </Box>
@@ -102,7 +104,7 @@ function DesktopProductContainer({item, products, id, handelClick}) {
                     </Button>
                   </Box>
                   <Box  sx={{ mb: 2}}>
-                    <ProductDetailes descriptionUZB = {item.product?.descriptionUZB} descriptionRUS = {item.product?.descriptionRUS}/> 
+                    <ProductDetailes descriptionUZB = {item?.descriptionUZB} descriptionRUS = {item?.descriptionRUS}/> 
                   </Box>
                 </Grid>
               </Grid>
