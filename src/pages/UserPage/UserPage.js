@@ -59,7 +59,7 @@ function UserPage() {
                 {
                   userNavList.map(item => {
                     return(
-                      <Box key={item.nameUZ} marginBottom={1}>
+                      <Box key={item.nameUZ} marginBottom={1} onClick= {() => navigate(item.link)} sx={{cursor: 'pointer'}}>
                         <Grid container >
                           <Grid item xs={1} sx = {{fontSize: '22px'}}>
                             {item.icon}
@@ -74,19 +74,6 @@ function UserPage() {
                     )
                   })
                 }
-
-                <Box marginBottom={1}>
-                  <Grid container >
-                    <Grid item xs={1} sx = {{fontSize: '22px'}}>
-                      <CiHeart/>
-                    </Grid>
-                    <Grid item xs = {10} >
-                      <Typography>
-                        Tanlanganlar
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                </Box>
               </Box>
               <Button variant='contained' onClick={logOut} fullWidth>
                 Chiqish

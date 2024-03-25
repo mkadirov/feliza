@@ -27,7 +27,7 @@ function Menu({setIsDrawerOpen}) {
   return (
     <Box>
       <Box sx={{borderBottom: '1px solid black', py: 2}}>
-        <Box display='flex' alignItems='center' gap={1} marginLeft={2} sx={{cursor: 'pointer'}} onClick = {() => handelNavigate('/looks')}>
+        <Box display='flex' alignItems='center' gap={1} marginLeft={2} sx={{cursor: 'pointer'}} onClick = {() => handelNavigate('/looks')} marginBottom={1}>
             <Box sx={{width: '25px', height: '25px'}}>
               <img src={lookIcon} alt="" />
             </Box>

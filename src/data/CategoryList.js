@@ -1,4 +1,4 @@
-import dressIcon from '../assets/icons/woman-clothes.png'
+import dressIcon from '../assets/icons/dress.png'
 import accsessoires from '../assets/icons/bags.png'
 import footwear from '../assets/icons/high-heel.png'
 import islamicIcon from '../assets/icons/woman.png'
@@ -17,7 +17,6 @@ export const clothCategoryList = [
         nameRUS: 'Хиджаб',
         icon: islamicIcon
     },
-
     {
         id: 3,
         nameUZB: 'Oyoq kiyimlari',

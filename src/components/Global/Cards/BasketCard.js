@@ -6,6 +6,7 @@ import { grey } from '@mui/material/colors'
 import { Link } from 'react-router-dom'
 import ColorCircle from '../ColorCircle'
 import { deleteCartItem } from '../../../api/Basket'
+import { CiTrash } from "react-icons/ci";
 
 function BasketCard({item, setListSize}) {
 
@@ -18,7 +19,7 @@ function BasketCard({item, setListSize}) {
     }
     
   return (
-    <Box sx={{height: {xs: '180px', md: '600px'}, marginBottom: 2, overflow: 'hidden', pr: 2,pb:2,   borderBottom: '1px solid grey'}}>
+    <Box sx={{marginBottom: 2, overflow: 'hidden', pr: 1,pb:2,   borderBottom: '1px solid grey'}}>
         <Grid container spacing={2}>
             <Grid item xs={4}>
                 <Link to={`/product/${item.productId}`}>
@@ -28,19 +29,35 @@ function BasketCard({item, setListSize}) {
                 </Link>
             </Grid>
             <Grid item xs={8}>
-                <Box display='flex' flexDirection='column' justifyContent='space-between' sx={{height: {xs: '180px', md: '600px'}}}>
+                <Box display='flex' flexDirection='column' justifyContent='space-between'>
+                    <Box display={'flex'} justifyContent={'space-between'} marginBottom={2}>
+                        <Typography sx={{fontWeight: 'bold'}}>
+                            {item.nameUZB}
+                        </Typography>
 
+                        <Typography>
+                        {item.sellPrice * item.quantity} so'm
+                        </Typography>
+                    </Box>
                     <Box display='flex' justifyContent='space-between' >
                         <Box>
-                            <Typography sx={{marginBottom: 3}}>
-                               {item.nameUZB}
-                            </Typography>
-                            <Typography >
-                                Soni: {item.quantity}
-                            </Typography>
-                            <Typography>
-                                O'lchami: {item.productSizeVariant.size}
-                            </Typography>
+                            <Box display={'flex'} gap={1}>
+                                <Typography color={'grey'}>
+                                    Soni:
+                                </Typography>    
+                                <Typography >
+                                    {item.quantity}
+                                </Typography>
+                            </Box>
+                            <Box display={'flex'} gap={1} >
+                                <Typography color={'grey'}>
+                                    O'lchami:
+                                </Typography>    
+                                <Typography >
+                                    {item.productSizeVariant.size}
+                                </Typography>
+                            </Box>
+
 
                             <Box display= 'flex'>
                                 <ColorCircle color = {item.colorCode}/>
@@ -48,21 +65,22 @@ function BasketCard({item, setListSize}) {
                                     {item.colorNameUZB}
                                 </Typography>
                             </Box>
-                            <Typography>
-                                Art.NR: {item.productSizeVariant.barCode}
-                            </Typography>
-                        </Box>
 
-                        <Typography>
-                            {item.sellPrice * item.quantity} so'm
-                        </Typography>
+                            <Box display={'flex'} gap={1} >
+                                <Typography color={'grey'}>
+                                    Art.NR:
+                                </Typography>    
+                                <Typography >
+                                    {item.productSizeVariant.barCode}
+                                </Typography>
+                            </Box>
+                        </Box>
                     </Box>
 
                     <Box display='flex' justifyContent='end'>
-                        
                         <Box>
-                            <IconButton sx={{marginRight: 1, color: 'primary.main'}} onClick={deleteCartItemById}>
-                                <DeleteOutline/>
+                            <IconButton  onClick={deleteCartItemById}>
+                                <CiTrash/>
                             </IconButton>
                         </Box>
                     </Box>

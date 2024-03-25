@@ -3,6 +3,7 @@ import { CiBellOn } from "react-icons/ci";
 import { CiSettings } from "react-icons/ci";
 import { CiStar } from "react-icons/ci";
 import { CiCreditCard2 } from "react-icons/ci";
+import { CiHeart } from "react-icons/ci";
 
 export const userNavList = [
     {
@@ -34,6 +35,12 @@ export const userNavList = [
         nameUZ: 'Kuponlarim',
         nameRU: 'Moi zakazi',
         link: '/my_orders'
+    },
+    {
+        icon: <CiHeart/>,
+        nameUZ: 'Tanlanganlar',
+        nameRU: 'Moi zakazi',
+        link: '/favorite'
     },
     
 ]

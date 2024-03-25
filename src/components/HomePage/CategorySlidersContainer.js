@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { getCategoryById } from '../../api/Category'
 import { useContext } from 'react'
 import MyContext from '../Context/MyContext'
+import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 
 function CategorySlidersContainer({categoryId}) {
     const [list, setList] = useState([])
@@ -50,9 +51,8 @@ function CategorySlidersContainer({categoryId}) {
         paddingTop: '20px',
         paddingBottom: '20px'
       }}>
-        <Box sx={{display: 'flex', justifyContent: 'space-between', 
-            alignItems: 'center', color: 'black', 
-            marginX: 1, paddingX: 1, borderWidth: '1px', borderStyle: 'solid'}}
+        <Box sx={{display: 'flex', gap: 2, 
+            alignItems: 'center', color: 'black', marginX: 1, paddingX: 1}}
             onClick = {() => handelNavigate(categoryId)}
         >
             <Typography variant='h5'>
@@ -61,7 +61,7 @@ function CategorySlidersContainer({categoryId}) {
                 }
             </Typography>
 
-            <ArrowRightAlt/>
+            <MdOutlineKeyboardDoubleArrowRight style={{width: '25px', height: '25px'}}/>
         </Box>
         <SmallSlider list={list}/>
 

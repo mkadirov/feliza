@@ -16,7 +16,7 @@ function LastSeenSLider() {
             const res = await getAllProduct();
             if(res.success) {
                 const list = [...res.data]
-                const newArray = list.filter(item => lastSeenList && lastSeenList.includes(item?.product?.id));
+                const newArray = list.filter(item => lastSeenList && lastSeenList.includes(item?.id));
                 setLastSeenProducts(newArray);
             }
         }
