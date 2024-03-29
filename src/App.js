@@ -16,6 +16,8 @@ import { addLikedItem, deleteLikedItem, getLikedItems } from './api/LikedList';
 import CheckOut from './pages/CheckOut/CheckOut';
 import MainFooter from './components/Footer/MainFooter';
 import Looks from './pages/Looks/Looks';
+import LookPage from './pages/LookPage/LookPage';
+import SaleProducts from './pages/SaleProducts/SaleProducts';
 
 
 function App() {
@@ -184,11 +186,13 @@ function App() {
               <Route path='/products/:id' element={<Products/>}/>
               <Route path='/menu' element={<Menu/>}/>
               <Route path='/product/:id' element={<Product/>}/>
+              <Route path='/sale_product/:id' element={<SaleProducts/>}/>
               <Route path='/favorite' element={<FavoritePage/>}/>
               <Route path='/basket' element={<BasketPage/>}/>
               <Route path='/user_page' element = {<UserPage/>}/>
               <Route path='/checkout' element = {<CheckOut/>}/>
               <Route path='/looks' element = {<Looks/>}/>
+              <Route path='/look/:id' element = {<LookPage/>}/>
             </Routes>
             <MainFooter/>
           </BrowserRouter>

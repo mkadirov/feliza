@@ -12,7 +12,7 @@ import FilterDetailes from '../../components/Products/FilterDetailes/FilterDetai
 import { getCategoryById } from '../../api/Category';
 
 
-function Products() {
+function SaleProducts() {
 
   const [products, setProducts] = useState([])
   const [isFilterOpen, setIsFilterOpen] = useState(false)
@@ -111,11 +111,11 @@ function Products() {
           <FilterDetailes setIsFilterOpen = {setIsFilterOpen} setProducts = {setProducts} 
            categoryId = {id} sizes={sizes} setSizes={setSizes} setBrands={setBrands} brands={brands} 
            colors={colors} setColors={setColors} minMaxPrice={minMaxPrice} setMinMaxPrice={setMinMaxPrice} 
-           list={list} setList={setList} refreshFilter = {setRefreshed} isSale= {false}/>
+           list={list} setList={setList} refreshFilter = {setRefreshed} isSale = {true}/>
         </Box>
       </Drawer>
     </Box>
   )
 }
 
-export default Products
+export default SaleProducts

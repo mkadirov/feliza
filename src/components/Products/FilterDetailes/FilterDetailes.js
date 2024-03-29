@@ -10,7 +10,7 @@ import { getFilteredProducts } from '../../../api/Product';
 
 
 function FilterDetailes({setIsFilterOpen, setProducts, categoryId, colors, setColors, 
-  brands, setBrands, minMaxPrice, setMinMaxPrice, sizes, setSizes, list, setList, refreshFilter}) {
+  brands, setBrands, minMaxPrice, setMinMaxPrice, sizes, setSizes, list, setList, refreshFilter, isSale}) {
 
   useEffect(() => {
 
@@ -21,7 +21,8 @@ function FilterDetailes({setIsFilterOpen, setProducts, categoryId, colors, setCo
       maxPrice: minMaxPrice[1]? minMaxPrice[1] : 1000000,
       brandIds: brands,
       sizes: sizes,
-      categoryId: +categoryId
+      categoryId: +categoryId,
+      categorySale: isSale
     }
     
     const fetchData = async() => {

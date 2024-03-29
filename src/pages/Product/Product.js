@@ -21,23 +21,22 @@ function Product() {
     const [buy, setBuy] = useState(false);
     const {addToBasket, addToLastSeenList, likedList, changeLikedList, user, setIsLoginPageOpen} = useContext(MyContext);
     const [products, setProducts] = useState([])
-    const [isLiked, setIsLiked] = useState(false)
+    const [isLiked, setIsLiked] = useState(false);
+    const [isSale, setIsSale] = useState(false)
     
 
     
     useEffect(() => {
       const index = getIndexById(id)
-      console.log(index);
       if( index >= 0){
         setIsLiked(true)
-        console.log('effect ishladi');
       } else {
         setIsLiked(false)
       }
     }, [likedList, id])
 
     const getIndexById = (targetId) => {
-      return likedList.findIndex(obj => obj?.product?.id == targetId);
+      return likedList.findIndex(obj => obj?.id == targetId);
     };
 
     
@@ -47,8 +46,10 @@ function Product() {
         const res = await getProductByID(id);
         if(res.success) {
           setItem(res.data)
+          if(res.data.sale > 0) {
+            setIsSale(true)
+          }
           addToLastSeenList(res.data.id)
-          console.log(item);
           window.scrollTo({  
             top: 0,
             behavior: "smooth" // Optional: adds smooth scrolling effect
@@ -138,28 +139,36 @@ function Product() {
                   <Box sx={{mt: 4}} >
         
                     <Box display='flex' justifyContent='space-between'>
-                      <Typography>
+                      <Box>
+                        <Typography>
+                          {
+                            item?.nameUZB
+                          }
+                        </Typography>
+                        <Typography>
+                          {
+                            item?.color?.nameUZB
+                          }
+                        </Typography>
+                      </Box>
+                      <Box>
+                        <Typography  sx={{ textDecoration: isSale? 'line-through' : 'none', color: isSale? 'grey' : 'black'}}>
+                            {item.sellPrice} so'm
+                        </Typography>
                         {
-                          item?.nameUZB
+                          isSale && (
+                            <Typography  sx={{ color: 'red' }}>
+                              {item.salePrice} so'm
+                            </Typography>
+                          )
                         }
-                      </Typography>
-                      <Typography>
-                        {
-                          item?.sellPrice        
-                        }
-                        {" So'm"}
-                      </Typography>
+                      </Box>
                     </Box>
 
                     <Box marginY={1} display='flex' justifyContent='space-between'>
                     <Box flex={1}>
                       <ProductColorCards products={products} id= {id}/>
                     </Box>
-
-                    <Typography>
-                      {item?.color?.nameUZB}
-                    </Typography>
-              
                     </Box>
 
                     <Button fullWidth variant='contained' sx={{mr: 2, backgroundColor: 'black'}} onClick={handelClick}>

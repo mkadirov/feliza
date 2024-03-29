@@ -15,10 +15,11 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 
 export default function SmallSliderCards({item}) {
 
-    const {likedList, changeLikedList} = useContext(MyContext)
+  const isSale = item.sale > 0;
+
   return (
     
-    <Card sx={{ maxWidth: 445, border: 0, minHeight: 330}} >
+    <Card sx={{ maxWidth: 445, border: 0, minHeight: 320}} >
       <Link to={`/product/${item.id}`}>
       <Box sx={{height: {xs: '220px', md: '350px'}, overflow: 'hidden'}} >
         <img src={item.productImages[0]?.url} alt="" />
@@ -34,9 +35,16 @@ export default function SmallSliderCards({item}) {
           </Link>
         </Box>
 
-        <Typography fontSize={12}>
-          {item.sellPrice} so'm
+        <Typography fontSize={12} sx={{ textDecoration: isSale? 'line-through' : 'none', color: isSale? 'grey' : 'black'}}>
+            {item.sellPrice} so'm
         </Typography>
+        {
+          isSale && (
+            <Typography fontSize={12} sx={{ color: 'red' }}>
+              {item.salePrice} so'm
+            </Typography>
+          )
+        }
         
       </CardContent>
     </Card>

@@ -5,13 +5,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import {Drawer, styled} from '@mui/material'
-import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { Link,  useNavigate } from 'react-router-dom';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import Menu from '../pages/Menu/Menu';
 import logo from '../assets/icons/Feliza-logo.png'
 import SearchPage from '../pages/SearchPage/SearchPage';
@@ -122,14 +118,14 @@ export default function HomePageHeader() {
       >
         <Box sx={{width: {xs: '80vw', lg: '20vw', display: 'flex', justifyContent: 'center'}}} role='presentation'>
           
-          <Box sx={{width: '90%', py: 2}}>
-          <Box justifyContent='space-between' display='flex' alignItems='center' sx={{borderBottom: '1px solid black', pb: 1}}>
-            <Button onClick={() => setIsDrawerOpen(false)} >
-              <ArrowBackIosIcon sx={{color: 'black'}}/>
-            </Button>
+          <Box sx={{width: '100%', py: 2}}>
+            <Box justifyContent='space-between' display='flex' alignItems='center' sx={{borderBottom: '1px solid black', pb: 1}}>
+              <Button onClick={() => setIsDrawerOpen(false)} >
+                <ArrowBackIosIcon sx={{color: 'black'}}/>
+              </Button>
 
-          <Switch  defaultChecked  onChange={() => setIsUzbek(prev => !prev)}/>
-          </Box>
+              <Switch  defaultChecked  onChange={() => setIsUzbek(prev => !prev)}/>
+            </Box>
             <Menu setIsDrawerOpen= {setIsDrawerOpen}/>
           </Box>
         </Box>

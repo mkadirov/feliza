@@ -18,6 +18,8 @@ export default function ProductCard({item, bigSize}) {
   const {likedList, changeLikedList, user, setIsLoginPageOpen, isUzbek} = useContext(MyContext)
   const [isLiked, setIsLiked] = useState(false)
 
+  const isSale = item.sale > 0;
+
   useEffect(() => {
     const index = getIndexById(item.id)
     if( index >= 0){
@@ -50,7 +52,7 @@ export default function ProductCard({item, bigSize}) {
 
         <Box display='flex' justifyContent='space-between'>
           <Link to={`/product/${item.id}`}>
-            <Typography gutterBottom  fontSize={14} component="div" sx={{color: grey[600]}}>
+            <Typography gutterBottom  fontSize={14} component="div" sx={{fontWeight: '1px'}}>
               {isUzbek? item.nameUZB : item.nameRUS}
             </Typography>
             
@@ -63,9 +65,16 @@ export default function ProductCard({item, bigSize}) {
           </Box>
         </Box>
 
-        <Typography fontSize={12}>
+        <Typography fontSize={12} sx={{ textDecoration: isSale? 'line-through' : 'none', color: isSale? 'grey' : 'black'}}>
             {item.sellPrice} so'm
         </Typography>
+        {
+          isSale && (
+            <Typography fontSize={12} sx={{ color: 'red' }}>
+              {item.salePrice} so'm
+            </Typography>
+          )
+        }
         
         
       </CardContent>

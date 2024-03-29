@@ -17,7 +17,7 @@ function MainCategoryContainer({list}) {
             {
              list.map(item => {
                  return(     
-                     <Box className ='scrollable-content' key = {item.nameUZ}>
+                     <Box className ='scrollable-content' key = {item.nameUZ} sx={{borderRadius: '10px', overflow: 'hidden'}}>
                          <Link to={`/products/${item.id}`}>
                          <img src={item.url} alt="" />
                          <Box sx={{position: 'absolute', right: 0, 

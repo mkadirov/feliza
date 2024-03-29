@@ -1,4 +1,4 @@
-import { Box, Typography, Accordion} from '@mui/material'
+import { Box, Typography, Accordion, Button} from '@mui/material'
 import React, {useContext} from 'react'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -11,7 +11,9 @@ import { clothCategoryList } from '../../data/CategoryList';
 import phoneIcon from  '../../assets/icons/phone.png'
 import MyContext from '../../components/Context/MyContext';
 import lookIcon from '../../assets/icons/look.png'
-import { useNavigate } from 'react-router-dom';
+import saleIcon from '../../assets/icons/coupon.png'
+import { useNavigate, Link } from 'react-router-dom';
+import SaleAccordion from '../../components/MenuPage/SaleAccordion';
 
 
 function Menu({setIsDrawerOpen}) {
@@ -25,7 +27,7 @@ function Menu({setIsDrawerOpen}) {
     setIsDrawerOpen(false)
   }
   return (
-    <Box>
+    <Box position={'relative'}>
       <Box sx={{borderBottom: '1px solid black', py: 2}}>
         <Box display='flex' alignItems='center' gap={1} marginLeft={2} sx={{cursor: 'pointer'}} onClick = {() => handelNavigate('/looks')} marginBottom={1}>
             <Box sx={{width: '25px', height: '25px'}}>
@@ -33,13 +35,43 @@ function Menu({setIsDrawerOpen}) {
             </Box>
             <Typography>{isUzbek ? "Look" : 'Look'}</Typography>
         </Box>
+        <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Box display='flex' alignItems='center' gap={1}>
+            <Box sx={{width: '25px', height: '25px'}}>
+              <img src={saleIcon} alt="" />
+            </Box>
+            <Typography>{ isUzbek? 'Sale' : 'Sale'}</Typography>
+          </Box>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Box paddingLeft={2} marginBottom={1}>
+            <Link to={`/products/6`} >
+              <Typography onClick={() => setIsDrawerOpen(false)}>
+                Barcha mahsulotlar
+              </Typography>
+            </Link>
+          </Box>
+
+          {
+            clothesCategory.map((item, idx) => {
+              return <SaleAccordion setIsDrawerOpen= {setIsDrawerOpen} item = {item} key={idx}/>
+            })
+          }
+           
+        </AccordionDetails>
+      </Accordion>
       {
         clothesCategory.map((item, idx) => {
           return <AccordionBtn setIsDrawerOpen= {setIsDrawerOpen} item = {item} key={idx}/>
         })
       }
       </Box>
-        <Box py={2}>
+      <Box py={2}>
 
         <Accordion>
         <AccordionSummary
@@ -86,21 +118,23 @@ function Menu({setIsDrawerOpen}) {
       </Accordion>
 
 
-        <Box sx={{marginLeft: '17px'}} marginTop={1} display='flex' gap={1} onClick = {() => {
-          navigate('/user_page')
-          setIsDrawerOpen(false)
-          }
-        }>
-          <Box sx={{width: '25px', height: '25px'}}>
+        <Box sx={{marginX:2}} marginTop={1} display='flex' gap={1} >
+          {/* <Box sx={{width: '25px', height: '25px'}}>
             <img src={orderIcon} alt="" />
           </Box>
           <Typography>
             {isUzbek? 'Shaxsiy kabinet' : 'Личный кабинет'}
-          </Typography>
+          </Typography> */}
+          <Button variant='contained' fullWidth size='small' sx={{backgroundColor: 'black'}} onClick = {() => {
+          navigate('/user_page')
+          setIsDrawerOpen(false)
+          }
+        }>
+            Account
+          </Button>
         </Box>
       </Box>
 
-      
     </Box>
   )
 }
