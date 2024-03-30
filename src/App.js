@@ -88,8 +88,6 @@ function App() {
   }
 
   const changeLikedList =(id) => {
-    console.log(id);
-    //const idex = getIndexById(id)
    
     if(checkIfIdExists(id)) {
       console.log('Öchirish');
@@ -101,7 +99,6 @@ function App() {
   };
 
   const checkIfIdExists = (targetId) => {
-    console.log(likedList[0]?.id);
     return likedList.some(obj => obj.id == targetId);
   };
 

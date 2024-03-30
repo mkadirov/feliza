@@ -77,6 +77,22 @@ const getFilteredProducts = async (filterRequest, pageable) => {
     }
 };
 
+const getSaleProductListByCategoryID = async(id) => {
+    try {
+        const res = await axios.get(baseURL + '/getSaleProductsByCategoryId/' + id);
+        console.log(res.data);
+        if(res.status == 200) {
+            
+            return {success: true, data: res.data}
+        } else {
+            return {success: false}
+        }
+    } catch (error) {
+        return {success: false}
+    }
+}
+
 
  
-export {getAllProduct, getProductListByCategoryID, getProductByID, getProductsByRefNumber, getFilteredProducts}
+export {getAllProduct, getProductListByCategoryID, getProductByID, 
+    getProductsByRefNumber, getFilteredProducts, getSaleProductListByCategoryID}

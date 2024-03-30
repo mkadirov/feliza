@@ -5,7 +5,7 @@ import ProductCard from '../../components/Global/Cards/ProductCard';
 import { productList } from '../../data/DataList';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { getProductListByCategoryID } from '../../api/Product';
+import { getSaleProductListByCategoryID } from '../../api/Product';
 import TuneIcon from '@mui/icons-material/Tune';
 import SortMenuButton from '../../components/Products/FilterDetailes/SortMenuButton';
 import FilterDetailes from '../../components/Products/FilterDetailes/FilterDetailes';
@@ -28,7 +28,7 @@ function SaleProducts() {
 
   useEffect(() => {
     const fetchData = async() => {
-      const res = await getProductListByCategoryID(id);
+      const res = await getSaleProductListByCategoryID(id);
       if(res.success) {
         setProducts(res.data);
         refreshFilter();

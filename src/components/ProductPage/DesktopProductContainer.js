@@ -10,7 +10,6 @@ function DesktopProductContainer({item, products, id, handelClick}) {
   const [isFixed, setIsFixed] = useState(false);
   const [largeBoxHeight, setLargeBoxHeight] = useState(0);
 
-  console.log(item);
 
     useEffect(() => {
         const handleScroll = () => {

@@ -10,6 +10,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { grey } from '@mui/material/colors'
+import { formatNumberWithSpaces } from '../Functions';
 
 
 
@@ -39,6 +40,8 @@ export default function ProductCard({item, bigSize}) {
       setIsLiked(!isLiked)
     }
   }
+
+  
   
   return (
     
@@ -48,7 +51,7 @@ export default function ProductCard({item, bigSize}) {
         <img src={item.productImages[0]?.url} alt="" /> 
       </Box>
       </Link>
-      <CardContent sx={{minHeight: '60px'}}>
+      <CardContent sx={{minHeight: '40px'}}>
 
         <Box display='flex' justifyContent='space-between'>
           <Link to={`/product/${item.id}`}>
@@ -64,17 +67,19 @@ export default function ProductCard({item, bigSize}) {
               }
           </Box>
         </Box>
-
-        <Typography fontSize={12} sx={{ textDecoration: isSale? 'line-through' : 'none', color: isSale? 'grey' : 'black'}}>
-            {item.sellPrice} so'm
-        </Typography>
-        {
-          isSale && (
-            <Typography fontSize={12} sx={{ color: 'red' }}>
-              {item.salePrice} so'm
-            </Typography>
-          )
-        }
+        <Box display={'flex'} gap={1} alignItems={'center'}>
+          {
+            isSale && (
+              <Typography fontSize={14} sx={{ color: 'red' }}>
+                {formatNumberWithSpaces(item.salePrice)} {isUzbek? "so'm" :"сум"}
+              </Typography>
+            )
+          }
+          <Typography fontSize={12} sx={{ textDecoration: isSale? 'line-through' : 'none', color: isSale? 'grey' : 'black'}}>
+              {formatNumberWithSpaces(item.sellPrice)} {isUzbek? "so'm" :"сум"}
+          </Typography>  
+        </Box>
+        
         
         
       </CardContent>

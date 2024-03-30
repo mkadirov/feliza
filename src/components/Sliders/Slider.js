@@ -9,7 +9,7 @@ import Skeleton from '@mui/material/Skeleton';
 
 const SliderMain = () => {
   const [list, setList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const navigate = useNavigate();
 
 
@@ -17,7 +17,6 @@ const SliderMain = () => {
     
     const fetchData = async () => {
       const res = await getAllKaruselSlides();
-      setIsLoading(true)
       if(res.success) {
         setList(res.data)
         setIsLoading(false)

@@ -1,8 +1,9 @@
 import { Close } from '@mui/icons-material'
-import { Box, IconButton, Typography, Button, TextField } from '@mui/material'
+import { Box, IconButton, Typography, Button, TextField, Alert } from '@mui/material'
 import React, {useContext, useState} from 'react'
 import { createNewUser, isRegistretedUser, loginUserWithPassword } from '../../api/Login';
 import MyContext from '../../components/Context/MyContext';
+import CheckIcon from '@mui/icons-material/Check';
 
 
 
@@ -14,19 +15,36 @@ function LoginPage() {
     const [registerPassword, setRegisterPassword] = useState('')
     const [birthDate, setBirthDate] = useState('');
     const [verifyCode, setVerifyCode] = useState('');
-    const {user, setUser, setIsLoginPageOpen} = useContext(MyContext)
+    const {setUser, setIsLoginPageOpen} = useContext(MyContext)
     
 
-    
+    const checkPhoneNumber = () => {
+        if(isValidPhoneNumber(tel)) {
+            checkUser();
+        } else {
+            alert("Notög'ri telefon raqam")
+        }
+    }
+
+    function isValidPhoneNumber(phoneNumber) {
+        if (phoneNumber.startsWith('+998') && phoneNumber.length === 13) {
+          for (let i = 4; i < 13; i++) {
+            if (isNaN(phoneNumber[i])) {
+              return false;
+            }
+          }
+          return true; 
+        }
+        return false; 
+      }
+
     const checkUser = async() => {
         const phone = {
             phoneNumber: tel
         }
         const res = await isRegistretedUser(phone);
-        if(res.data) {
-            setIsRegistreted(1)
-        } else {
-            setIsRegistreted(2)
+        if(res?.success) {
+            res.data? setIsRegistreted(1) : setIsRegistreted(2)
         }
     }
 
@@ -38,9 +56,6 @@ function LoginPage() {
 
         const res = await loginUserWithPassword(userDetailes);
         if(res.success) {
-            console.log('Tizimga kirildi');
-            
-            // const userId = res.data.customerId
 
             const currentTime = new Date().getTime();
             const expirationTime = currentTime + 24 * 60 * 60 * 1000;
@@ -57,6 +72,42 @@ function LoginPage() {
             console.log(res.message);
         }
     }
+
+    const checkUserData = () => {
+
+        const nameRegex = /^[a-zA-Z\s]+$/;
+        if (!nameRegex.test(fullName.trim())) {
+            alert('Iltimos ism uchun faqat harflardan foydalaning');
+            return;
+        }
+
+        if (fullName.trim().length <= 3) {
+            alert('Iltimos ism va familiyangizni töliq kriting');
+            return;
+        }
+        if (registerPassword.trim().length <= 5) {
+            alert("Parolda kamida 6 ta belgi bo'lishi kerak");
+            return;
+        }
+        if (verifyCode.trim().length !== 4) {
+            alert("Iltimos tasdiqlash kodini kiriting");
+            return;
+        }
+
+        const dob = new Date(birthDate);
+        if (isNaN(dob.getTime())) {
+            alert("Iltimos to'g'ri sanani kiriting");
+            return;
+        }
+
+        const currentDate = new Date();
+        if (dob > currentDate) {
+            alert("Kelajakdagi tug'ilgan sanani kiritish mumkin emas");
+            return;
+        }    
+        createUser();
+    };
+
 
     const createUser = async() => {
         const user = {
@@ -107,7 +158,7 @@ function LoginPage() {
             
                 <Button 
                     variant= 'contained' 
-                    onClick={checkUser}
+                    onClick={checkPhoneNumber}
                 >
                         Yuborish
                 </Button>
@@ -179,7 +230,7 @@ function LoginPage() {
                 />
                 </Box>
 
-                <Button variant='outlined' onClick={createUser}>
+                <Button variant='outlined' onClick={checkUserData}>
                     Yuborish
                 </Button>
             </Box>
