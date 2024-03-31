@@ -18,7 +18,7 @@ import SaleAccordion from '../../components/MenuPage/SaleAccordion';
 
 function Menu({setIsDrawerOpen}) {
 
-  const {isUzbek} = useContext(MyContext)
+  const {isUzbek, setIsLoginPageOpen, user, setLastAction} = useContext(MyContext)
   const clothesCategory = clothCategoryList;
   const navigate = useNavigate();
 
@@ -26,6 +26,18 @@ function Menu({setIsDrawerOpen}) {
     navigate(link);
     setIsDrawerOpen(false)
   }
+
+  const navigateToUserPage = () => {
+    if(!user) {
+      setIsDrawerOpen(false)
+      setIsLoginPageOpen(true)
+      setLastAction({actionType: 'user_page'})
+    } else {
+      setIsDrawerOpen(false)
+      navigate('/user_page')
+    }
+  }
+
   return (
     <Box position={'relative'}>
       <Box sx={{borderBottom: '1px solid black', py: 2}}>
@@ -119,17 +131,8 @@ function Menu({setIsDrawerOpen}) {
 
 
         <Box sx={{marginX:2}} marginTop={1} display='flex' gap={1} >
-          {/* <Box sx={{width: '25px', height: '25px'}}>
-            <img src={orderIcon} alt="" />
-          </Box>
-          <Typography>
-            {isUzbek? 'Shaxsiy kabinet' : 'Личный кабинет'}
-          </Typography> */}
-          <Button variant='contained' fullWidth size='small' sx={{backgroundColor: 'black'}} onClick = {() => {
-          navigate('/user_page')
-          setIsDrawerOpen(false)
-          }
-        }>
+
+          <Button variant='contained' fullWidth size='small' sx={{backgroundColor: 'black'}} onClick = {navigateToUserPage}>
             Account
           </Button>
         </Box>

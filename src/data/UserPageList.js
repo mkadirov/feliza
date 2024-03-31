@@ -12,12 +12,12 @@ export const userNavList = [
         nameRU: 'Moi zakazi',
         link: '/my_orders'
     },
-    {
-        icon: <CiBellOn/>,
-        nameUZ: 'Xabarnomalar',
-        nameRU: 'Moi zakazi',
-        link: '/my_orders'
-    },
+    // {
+    //     icon: <CiBellOn/>,
+    //     nameUZ: 'Xabarnomalar',
+    //     nameRU: 'Moi zakazi',
+    //     link: '/my_orders'
+    // },
     {
         icon: <CiSettings/>,
         nameUZ: 'Sozlamalar',

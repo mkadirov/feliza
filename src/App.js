@@ -2,7 +2,7 @@ import './App.css';
 import {Box, ThemeProvider, createTheme} from '@mui/material'
 import {Route, Routes, BrowserRouter} from 'react-router-dom'
 import Homepage from './pages/HomePage/Homepage';
-import HomePageHeader from './components/Header';
+import HomePageHeader from './components/Header/Header';
 import Products from './pages/Products/Products';
 import { useEffect, useState } from 'react';
 import Menu from './pages/Menu/Menu';
@@ -28,6 +28,7 @@ function App() {
   const [likedList, setLikedList] = useState([]);
   const [isUzbek, setIsUzbek] = useState(true)
   const [orderItems, setOrderItems] = useState([])
+  const [lastAction, setLastAction] = useState('')
 
   const [user, setUser] = useState(() => {
     const storedUserData = localStorage.getItem('userData');
@@ -172,7 +173,9 @@ function App() {
         isUzbek, 
         setIsUzbek,
         orderItems,
-        setOrderItems
+        setOrderItems,
+        lastAction, 
+        setLastAction
         }}>
         <ThemeProvider theme={theme}>
         <Box>

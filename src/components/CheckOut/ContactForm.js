@@ -1,91 +1,45 @@
 import React, {useContext} from 'react';
 import {Box, TextField} from '@mui/material'
 import MyContext from '../Context/MyContext'
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { getCustomerByID } from '../../api/Customer';
 
 
 const ContactForm = ({setFullName, setPhoneNumber, fullName, phoneNumber}) => {
+  const [customer, setCustomer] = useState('')
+  const {user} = useContext(MyContext)
     
+  useEffect(() => {
+    const fetchData = async() => {
+      const res = await getCustomerByID(user.customerId);
+      if(res?.success) {
+        
+        hasCustomer(res.data.object.fullName, res.data.object.phoneNumber)
+        console.log(res.data);
+      }
+    }
+
+    if(user) {
+      fetchData();
+    }
+  }, [user])
+
+  const hasCustomer = (name, phone) => {
+    setFullName(name);
+    setPhoneNumber(phone);
+  }
 
     
     return (
       <Box marginTop={2}>
-        {/* <form onSubmit={handleSubmit(onSubmit)} >
-        <div>
-            <Box  display={'flex'} sx={{border: '1px solid grey' , overflow: 'hidden', marginTop: 2}}>
-                <Box  flex={1} display={'flex'} alignItems={'center'} sx={{paddingLeft: 1}} >
-                <Controller
-                    name="fullName"
-                    control={control}
-                    defaultValue={user?.firstName || ''}
-                    rules={{ required: 'Iltimos ismingizni kriting' }}
-                    render={({ field, fieldState }) => (
-                      <div>
-                        <input type="text" {...field} placeholder='Ism va Familiyangiz'/>
-                        {fieldState?.error && <p style={{color: 'red'}}>{fieldState?.error?.message}</p>}
-                      </div>
-                    )}
-                />
-                </Box>
-                <Button   size='small' sx={{color: 'white'}}>
-                    S
-                </Button>
-            </Box>  
-        </div>
-
-        <div>
-            <Box  display={'flex'} sx={{border: '1px solid grey' , overflow: 'hidden', marginTop: 2}}>
-                <Box  flex={1} display={'flex'} alignItems={'center'} sx={{paddingLeft: 1}} >
-                <Controller
-                    name="lastName"
-                    control={control}
-                    defaultValue={user?.firstName || ''}
-                    rules={{ required: 'Iltimos familiyangizni kriting' }}
-                    render={({ field, fieldState }) => (
-                      <div>
-                        <input type="text" {...field} placeholder='Familiyangiz...'/>
-                        {fieldState?.error && <p style={{color: 'red'}}>{fieldState?.error?.message}</p>}
-                      </div>
-                    )}
-                />
-                </Box>
-                <Button   size='small' sx={{color: 'white'}}>
-                    S
-                </Button>
-            </Box>  
-          
-        </div>
-
-        <div>
-            <Box  display={'flex'} sx={{border: '1px solid grey' , overflow: 'hidden', marginTop: 2}}>
-                <Box  flex={1} display={'flex'} alignItems={'center'} sx={{paddingLeft: 1}} >
-                <Controller
-                  name="phoneNumber"
-                  control={control}
-                  defaultValue={user?.phoneNumber || ''}
-                  rules={{ required: 'Iltimos telefon raqamingizni kriting' }}
-                  render={({ field, fieldState }) => (
-                    <div>
-                      <input type="text" {...field} placeholder='Telefon raqamingiz'/>
-                      {fieldState?.error && <p style={{color: 'red'}}>{fieldState?.error?.message}</p>}
-                    </div>
-                  )}
-                />
-                </Box>
-                <Button   size='small' sx={{color: 'white'}}>
-                    S
-                </Button>
-             </Box>  
-          
-           </div> 
-              
-        </form> */}
+       
         <TextField 
           variant='outlined' 
           size='small' 
           label = 'Ism va familiyangiz' 
           fullWidth
-          // defaultValue={user? user.name: ''}
-          value={fullName}
+          value={fullName? fullName: ''}
           onChange={(e) => setFullName(e.target.value)}
         />
         <TextField 

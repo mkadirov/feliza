@@ -16,7 +16,7 @@ import { formatNumberWithSpaces } from '../Functions';
 
 export default function ProductCard({item, bigSize}) {
 
-  const {likedList, changeLikedList, user, setIsLoginPageOpen, isUzbek} = useContext(MyContext)
+  const {likedList, changeLikedList, user, setIsLoginPageOpen, isUzbek, setLastAction} = useContext(MyContext)
   const [isLiked, setIsLiked] = useState(false)
 
   const isSale = item.sale > 0;
@@ -35,6 +35,7 @@ export default function ProductCard({item, bigSize}) {
   const handelLikeList = () => {
     if(user == 0 || user == undefined) {
       setIsLoginPageOpen(true)
+      setLastAction({actionType: 'like_product', product_id: item.id})
     } else {
       changeLikedList(item.id)
       setIsLiked(!isLiked)

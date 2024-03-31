@@ -53,19 +53,19 @@ function AdresseForm({adresseList, setHasAdress, setAddressId}) {
         }
         <Box   display={'flex'} sx={{border: '1px solid grey'}}>
             <Box flex={1} display={'flex'} alignItems={'center'} sx={{paddingLeft: 1}}>
-                <input  type='text' placeholder='Viloyat' readOnly value={region?.name}/>
+                <input style={{backgroundColor: 'inherit'}}  type='text' placeholder='Viloyat' readOnly value={region?.name}/>
             </Box>
             <MainDropdown setRegion = {setRegion} setDistrict = {setDistrict} region={region} setPostFilial = {setPostFilial}/>
         </Box>
         <Box  display={'flex'} sx={{border: '1px solid grey', marginY: 2}}>
             <Box  flex={1} display={'flex'} alignItems={'center'} sx={{paddingLeft: 1}} >
-                <input type='text' placeholder='Tuman' readOnly value={district == ''? '' : district.name}/>
+                <input style={{backgroundColor: 'inherit'}} type='text' placeholder='Tuman' readOnly value={district == ''? '' : district.name}/>
             </Box>
             <SubRegionDropDown setDistrict = {setDistrict}  region={region} setPostFilial = {setPostFilial}/>
         </Box>
         <Box  display={region.name !== 'Toshkent sh'? 'flex': 'none'} sx={{border: '1px solid grey', marginY: 2}}>
             <Box  flex={1} display={'flex'} alignItems={'center'} sx={{paddingLeft: 1}} >
-                <input type='text' placeholder='Pochta filiali' readOnly value={postFilial ==''? '' : postFilial.postName + " - " +  postFilial.postFilialName}/>
+                <input style={{backgroundColor: 'inherit'}} type='text' placeholder='Pochta filiali' readOnly value={postFilial ==''? '' : postFilial.postName + " - " +  postFilial.postFilialName}/>
             </Box>
             <PostFilialDropDown district={district} setPostFilial = {setPostFilial}/>
         </Box>

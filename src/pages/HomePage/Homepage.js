@@ -1,6 +1,6 @@
 import React from 'react'
 import {Box, Container, Grid} from '@mui/material'
-import HomePageHeader from '../../components/Header'
+import HomePageHeader from '../../components/Header/Header'
 import Slider from '../../components/Sliders/Slider'
 import SliderMain from '../../components/Sliders/Slider'
 import CategoryCard from '../../components/HomePage/CategoryCard'

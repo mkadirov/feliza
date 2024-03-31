@@ -1,9 +1,11 @@
 import { Close } from '@mui/icons-material'
 import { Box, IconButton, Typography, Button, TextField, Alert } from '@mui/material'
 import React, {useContext, useState} from 'react'
-import { createNewUser, isRegistretedUser, loginUserWithPassword } from '../../api/Login';
+import { createNewUser, getVerifyCodeToNewPassword, isRegistretedUser, loginUserWithPassword, restorePassword } from '../../api/Login';
 import MyContext from '../../components/Context/MyContext';
-import CheckIcon from '@mui/icons-material/Check';
+import {useNavigate} from 'react-router-dom'
+import { isValidPhoneNumber } from '../../components/Global/Functions';
+import { useEffect } from 'react';
 
 
 
@@ -15,32 +17,32 @@ function LoginPage() {
     const [registerPassword, setRegisterPassword] = useState('')
     const [birthDate, setBirthDate] = useState('');
     const [verifyCode, setVerifyCode] = useState('');
-    const {setUser, setIsLoginPageOpen} = useContext(MyContext)
+    const [changePasswordCode, setChangePasswordCode] = useState('');
+    const [newPassword, setNewPassword] = useState('')
     
+
+    const {setUser, setIsLoginPageOpen, lastAction, changeLikedList, setLastAction} = useContext(MyContext)
+    const navigate = useNavigate();
+    
+    useEffect(() => {
+        
+        if(lastAction.actionType == 'phone') {
+            setTel(lastAction.phoneNumber);
+            checkUser(lastAction.phoneNumber);
+        }
+    }, [])
 
     const checkPhoneNumber = () => {
         if(isValidPhoneNumber(tel)) {
-            checkUser();
+            checkUser(tel);
         } else {
             alert("Notög'ri telefon raqam")
         }
     }
 
-    function isValidPhoneNumber(phoneNumber) {
-        if (phoneNumber.startsWith('+998') && phoneNumber.length === 13) {
-          for (let i = 4; i < 13; i++) {
-            if (isNaN(phoneNumber[i])) {
-              return false;
-            }
-          }
-          return true; 
-        }
-        return false; 
-      }
-
-    const checkUser = async() => {
+    const checkUser = async(tempPhoneNumber) => {
         const phone = {
-            phoneNumber: tel
+            phoneNumber: tempPhoneNumber
         }
         const res = await isRegistretedUser(phone);
         if(res?.success) {
@@ -58,7 +60,7 @@ function LoginPage() {
         if(res.success) {
 
             const currentTime = new Date().getTime();
-            const expirationTime = currentTime + 24 * 60 * 60 * 1000;
+            const expirationTime = currentTime + 24 * 60 * 60 * 30000;
 
             const userData = {
               user: res.data,
@@ -68,6 +70,8 @@ function LoginPage() {
             localStorage.setItem('userData', JSON.stringify(userData));
             setUser(res.data);
             setIsLoginPageOpen(false)
+            navigateUser();
+            setTel('')
         } else {
             console.log(res.message);
         }
@@ -126,9 +130,67 @@ function LoginPage() {
             setTel('')
             setVerifyCode('');
             setRegisterPassword('')
+            setIsLoginPageOpen(false);
+            navigateUser();
         } else {
             console.log('xatolik!!!!!');
         }
+    }
+
+    const navigateUser = () => {
+
+        if(lastAction.actionType == 'basket') {
+            navigate('/basket')
+            setLastAction('')
+            return;
+        }
+
+        if(lastAction.actionType == 'like') {
+            navigate('/favorite')
+            setLastAction('')
+            return;
+        }
+
+        // if(lastAction.actionType == 'like_product') {
+        //     changeLikedList(lastAction.product_id)
+        // }
+
+        if(lastAction.actionType == 'user_page') {
+            navigate('/user_page')
+            setLastAction('')
+            return;
+        }
+    }
+
+    const handelPassForget = () => {
+        getNewVerifyCode();
+        setIsRegistreted(3)
+    }
+
+    const getNewVerifyCode = async() => {
+        const phone = {
+            phoneNumber: tel
+        }
+        const res = await getVerifyCodeToNewPassword(phone);
+        if(!res.success) {
+            setIsLoginPageOpen(false)
+        }
+    }
+
+    const restorePasswordByCustomer = async () => {
+        const bodyObj = {
+            phoneNumber : tel,
+            newPassword : newPassword,
+            verifyCode : changePasswordCode
+        }
+        console.log(bodyObj);
+        const res = await restorePassword(bodyObj);
+
+        if(res.success) {
+            console.log(tel);
+            setIsRegistreted(1);
+        }
+
     }
 
   return (
@@ -166,12 +228,13 @@ function LoginPage() {
 
 
             <Box sx={{display: isRegistreted == 1? 'block' : 'none'}}>
-                <Box width='300px' marginY={3}>
+                <Box width='300px' marginTop={3}>
 
                     <TextField 
                     variant='outlined' 
                     label='Parol' 
-                    size='small' 
+                    size='small'
+                    type='password' 
                     fullWidth
                     value={password}
                     sx={{marginY: 2}}
@@ -181,9 +244,14 @@ function LoginPage() {
                 <Button variant= 'contained' onClick={loginUser}>
                     Yuborish
                 </Button>
+                <Box marginTop={1}>
+                    <Typography fontSize={12} sx={{color: 'blue'}} onClick= {handelPassForget}>
+                        Parolni unutdingizmi?
+                    </Typography>
+                </Box>
             </Box>
 
-            <Box marginTop={2} width={'300px'} sx={{display: isRegistreted == 2? 'block' : 'none'}}>
+            <Box marginY={2} width={'300px'} sx={{display: isRegistreted == 2? 'block' : 'none'}}>
                 <Box>
                     <Typography>
                         Tasdiqlash kodi sizga SMS orqali yuboriladi
@@ -226,6 +294,7 @@ function LoginPage() {
                     sx={{marginY: 2}}
                     helperText = 'Kamida 6ta belgidan iborat parol'
                     value={registerPassword}
+                    type='password'
                     onChange={(e) => setRegisterPassword(e.target.value)}
                 />
                 </Box>
@@ -233,6 +302,54 @@ function LoginPage() {
                 <Button variant='outlined' onClick={checkUserData}>
                     Yuborish
                 </Button>
+            </Box>
+
+            <Box sx={{display: isRegistreted == 3? 'block' : 'none'}}>
+                <Typography>
+                    Tasdiqlash kodi sizga sms orqali yuborildi
+                </Typography>
+                <Box width='300px' marginTop={1}>
+
+                    <TextField 
+                    variant='outlined' 
+                    label='Tasdiqlash kodi' 
+                    size='small'
+                    type='number' 
+                    fullWidth
+                    value={changePasswordCode}
+                    sx={{marginY: 2}}
+                    onChange={(e) => setChangePasswordCode(e.target.value)}
+                    />
+                    <TextField variant='outlined' 
+                    size='small' 
+                    label='Yangi parolni kriting'  
+                    fullWidth 
+                    sx={{marginY: 1}}
+                    helperText = 'Kamida 6ta belgidan iborat parol'
+                    value={newPassword}
+                    type='password'
+                    onChange={(e) => setNewPassword(e.target.value)}
+                />
+
+                <Button 
+                    variant='contained' 
+                    sx={{backgroundColor: 'red', marginRight: 1}} 
+                    size='small'
+                    onClick={() => setIsRegistreted(1)}
+                >
+                    Bekor qilish
+                </Button>
+
+                <Button 
+                    variant='contained' 
+                    sx={{backgroundColor: 'green'}} 
+                    size='small'
+                    onClick={restorePasswordByCustomer}
+                >
+                    Yuborish
+                </Button>
+                
+                </Box>
             </Box>
         </Box>
 

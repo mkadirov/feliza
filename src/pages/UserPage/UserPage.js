@@ -6,10 +6,13 @@ import { userNavList } from '../../data/UserPageList'
 import { CiHeart } from "react-icons/ci";
 import customerIcon from '../../assets/icons/customer.png'
 import { useEffect } from 'react'
+import { useState } from 'react'
+import { getCustomerByID } from '../../api/Customer'
 
 function UserPage() {
 
   const {user, setUser} = useContext(MyContext)
+  const [customer, setCustomer] = useState('')
   const navigate = useNavigate()
   
   console.log(user);
@@ -18,6 +21,20 @@ function UserPage() {
     setUser(null);
     localStorage.removeItem('userData');
   }
+
+  useEffect(() => {
+    const fetchData = async() => {
+      const res = await getCustomerByID(user.customerId);
+      if(res?.success) {
+        setCustomer(res.data.object);
+        console.log(res.data);
+      }
+    }
+
+    if(user) {
+      fetchData();
+    }
+  }, [user])
 
   useEffect(() => {
     
@@ -43,13 +60,13 @@ function UserPage() {
 
               <Box marginTop={2}>
                 <Typography>
-                  Eshonov Bahodir
+                  {customer.fullName}
                 </Typography>
               </Box>
 
               <Box>
                 <Typography fontSize={12} color={'grey'}>
-                  +998971234567
+                  {customer.phoneNumber}
                 </Typography>
               </Box>
 

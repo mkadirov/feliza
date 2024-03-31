@@ -20,3 +20,15 @@ export const  formatNumberWithSpaces = (number) => {
     return numStr;
     }
 }
+
+export const isValidPhoneNumber = (phoneNumber) => {
+  if (phoneNumber.startsWith('+998') && phoneNumber.length === 13) {
+    for (let i = 4; i < 13; i++) {
+      if (isNaN(phoneNumber[i])) {
+        return false;
+      }
+    }
+    return true; 
+  }
+  return false; 
+}

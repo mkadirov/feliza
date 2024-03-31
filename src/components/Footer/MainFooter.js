@@ -8,21 +8,26 @@ import facebookIcon from '../../assets/icons/facebook.png'
 import { grey } from '@mui/material/colors'
 import { useNavigate } from 'react-router-dom'
 import { footerNavList } from '../../data/FooterNavList'
+import { useState } from 'react'
+import { isValidPhoneNumber } from '../Global/Functions'
+import { useContext } from 'react'
+import MyContext from '../Context/MyContext'
 
 function MainFooter() {
+  const [value, setValue] = useState('')
+  const navigate = useNavigate();
+  const {setLastAction, setIsLoginPageOpen} = useContext(MyContext)
 
-    const navigate = useNavigate();
+    const navigateUser =()=> {
+      if(isValidPhoneNumber(value)) {
+        const tempPhone = value
+        setLastAction({actionType: 'phone', phoneNumber: tempPhone})
+        setIsLoginPageOpen(true)
+        setValue('')
+      }
+    }
 
-    const box2Style = {
-        width: '10px',
-        height: '10px',
-        backgroundColor: 'rgb(234, 87, 116',
-        position: 'absolute',
-        left: '50%', // Center horizontally
-        transform: 'translateX(-50%)', // Adjust for the box width
-        bottom: '-5px', // Align with the bottom of the first box
-        borderRadius: '50%',
-      };
+
 
   return (
     <Box marginTop={5} sx={{boxShadow: "inset 0 0.5px 0 black"}}>
@@ -35,8 +40,22 @@ function MainFooter() {
        <Grid container display={'flex'} justifyContent={'center'} marginTop={2}>
         <Grid item xs = {8} md={6} lg={4}>
             <Box marginBottom={2}>
-                <TextField variant='standard' fullWidth  label = 'Telefon raqamingiz'/>
-                <Button variant='contained' size='small' fullWidth sx={{marginTop: 2}}>
+                <TextField 
+                  variant='standard' 
+                  fullWidth  
+                  label = 'Telefon raqamingiz...'
+                  onChange={(e) => setValue(e.target.value)}
+                  value={value}
+                  id='footer-phone-input'
+                />
+                  
+                <Button 
+                  variant='contained' 
+                  size='small' 
+                  fullWidth 
+                  sx={{marginTop: 2}}
+                  onClick={navigateUser}
+                >
                     Kirish
                 </Button>
             </Box>

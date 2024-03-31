@@ -35,8 +35,8 @@ const loginUserWithPassword = async(userDetailes) => {
         const res = await axios.post(baseURL + 'loginCustomer', userDetailes);
         if(res.status == 200) {
             const token = res.data.accessToken;
-            console.log(token);
             localStorage.setItem('token', token);
+            console.log(res.data);
             return {success: true, data: res.data, message: res.message}
         } else {
             console.log('sdfsdfsdf');
@@ -48,4 +48,32 @@ const loginUserWithPassword = async(userDetailes) => {
     }
 }
 
-export {isRegistretedUser, createNewUser, loginUserWithPassword}
+const getVerifyCodeToNewPassword = async(phoneNumber) => {
+    try {
+        const res = await axios.post(baseURL + 'sendVerifyCodeForForgetPassword', phoneNumber);
+        if(res.status = 200) {
+            return {data: res.data, success: true}
+        } else {
+            return {success: false}
+        }
+    } catch (error) {
+        return {success: false}
+    }
+}
+
+const restorePassword = async(body) => {
+    try {
+        const res = await axios.post(baseURL + 'forgetPassword', body);
+        if(res.status = 200) {
+            return {data: res.data, success: true}
+        } else {
+            return {success: false}
+        }
+    } catch (error) {
+        return {success: false}
+    }
+}
+
+
+
+export {isRegistretedUser, createNewUser, loginUserWithPassword, getVerifyCodeToNewPassword, restorePassword}
