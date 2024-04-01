@@ -12,6 +12,7 @@ import { useState } from 'react'
 import { isValidPhoneNumber } from '../Global/Functions'
 import { useContext } from 'react'
 import MyContext from '../Context/MyContext'
+import { MdOutlineIndeterminateCheckBox } from 'react-icons/md'
 
 function MainFooter() {
   const [value, setValue] = useState('')
@@ -63,9 +64,9 @@ function MainFooter() {
        </Grid>
        <Box align={'center'} marginTop={3} paddingX={2}>
         {
-            footerNavList.map(item => {
+            footerNavList.map((item, idx) => {
                 return (
-                    <Box display="inline-block" sx={{marginX: 1}} onClick = {() => navigate(item.link)}>
+                    <Box key={item.nameUZ + idx} display="inline-block" sx={{marginX: 1}} onClick = {() => navigate(item.link)}>
                         <Typography >{item.nameUZ}</Typography>
                     </Box>
                 )

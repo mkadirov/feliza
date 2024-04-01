@@ -92,7 +92,7 @@ function Product() {
 
     
   return (
-    <Box sx={{marginTop: '7vh'}} id='page-head'>
+    <Box sx={{paddingTop: '7vh'}} id='page-head'>
 
       {/*  Mobil qurulmalar uchun moslashgan Slider, katta ekranlarda körinmaydi */}
         <Box sx={{display: {xs: 'block', md: 'none'}}}>

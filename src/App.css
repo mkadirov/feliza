@@ -157,5 +157,16 @@ a{
     overflow: hidden;
   }
 
+  .underlineHover {
+    color: grey; /* Assuming you want to inherit the color */
+  }
+  
+  .underlineHover:hover {
+    text-decoration: underline;
+    color: black; /* Change color to black on hover */
+  }
+
+  
+
  
   

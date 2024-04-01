@@ -11,19 +11,27 @@ import BestSellerBox from '../../components/HomePage/BestSellerBox'
 import MainCategoryContainer from '../../components/HomePage/MainCategoryContainer'
 import CategorySlidersContainer from '../../components/HomePage/CategorySlidersContainer'
 import CategoryIconsBox from '../../components/HomePage/CategoryIconsBox'
+import { useEffect } from 'react'
 
 
 
 function Homepage() {
     const list = CategoryCardList;
     const clothesCategoryList = categorySliderList;
+
+    useEffect(() => {
+      window.scrollTo({  
+        top: 0,
+        behavior: "smooth"
+      });
+    }, [])
     
   return (
       <Box>
         <Grid container justifyContent='center'>
             <Grid item xs={12}  sx={{marginTop: {xs: '6vh', sm: '60px', lg: '60px'}}}>
               <SliderMain/>
-              <SaleBox/>
+              {/* <SaleBox/> */}
               <CategoryIconsBox/>
               {/* <BestSellerBox/> */}
               <MainCategoryContainer list={clothesCategoryList} />

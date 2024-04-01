@@ -51,19 +51,19 @@ function AdresseForm({adresseList, setHasAdress, setAddressId}) {
                 </Button>
             </Box>
         }
-        <Box   display={'flex'} sx={{border: '1px solid grey'}}>
+        <Box   display={'flex'} sx={{border: '1px solid grey', borderRadius: '5px'}}>
             <Box flex={1} display={'flex'} alignItems={'center'} sx={{paddingLeft: 1}}>
                 <input style={{backgroundColor: 'inherit'}}  type='text' placeholder='Viloyat' readOnly value={region?.name}/>
             </Box>
             <MainDropdown setRegion = {setRegion} setDistrict = {setDistrict} region={region} setPostFilial = {setPostFilial}/>
         </Box>
-        <Box  display={'flex'} sx={{border: '1px solid grey', marginY: 2}}>
+        <Box  display={'flex'} sx={{border: '1px solid grey', marginY: 2, borderRadius: '5px'}}>
             <Box  flex={1} display={'flex'} alignItems={'center'} sx={{paddingLeft: 1}} >
                 <input style={{backgroundColor: 'inherit'}} type='text' placeholder='Tuman' readOnly value={district == ''? '' : district.name}/>
             </Box>
             <SubRegionDropDown setDistrict = {setDistrict}  region={region} setPostFilial = {setPostFilial}/>
         </Box>
-        <Box  display={region.name !== 'Toshkent sh'? 'flex': 'none'} sx={{border: '1px solid grey', marginY: 2}}>
+        <Box  display={region.name !== 'Toshkent sh'? 'flex': 'none'} sx={{border: '1px solid grey', marginY: 2, borderRadius: '5px'}}>
             <Box  flex={1} display={'flex'} alignItems={'center'} sx={{paddingLeft: 1}} >
                 <input style={{backgroundColor: 'inherit'}} type='text' placeholder='Pochta filiali' readOnly value={postFilial ==''? '' : postFilial.postName + " - " +  postFilial.postFilialName}/>
             </Box>

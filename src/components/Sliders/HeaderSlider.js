@@ -11,7 +11,7 @@ function HeaderSlider() {
         verticalSwiping: true,
         autoplay: true,
         speed: 1000,
-        autoplaySpeed: 4000,
+        autoplaySpeed: 2000,
         cssEase: "linear",
         adaptiveHeight: true
         

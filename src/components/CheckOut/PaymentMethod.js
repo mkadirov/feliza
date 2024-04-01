@@ -32,7 +32,7 @@ function PaymentMethod({setPayment, payment}) {
         onChange={handleGenderChange}
       >
         <FormControlLabel defaultChecked value="payme" control={<Radio />} label="Payme" />
-        <FormControlLabel value="click" control={<Radio />} label="Click" />
+        <FormControlLabel value="cash" control={<Radio />} label="Naqd pul" />
       </RadioGroup>
     </FormControl>
     </Box>

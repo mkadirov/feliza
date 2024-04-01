@@ -99,7 +99,7 @@ function CheckOut() {
     <Box sx={{marginY: '14vh'}}>
         <Grid container display={'flex'} justifyContent={'center'}>
           <Grid item xs= {11} md= {7} lg = {5} xl = {3}>
-            <Box sx={{border: '1px solid grey', width: '100%', padding: {xs: '3px', md: '10px'}}}>
+            <Box sx={{ width: '100%'}}>
 
               <Box display={'flex'} alignItems={'center'}>
                 <MediumIcon icon = {homeIcon}/>

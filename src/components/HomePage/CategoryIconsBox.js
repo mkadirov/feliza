@@ -7,7 +7,7 @@ function CategoryIconsBox() {
     const {isUzbek} = useContext(MyContext)
 
   return (
-    <Box paddingX={1}>
+    <Box padding={1} marginY={1} sx={{borderTop: '3px solid black', borderBottom: '3px solid black'}}>
         <Grid container spacing={2}>
             {
                 categoryIconList.map((item, idx) => {

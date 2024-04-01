@@ -19,6 +19,7 @@ import { CiHeart } from "react-icons/ci";
 import { PiShoppingCartThin } from "react-icons/pi";
 import { CiBoxList } from "react-icons/ci";
 import MobileHeader from './MobileHeader';
+import DesktopHeader from './DesktopHeader';
 
 
 
@@ -77,43 +78,17 @@ export default function HomePageHeader() {
   }, [isSearchOpen]);
   return (
     <>
-      <Box sx={{display: {xs: 'block', md: 'none'}}}>
-      <AppBar position="fixed" sx={{backgroundColor: 'white', }}>
-        {/* <Box>
-          <Toolbar sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-            <Box>
-              <IconButton onClick={() => setIsDrawerOpen(true)} >
-                <CiBoxList style={{color: 'black'}}/>
-              </IconButton>
-
-              <IconButton onClick={() => setIsSearchOpen(true)}>
-                <CiSearch style={{color: 'black'}}/>
-              </IconButton>
-            </Box>
-            <Box>
-              <Link to='/'>
-                <Box width={60}>
-                  <img src={logo} alt="" />
-                </Box>
-              </Link>
-            </Box>
-            <Box>
-              <IconButton onClick = {() => navigateUserToFovoritePage()}>
-                <CiHeart style={{color: 'black'}}/>
-              </IconButton>
-
-              <IconButton onClick = {() => navigateUserToBasket()}>
-                 <PiShoppingCartThin style={{color: 'black'}}/>
-              </IconButton>
-            
-            </Box>
-          </Toolbar> 
-        </Box>  */}
-        
-        <MobileHeader setIsDrawerOpen={setIsDrawerOpen} setIsSearchOpen={setIsSearchOpen} 
+    <Box sx={{display: {xs: 'block', md: 'none'}}}>
+        <AppBar position="fixed" sx={{backgroundColor: 'white'}}>
+          <MobileHeader setIsDrawerOpen={setIsDrawerOpen} setIsSearchOpen={setIsSearchOpen} 
             navigateUserToFovoritePage={navigateUserToFovoritePage} navigateUserToBasket={navigateUserToBasket}/>
-        
-      </AppBar>
+        </AppBar>
+      </Box>
+      <Box sx={{display: {xs: 'none', md: 'block', position: 'relative'}}}>
+        <AppBar position="fixed" sx={{backgroundColor: 'white', }}>
+          <DesktopHeader navigateUser={navigateUser} setIsSearchOpen={setIsSearchOpen} 
+            navigateUserToFovoritePage={navigateUserToFovoritePage} navigateUserToBasket={navigateUserToBasket}/>
+        </AppBar>
       </Box>
       
       <Drawer
