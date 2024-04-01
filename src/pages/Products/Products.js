@@ -60,32 +60,51 @@ function Products() {
     setMinMaxPrice([]);
   }
 
+  var lastScrollTop = 0;
+
+window.addEventListener('scroll', function() {
+  var box = document.getElementById('desctop-navbar');
+  var scrollTop = window.scrollY || window.pageYOffset;
+
+  if (scrollTop > lastScrollTop) {
+    box.style.opacity = '0';
+  } else {
+    box.style.opacity = '1';
+  }
+  
+  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+});
+
 
   
     
   return (
-    <Box sx={{pt: '12vh'}} id='product_page' >
-       <Box align='center' marginY={2}> 
-        <Typography variant='h5' className="logo" >
-           {category?.object?.nameUZB} 
-        </Typography>
-       </Box>
-
+    <Box sx={{pt: {xs: '120px', md: '140px'}}} id='product_page'>
        
-          <Box sx={{display: 'flex', 
-            justifyContent: 'space-between', paddingX: 1, 
-           }}>
+       
+       
+          <Box id = 'desctop-navbar' sx={{ top: {xs:'70px',sm:'85px', md:'90px'}}}>
+            <Box sx={{display: 'flex', justifyContent: 'space-between', paddingX: 1, backgroundColor: 'white' , 
+                paddingY: '5px', marginX: 2, borderRadius: '5px', border: '1px solid grey'
+            }}>
         
-          <SortMenuButton/>
-          <Button 
-            startIcon = {<TuneIcon/>}  
-            variant='outlined' 
-            size='small'
-            onClick={() => setIsFilterOpen(true)}
-          
-          >
-            Filter
-          </Button>
+              <SortMenuButton/>
+
+              <Box display={'flex'} alignItems={'center'}> 
+               <Typography sx={{}}>
+                  {category?.object?.nameUZB} 
+               </Typography>
+              </Box>
+              <Button 
+                startIcon = {<TuneIcon/>}  
+                variant='outlined' 
+                size='small'
+                onClick={() => setIsFilterOpen(true)}
+                
+              >
+                Filter
+              </Button>
+            </Box>
           </Box>
        
 

@@ -78,13 +78,13 @@ export default function HomePageHeader() {
   }, [isSearchOpen]);
   return (
     <>
-    <Box sx={{display: {xs: 'block', md: 'none'}}}>
+    <Box sx={{display: {xs: 'block', lg: 'none'}}}>
         <AppBar position="fixed" sx={{backgroundColor: 'white'}}>
           <MobileHeader setIsDrawerOpen={setIsDrawerOpen} setIsSearchOpen={setIsSearchOpen} 
             navigateUserToFovoritePage={navigateUserToFovoritePage} navigateUserToBasket={navigateUserToBasket}/>
         </AppBar>
       </Box>
-      <Box sx={{display: {xs: 'none', md: 'block', position: 'relative'}}}>
+      <Box sx={{display: {xs: 'none', lg: 'block', position: 'relative'}}}>
         <AppBar position="fixed" sx={{backgroundColor: 'white', }}>
           <DesktopHeader navigateUser={navigateUser} setIsSearchOpen={setIsSearchOpen} 
             navigateUserToFovoritePage={navigateUserToFovoritePage} navigateUserToBasket={navigateUserToBasket}/>

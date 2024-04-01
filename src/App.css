@@ -143,12 +143,17 @@ a{
     }
   }
 
-  @media only screen and (max-width: 375px) {
+  /* @media only screen and (max-width: 400px) {
 
-    .main-box {
-      margin-top: 80px !important;
+    #desctop-navbar {
+      top: 10vh !important;
     }
   }
+  @media only screen and (min-width: 380px) and (max-width: 420px) {
+    #desctop-navbar {
+      top: 63px !important;
+    }
+  } */
 
   .look-box {
     width: 100%;
@@ -164,6 +169,13 @@ a{
   .underlineHover:hover {
     text-decoration: underline;
     color: black; /* Change color to black on hover */
+  }
+
+  #desctop-navbar {
+    width: 100%;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+    position: fixed;
   }
 
   
