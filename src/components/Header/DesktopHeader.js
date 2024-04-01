@@ -44,7 +44,7 @@ function DesktopHeader({setIsSearchOpen, navigateUserToFovoritePage, navigateUse
 
   return (
     <Box >
-        <Toolbar sx={{display: 'flex', justifyContent: 'space-between'}}>
+        <Toolbar sx={{display: 'flex', justifyContent: 'space-between', height: {lg: '60px'}}}>
           <Box>
             <Link to='/'>
             <Box width={90}>

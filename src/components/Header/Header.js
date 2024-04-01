@@ -84,11 +84,12 @@ export default function HomePageHeader() {
             navigateUserToFovoritePage={navigateUserToFovoritePage} navigateUserToBasket={navigateUserToBasket}/>
         </AppBar>
       </Box>
-      <Box sx={{display: {xs: 'none', lg: 'block', position: 'relative'}}}>
+      <Box sx={{display: {xs: 'none', lg: 'block'}}}>
         <AppBar position="fixed" sx={{backgroundColor: 'white', }}>
           <DesktopHeader navigateUser={navigateUser} setIsSearchOpen={setIsSearchOpen} 
             navigateUserToFovoritePage={navigateUserToFovoritePage} navigateUserToBasket={navigateUserToBasket}/>
         </AppBar>
+
       </Box>
       
       <Drawer

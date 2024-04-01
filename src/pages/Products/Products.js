@@ -62,9 +62,9 @@ function Products() {
 
   var lastScrollTop = 0;
 
-window.addEventListener('scroll', function() {
+  window.location.pathname.startsWith("/products") && window.addEventListener('scroll', function() {
   var box = document.getElementById('desctop-navbar');
-  var scrollTop = window.scrollY || window.pageYOffset;
+  var scrollTop = window.scrollY || document.documentElement.scrollTop;
 
   if (scrollTop > lastScrollTop) {
     box.style.opacity = '0';
