@@ -10,7 +10,7 @@ function CategoryCard({item}) {
   return (
     <Link to={`/products/${item.link}`}>
       <Box display={'flex'} justifyContent={'center'} paddingX={1} flexDirection={'column'} marginBottom={3} gap={1}>
-        <Box sx={{height: {xs: '70vh', md: '90vh'}, position: 'relative', overflow: 'hidden'}}>
+        <Box sx={{height: {xs: '70vh', lg: '90vh'}, position: 'relative', overflow: 'hidden'}}>
           <img src={item.url} alt="" />
           {/* <Box sx={{
               position: 'absolute',

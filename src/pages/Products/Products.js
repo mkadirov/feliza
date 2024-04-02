@@ -26,8 +26,9 @@ function Products() {
   const [refreshed, setRefreshed] = useState(0)
   const {id} = useParams();
   const [opacity, setOpacity] = useState(1);
-  const location = useLocation();
   const [prevScrollY, setPrevScrollY] = useState(0);
+  const [scrollTimeout, setScrollTimeout] = useState(null);
+  const location = useLocation();
 
 
   useEffect(() => {
@@ -67,14 +68,16 @@ function Products() {
   
 
   useEffect(() => {
+    // Check if current path starts with '/products'
     if (location.pathname.startsWith('/products')) {
       function handleScroll() {
         const currentScrollY = window.scrollY;
-        if (currentScrollY > prevScrollY) {
-          console.log('ishladi');
-          setOpacity(0);
-        } else {
+        if (currentScrollY < prevScrollY || currentScrollY < 12) {
+          // Scrolling down or scroll position is less than 12
           setOpacity(1);
+        } else {
+          // Scrolling up and scroll position is greater than 12
+          setOpacity(0);
         }
         setPrevScrollY(currentScrollY);
       }

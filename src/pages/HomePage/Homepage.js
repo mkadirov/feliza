@@ -47,7 +47,7 @@ function Homepage() {
               {
                 list.map((item, idx) => {
                     return(
-                        <Grid item xs = {12} md = {4} key={idx + item.title}>
+                        <Grid item xs = {12} md = {6} lg = {4} key={idx + item.title}>
                           <CategoryCard  item={item}/>
                         </Grid>
                     )
