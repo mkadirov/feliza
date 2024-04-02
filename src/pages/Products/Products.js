@@ -10,6 +10,7 @@ import TuneIcon from '@mui/icons-material/Tune';
 import SortMenuButton from '../../components/Products/FilterDetailes/SortMenuButton';
 import FilterDetailes from '../../components/Products/FilterDetailes/FilterDetailes';
 import { getCategoryById } from '../../api/Category';
+import { useLocation } from 'react-router-dom';
 
 
 function Products() {
@@ -24,6 +25,9 @@ function Products() {
   const [list, setList] = useState([]);
   const [refreshed, setRefreshed] = useState(0)
   const {id} = useParams();
+  const [opacity, setOpacity] = useState(1);
+  const location = useLocation();
+  const [prevScrollY, setPrevScrollY] = useState(0);
 
 
   useEffect(() => {
@@ -60,20 +64,31 @@ function Products() {
     setMinMaxPrice([]);
   }
 
-  var lastScrollTop = 0;
-
-  window.location.pathname.startsWith("/products") && window.addEventListener('scroll', function() {
-  var box = document.getElementById('desctop-navbar');
-  var scrollTop = window.scrollY || document.documentElement.scrollTop;
-
-  if (scrollTop > lastScrollTop) {
-    box.style.opacity = '0';
-  } else {
-    box.style.opacity = '1';
-  }
   
-  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-});
+
+  useEffect(() => {
+    if (location.pathname.startsWith('/products')) {
+      function handleScroll() {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY > prevScrollY) {
+          console.log('ishladi');
+          setOpacity(0);
+        } else {
+          setOpacity(1);
+        }
+        setPrevScrollY(currentScrollY);
+      }
+
+      window.addEventListener('scroll', handleScroll);
+
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }
+  }, [location.pathname, prevScrollY]);
+
+  
+  
 
 
   
@@ -83,7 +98,7 @@ function Products() {
        
        
        
-          <Box id = 'desctop-navbar' sx={{ top: {xs:'70px',sm:'85px', md:'90px'}}}>
+          <Box id = 'desctop-navbar' sx={{ top: {xs:'70px',sm:'85px', md:'90px'}, opacity: opacity}}>
             <Box sx={{display: 'flex', justifyContent: 'space-between', paddingX: 1, backgroundColor: 'white' , 
                 paddingY: '5px', marginX: 2, borderRadius: '5px', border: '1px solid grey'
             }}>
