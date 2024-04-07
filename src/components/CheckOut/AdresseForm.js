@@ -1,36 +1,37 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import { useForm, Controller } from 'react-hook-form';
 import {Box, TextField, Button, Typography, Grid} from '@mui/material'
 import MainDropdown from './MainDropdown';
 import SubRegionDropDown from './SubRegionDropDown';
 import PostFilialDropDown from './PostFilialDropDown';
 import { addAddress } from '../../api/Adress';
+import MyContext from '../Context/MyContext';
 
 
-function AdresseForm({adresseList, setHasAdress, setAddressId}) {
+function AdresseForm({adresseList, setHasAdress, setAddressId, setNewAddress}) {
     const [region, setRegion] = useState('')
     const [district, setDistrict] = useState('')
     const [postFilial, setPostFilial] = useState('')
     const [street, setStreet] = useState('')
-    const [houseNumber, setHouseNumber] = useState('')
+    const [houseNumber, setHouseNumber] = useState('');
+
+    const {user} = useContext(MyContext)
 
     const addNewAdress = async() => {
         const adress = {
-            customerId : 1,
+            customerId : user.customerId,
             regionId : region.id,
             subRegionId : district.id,
             street : street,
             houseNumber : houseNumber,
             postFilialId : postFilial.id
         }
-        console.log(adress);
         const res = await addAddress(adress);
 
         if(res.success) {
-            console.log('manzil yaratildi');
             setAddressId(res.data.object.id)
             setHasAdress(true)
-            
+            setNewAddress(prev => prev + 1)
         }
     }
 

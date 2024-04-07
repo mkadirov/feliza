@@ -37,13 +37,17 @@ function PostFilialDropDown({district, setPostFilial}) {
     useEffect(() => {
         const fetchData = async() => {
             const res = await getAllPostFilialBySubRegion(district.id);
-            setOptions(res.data)
             if(res?.success) {
+              console.log(res.data);
                 setOptions(res.data)
+            } else {
+              setOptions([]);
             }
         }
         if(district !== '') {
             fetchData();
+        } else {
+          setOptions([])
         }
     }, [district])
   
@@ -88,9 +92,9 @@ function PostFilialDropDown({district, setPostFilial}) {
               <Paper>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList id="split-button-menu" autoFocusItem>
-                    {options.map((option, index) => (
+                    {options?.map((option, index) => (
                       <MenuItem
-                        key={option.name}
+                        key={option.id + option.postFilialName}
                         selected={index === selectedIndex}
                         onClick={(event) => handleMenuItemClick(event, index)}
                       >

@@ -18,11 +18,11 @@ function BrendAccardion({brands, setBrands}) {
     fetchData();
   }, [])
 
-  const handelClick = (item) => {
-    if(brands.includes(item.id)) {
-      setBrands(brands.filter(item => item != item.id))
+  const handelClick = (barndId) => {
+    if(brands.includes(barndId)) {
+      setBrands(brands.filter(item => item !== barndId))
     } else {
-      setBrands(prev => [...prev, item.id])
+      setBrands(prev => [...prev, barndId])
     }
   }
   return (
@@ -44,7 +44,7 @@ function BrendAccardion({brands, setBrands}) {
                                 <Box key={idx + item} display={'flex'} alignItems={'center'} >
                                     <Checkbox
                                       checked = {isSelected}
-                                      onChange={() => handelClick(item)}
+                                      onChange={() => handelClick(item.id)}
                                     />
                                    <Typography>
                                     {item.name}

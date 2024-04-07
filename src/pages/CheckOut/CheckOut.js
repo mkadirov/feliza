@@ -18,12 +18,12 @@ function CheckOut() {
 
   const [adresseList, setAdresseList] = useState([]);
   const [hasAdress, setHasAdress] = useState(false);
-  const [payment, setPayment] = useState('payme');
+  const [payment, setPayment] = useState('PAYME');
   const [fullName, setFullName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const {user, orderItems} = useContext(MyContext)
   const [addressId, setAddressId] = useState(0)
-  const [newAddress, setNewAddress] = useState('')
+  const [newAddress, setNewAddress] = useState(0)
   const [errorList, setErrorList] = useState([])
 
 
@@ -34,7 +34,8 @@ function CheckOut() {
       console.log(user);
       const res = await getAdressByCustomer(user.customerId)
       if(res.success) {
-        setAdresseList(res.data)
+        console.log(res.data);
+        setAdresseList(res.data);
       }
     }
     fetchData();
@@ -72,7 +73,8 @@ function CheckOut() {
 
       if(res.success) {
       console.log('Buyurtma berildi');
-      window.open(res.data.object, "_blank");
+     // window.open(res.data.object, "_blank");
+     window.location.href = res.data.object;
       }
     }
     if(fullName.trim() == '') {
@@ -108,7 +110,8 @@ function CheckOut() {
                 </Typography>
               </Box>
               {
-                !hasAdress ? <AdresseForm adresseList = {adresseList} setHasAdress = {setHasAdress} setAddressId={setAddressId}/> : addressId == '' ? <AddressList 
+                !hasAdress ? <AdresseForm adresseList = {adresseList} setHasAdress = {setHasAdress} 
+                setAddressId={setAddressId} setNewAddress={setNewAddress}/> : addressId == '' ? <AddressList 
                 adresseList = {adresseList} setHasAdress = {setHasAdress} 
                 setAddressId = {setAddressId}/> : <SelectedAddress addressId = {addressId} adresseList = {adresseList} 
                 setAddressId = {setAddressId}/>

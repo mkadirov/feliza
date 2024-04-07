@@ -27,7 +27,7 @@ function Products() {
   const {id} = useParams();
   const [opacity, setOpacity] = useState(1);
   const [prevScrollY, setPrevScrollY] = useState(0);
-  const [scrollTimeout, setScrollTimeout] = useState(null);
+  //const [scrollTimeout, setScrollTimeout] = useState(null);
   const location = useLocation();
 
 
@@ -91,16 +91,8 @@ function Products() {
   }, [location.pathname, prevScrollY]);
 
   
-  
-
-
-  
-    
   return (
     <Box sx={{pt: {xs: '120px', md: '140px'}}} id='product_page'>
-       
-       
-       
           <Box id = 'desctop-navbar' sx={{ top: {xs:'70px',sm:'85px', md:'90px'}, opacity: opacity}}>
             <Box sx={{display: 'flex', justifyContent: 'space-between', paddingX: 1, backgroundColor: 'white' , 
                 paddingY: '5px', marginX: 2, borderRadius: '5px', border: '1px solid grey'

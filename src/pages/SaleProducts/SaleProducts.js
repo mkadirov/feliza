@@ -1,6 +1,6 @@
 import React from 'react'
 import {Box, Button, Drawer, Grid, Typography} from '@mui/material'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import ProductCard from '../../components/Global/Cards/ProductCard';
 import { productList } from '../../data/DataList';
 import { useState } from 'react';
@@ -24,6 +24,9 @@ function SaleProducts() {
   const [list, setList] = useState([]);
   const [refreshed, setRefreshed] = useState(0)
   const {id} = useParams();
+  const [opacity, setOpacity] = useState(1);
+  const [prevScrollY, setPrevScrollY] = useState(0);
+  const location = useLocation();
 
 
   useEffect(() => {
@@ -60,32 +63,56 @@ function SaleProducts() {
     setMinMaxPrice([]);
   }
 
+  useEffect(() => {
+    // Check if current path starts with '/products'
+    if (location.pathname.startsWith('/sale_product')) {
+      function handleScroll() {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY < prevScrollY || currentScrollY < 12) {
+          setOpacity(1);
+        } else {
+          setOpacity(0);
+        }
+        setPrevScrollY(currentScrollY);
+      }
+
+      window.addEventListener('scroll', handleScroll);
+
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }
+  }, [location.pathname, prevScrollY]);
+
+
 
   
     
   return (
-    <Box sx={{pt: '12vh'}} id='product_page' >
-       <Box align='center' marginY={2}> 
-        <Typography variant='h5' className="logo" >
-           {category?.object?.nameUZB} 
-        </Typography>
-       </Box>
-
+    <Box sx={{pt: {xs: '120px', md: '140px'}}} >
        
-          <Box sx={{display: 'flex', 
-            justifyContent: 'space-between', paddingX: 1, 
-           }}>
+        <Box id = 'desctop-navbar'  sx={{ top: {xs:'70px',sm:'85px', md:'90px'}, opacity: opacity}}>
+            <Box sx={{display: 'flex', justifyContent: 'space-between', paddingX: 1, backgroundColor: 'white' , 
+                paddingY: '5px', marginX: 2, borderRadius: '5px', border: '1px solid grey'
+            }}>
         
-          <SortMenuButton/>
-          <Button 
-            startIcon = {<TuneIcon/>}  
-            variant='outlined' 
-            size='small'
-            onClick={() => setIsFilterOpen(true)}
-          
-          >
-            Filter
-          </Button>
+              <SortMenuButton/>
+
+              <Box display={'flex'} alignItems={'center'}> 
+               <Typography sx={{}}>
+                  {category?.object?.nameUZB} 
+               </Typography>
+              </Box>
+              <Button 
+                startIcon = {<TuneIcon/>}  
+                variant='outlined' 
+                size='small'
+                onClick={() => setIsFilterOpen(true)}
+                
+              >
+                Filter
+              </Button>
+            </Box>
           </Box>
        
 
