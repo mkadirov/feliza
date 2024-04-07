@@ -8,24 +8,24 @@ import { getCartItemsByCustomerId } from '../../api/Basket';
 
 function BasketPage() {
 
-  const {user} = useContext(MyContext);
-  const [productList, setProductList] = useState([])
-  const [listSize, setListSize] = useState(0)
+  const {cardItems} = useContext(MyContext);
+  // const [productList, setProductList] = useState([])
+  // const [listSize, setListSize] = useState(0)
 
   
 
-  useEffect(() => {
+  // useEffect(() => {
     
-    const fetchData = async () => {
+  //   const fetchData = async () => {
       
-      const res = await getCartItemsByCustomerId(user.customerId);
-      if(res.success) {
-        setProductList(res.data)
-        setListSize(res.data.length)
-      }
-    }
-    fetchData();
-  }, [listSize])
+  //     const res = await getCartItemsByCustomerId(user.customerId);
+  //     if(res.success) {
+  //       setProductList(res.data)
+  //       setListSize(res.data.length)
+  //     }
+  //   }
+  //   fetchData();
+  // }, [listSize])
 
   let sum = 0;
 
@@ -33,15 +33,15 @@ function BasketPage() {
     <Box sx={{marginTop: '12vh', minHeight: '75vh', paddingBottom: '5vh'}}>
         <Box aligen= 'center'>
             {
-              productList.map(item => {
+              cardItems.map(item => {
                 sum = sum + (item.sellPrice * item.quantity);
                 return(
-                  <BasketCard key={item.cartItemId} item= {item} setListSize= {setListSize}/>
+                  <BasketCard key={item.cartItemId} item= {item}/>
                 )
               })
             }
         </Box>
-        <Footer sum = {sum} productList = {productList}/>
+        <Footer sum = {sum}/>
     </Box>
   )
 }

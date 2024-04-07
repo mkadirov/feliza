@@ -10,7 +10,7 @@ import Product from './pages/Product/Product';
 import FavoritePage from './pages/FavoritePage/FavoritePage';
 import BasketPage from './pages/BasketPage/BasketPage';
 import MyContext from './components/Context/MyContext';
-import { addProductToBasket } from './api/Basket';
+import { addProductToBasket, getCartItemsByCustomerId } from './api/Basket';
 import UserPage from './pages/UserPage/UserPage';
 import { addLikedItem, deleteLikedItem, getLikedItems } from './api/LikedList';
 import CheckOut from './pages/CheckOut/CheckOut';
@@ -29,6 +29,8 @@ function App() {
   const [isUzbek, setIsUzbek] = useState(true)
   const [orderItems, setOrderItems] = useState([])
   const [lastAction, setLastAction] = useState('')
+  const [cardItems, setCardItems] = useState([]);
+  const [refreshCard, setRefreshCard] = useState(0);
 
   const [user, setUser] = useState(() => {
     const storedUserData = localStorage.getItem('userData');
@@ -119,6 +121,8 @@ function App() {
       customerId: user.customerId,
       productId: id
     }
+
+    console.log(jsonBody);
     const res = await addLikedItem(jsonBody)
     if(res.success) {
       setLikedList([...likedList, jsonBody])
@@ -134,12 +138,24 @@ function App() {
     }
 
     const res = await addProductToBasket(cartItem);
-    if(res.success) {
-      alert("Maxsulot savatchaga qo'shildi")
-    } else {
-      console.log('Xatolik');
-    }
+    if(!res?.success) {
+      alert("Xatolik")
+    } 
   }
+
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      
+      const res = await getCartItemsByCustomerId(user.customerId);
+      if(res.success) {
+        setCardItems(res.data)
+      }
+    }
+    if(user) {
+      fetchData();
+    }
+  }, [refreshCard])
 
   
  const theme = createTheme({
@@ -159,23 +175,17 @@ function App() {
   return (
       <MyContext.Provider 
       value={{
-        likedList, 
-        changeLikedList,
+        likedList, changeLikedList,
         addToBasket,
-        lastSeenList,
-        addToLastSeenList,
-        isUserActive,
-        setIsUserActive,
-        user,
-        setUser,
-        isLoginPageOpen,
-        setIsLoginPageOpen,
-        isUzbek, 
-        setIsUzbek,
-        orderItems,
-        setOrderItems,
-        lastAction, 
-        setLastAction
+        lastSeenList, addToLastSeenList,
+        isUserActive, setIsUserActive,
+        user, setUser,
+        isLoginPageOpen, setIsLoginPageOpen,
+        isUzbek, setIsUzbek,
+        orderItems, setOrderItems,
+        lastAction, setLastAction,
+        refreshCard, setRefreshCard,
+        cardItems, setCardItems,
         }}>
         <ThemeProvider theme={theme}>
         <Box>

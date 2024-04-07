@@ -53,7 +53,7 @@ function AdresseForm({adresseList, setHasAdress, setAddressId}) {
         }
         <Box   display={'flex'} sx={{border: '1px solid grey', borderRadius: '5px'}}>
             <Box flex={1} display={'flex'} alignItems={'center'} sx={{paddingLeft: 1}}>
-                <input style={{backgroundColor: 'inherit'}}  type='text' placeholder='Viloyat' readOnly value={region?.name}/>
+                <input style={{backgroundColor: 'inherit'}}  type='text' placeholder='Viloyat' readOnly value={region? region.name : ''}/>
             </Box>
             <MainDropdown setRegion = {setRegion} setDistrict = {setDistrict} region={region} setPostFilial = {setPostFilial}/>
         </Box>
@@ -63,19 +63,19 @@ function AdresseForm({adresseList, setHasAdress, setAddressId}) {
             </Box>
             <SubRegionDropDown setDistrict = {setDistrict}  region={region} setPostFilial = {setPostFilial}/>
         </Box>
-        <Box  display={region.name !== 'Toshkent sh'? 'flex': 'none'} sx={{border: '1px solid grey', marginY: 2, borderRadius: '5px'}}>
+        <Box  display={region.name !== 'Toshkent shaxri'? 'flex': 'none'} sx={{border: '1px solid grey', marginY: 2, borderRadius: '5px'}}>
             <Box  flex={1} display={'flex'} alignItems={'center'} sx={{paddingLeft: 1}} >
                 <input style={{backgroundColor: 'inherit'}} type='text' placeholder='Pochta filiali' readOnly value={postFilial ==''? '' : postFilial.postName + " - " +  postFilial.postFilialName}/>
             </Box>
             <PostFilialDropDown district={district} setPostFilial = {setPostFilial}/>
         </Box>
 
-        <Box display={region.name !== 'Toshkent sh'? 'none': 'block'}>
+        <Box display={region.name !== 'Toshkent shaxri'? 'none': 'block'}>
             <Grid container spacing={1}>
                 <Grid item xs = {8}>
                     <Box  display={'flex'} sx={{border: '1px solid grey'}}>
                         <Box  flex={1} display={'flex'} alignItems={'center'} sx={{paddingLeft: 1}} >
-                            <input  type='text' placeholder='Köcha nomi'  value={street} onChange={(e) => setStreet(e.target.value)}/>
+                            <input style={{backgroundColor: 'inherit'}}  type='text' placeholder='Köcha nomi'  value={street} onChange={(e) => setStreet(e.target.value)}/>
                         </Box>
                         <Button  size='small' sx={{color: 'white'}}>
                             Street
@@ -85,7 +85,7 @@ function AdresseForm({adresseList, setHasAdress, setAddressId}) {
                 <Grid item xs = {4}>
                     <Box  display={'flex'} sx={{border: '1px solid grey' , overflow: 'hidden'}}>
                         <Box  flex={1} display={'flex'} alignItems={'center'} sx={{paddingLeft: 1}} >
-                            <input type='number' placeholder='Uy raqami'  value={houseNumber} onChange={(e) => setHouseNumber(e.target.value)}/>
+                            <input style={{backgroundColor: 'inherit'}} type='number' placeholder='Uy raqami'  value={houseNumber} onChange={(e) => setHouseNumber(e.target.value)}/>
                         </Box>
                         <Button   size='small' sx={{color: 'white'}}>
                             S

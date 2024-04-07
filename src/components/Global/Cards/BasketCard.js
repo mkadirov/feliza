@@ -8,13 +8,13 @@ import ColorCircle from '../ColorCircle'
 import { deleteCartItem } from '../../../api/Basket'
 import { CiTrash } from "react-icons/ci";
 
-function BasketCard({item, setListSize}) {
-
+function BasketCard({item}) {
+   const {setRefreshCard} = useContext(MyContext)
 
     const deleteCartItemById = async() => {
         const res = await deleteCartItem(item.cartItemId)
         if(res.success) {
-            setListSize(prevSize => prevSize -1)
+            setRefreshCard(prev => prev + 1)
         }
     }
     

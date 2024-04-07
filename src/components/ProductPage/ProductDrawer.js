@@ -1,7 +1,15 @@
 import React from 'react'
 import {Box, Drawer, Typography} from '@mui/material'
+import { useContext } from 'react'
+import MyContext from '../Context/MyContext'
 
 function ProductDrawer({setIsDrawerOpen, isDrawerOpen, item, addProductToBasket}) {
+  const {setRefreshCard} = useContext(MyContext)
+
+  const handleClick = (id) => {
+    addProductToBasket(id)
+    setRefreshCard(prev => prev + 1)
+  }
   return (
     <Box>
         <Drawer
@@ -28,7 +36,7 @@ function ProductDrawer({setIsDrawerOpen, isDrawerOpen, item, addProductToBasket}
                        sx={{borderBottom: '1px solid lightgray'}} 
                        display='flex' 
                        justifyContent='space-between'
-                       onClick= {() => (isActive? addProductToBasket(item.id) : null)}
+                       onClick= {() => (isActive? handleClick(item.id) : null)}
                        >
                     <Typography color={isActive? 'primary.main': 'secondary'} sx={{ml: 1}}>
                      {item.size}

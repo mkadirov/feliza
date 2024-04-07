@@ -11,14 +11,14 @@ import MyContext from '../Context/MyContext';
 
 
 
-export default function Footer({sum, productList}) {
+export default function Footer({sum}) {
   const navigate = useNavigate();
-  const {setOrderItems} = useContext(MyContext)
+  const {setOrderItems, cardItems} = useContext(MyContext)
 
   const navigateUser = () => {
 
-    if(productList.length > 0) {
-      const orderItemList = productList.map(item => item.cartItemId)
+    if(cardItems.length > 0) {
+      const orderItemList = cardItems.map(item => item.cartItemId)
       setOrderItems(orderItemList)
       navigate('/checkout');
     }
