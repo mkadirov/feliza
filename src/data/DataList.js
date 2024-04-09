@@ -18,11 +18,6 @@ export const CategoryCardList = [
         link: 'classic'
     },
     {
-        url: 'https://images.unsplash.com/photo-1632149877166-f75d49000351?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDR8fGZhc2hpb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60',
-        title: 'Street Style',
-        link: 'street'
-    },
-    {
         url: 'https://www.optimized-rlmedia.io/is/image/PoloGSI/s7-AI290942293001_alternate10?$rl_df_pdp_5_7_a10$',
         title: 'Yozgi Kalleksiya',
         link: 'summer'

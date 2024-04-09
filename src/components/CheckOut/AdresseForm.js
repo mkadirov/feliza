@@ -41,7 +41,7 @@ function AdresseForm({adresseList, setHasAdress, setAddressId, setNewAddress}) {
     <Box sx={{marginTop: 2, width: '100%' }}>
 
         {
-            addressCounter && <Box sx={{marginY: 1, display: 'flex', justifyContent: 'space-between'}}>
+            addressCounter > 0 && <Box sx={{marginY: 1, display: 'flex', justifyContent: 'space-between'}}>
                 <Box>
                     <Typography sx={{color: 'grey'}}>
                         Sizda mavjud manzillar soni: {addressCounter} ta

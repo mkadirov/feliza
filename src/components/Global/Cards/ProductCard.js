@@ -29,7 +29,7 @@ export default function ProductCard({item, bigSize}) {
   }, [likedList])
 
   const getIndexById = (targetId) => {
-    return likedList?.findIndex(obj => obj?.id == targetId);
+    return likedList?.findIndex(obj => obj?.product?.id == targetId);
   };
 
   const handelLikeList = () => {

@@ -31,7 +31,7 @@ function Product() {
     }, [likedList, id])
 
     const getIndexById = (targetId) => {
-      return likedList.findIndex(obj => obj?.id == targetId);
+      return likedList.findIndex(obj => obj?.product?.id == targetId);
     };
 
     

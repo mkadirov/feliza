@@ -63,6 +63,8 @@ function App() {
     if(user) {
       const res = await getLikedItems(user.customerId);
       if(res.success) {
+        //const newList = res.data.map(item => item.product)
+        console.log(res.data);
         setLikedList(res.data)
       }
     } else {
@@ -102,11 +104,11 @@ function App() {
   };
 
   const checkIfIdExists = (targetId) => {
-    return likedList.some(obj => obj.id == targetId);
+    return likedList.some(obj => obj?.product?.id == targetId);
   };
 
   const getObjectById = (targetId) => {
-    return likedList.find(obj => obj.id == targetId);
+    return likedList.find(obj => obj?.product?.id == targetId);
   };
 
   const deleteLikedItemFromList = async(id) => {

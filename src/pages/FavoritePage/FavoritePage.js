@@ -5,23 +5,18 @@ import MyContext from '../../components/Context/MyContext'
 import SmallCards from '../../components/Global/Cards/SmallCards'
 import { getAllProduct } from '../../api/Product';
 import boxIcon from '../../assets/icons/empty.png'
+import { getLikedItems } from '../../api/LikedList';
 
 
 function FavoritePage() {
 
-    const {likedList, changeLikedList} = useContext(MyContext)
+    const {likedList} = useContext(MyContext)
     const [list, setList] = useState([])
+    const {user} = useContext(MyContext)
 
     useEffect(() => {
-      const fetchData = async() => {
-        const res = await getAllProduct();
-        if(res.success) {
-          const arr = likedList.map(item => item.id)
-          const newArray = res.data.filter(obj => arr.includes(obj.id));
-          setList(newArray)
-        }
-      }
-      fetchData();
+      
+      setList(likedList.map(item => item.product))
     }, [likedList])
     
 

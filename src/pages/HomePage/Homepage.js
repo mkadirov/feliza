@@ -37,7 +37,9 @@ function Homepage() {
               <MainCategoryContainer list={clothesCategoryList} />
               <CategorySlidersContainer categoryId={5}/>
               <CategorySlidersContainer categoryId={6}/>
-              <MainCategoryContainer list={accessoiresSliderList} />
+              <Box sx={{display: {sm: 'block', md: 'none'}}}>
+                <MainCategoryContainer list={accessoiresSliderList} />
+              </Box>
               <CategorySlidersContainer categoryId={5}/>
               <CategorySlidersContainer categoryId={6}/>
               <MainCategoryContainer list={shoesSliderList} />

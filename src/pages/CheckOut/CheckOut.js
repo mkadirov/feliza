@@ -65,7 +65,6 @@ function CheckOut() {
       cartItemIds : orderItems
     }
 
-    console.log(fullName);
 
     const fetchData = async () => {
       

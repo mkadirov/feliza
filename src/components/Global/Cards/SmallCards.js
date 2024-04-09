@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 function SmallCards({item}) {
 
     const {likedList, changeLikedList, addToBasket} = useContext(MyContext)
+    console.log(item);
 
   return (
     <Box sx={{height: {xs: '180px', md: '600px'}, marginBottom: 2, overflow: 'hidden', pr: 2,pb:2,   borderBottom: '1px solid rgb(234, 87, 116)'}}>
@@ -49,7 +50,7 @@ function SmallCards({item}) {
                             }} sx={{color:'primary.main'}}>
                                 <AddShoppingCart/>
                             </IconButton>
-                            <IconButton sx={{marginRight: 1, color: 'primary.main'}} onClick={() => changeLikedList(item?.id)}>
+                            <IconButton sx={{marginRight: 1, color: 'primary.main'}} onClick={() => changeLikedList(item.id)}>
                                 <DeleteOutline/>
                             </IconButton>
                         </Box>
