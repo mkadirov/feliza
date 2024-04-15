@@ -18,6 +18,8 @@ import MainFooter from './components/Footer/MainFooter';
 import Looks from './pages/Looks/Looks';
 import LookPage from './pages/LookPage/LookPage';
 import SaleProducts from './pages/SaleProducts/SaleProducts';
+import MyOrders from './pages/MyOrders/MyOrders';
+import Order from './pages/Order/Order';
 
 
 function App() {
@@ -205,6 +207,9 @@ function App() {
               <Route path='/checkout' element = {<CheckOut/>}/>
               <Route path='/looks' element = {<Looks/>}/>
               <Route path='/look/:id' element = {<LookPage/>}/>
+              <Route path='/my_orders' element = {<MyOrders/>}/>
+              <Route path='/order/:id' element = {<Order/>}/>
+
             </Routes>
             <MainFooter/>
           </BrowserRouter>

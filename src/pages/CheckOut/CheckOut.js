@@ -55,7 +55,7 @@ function CheckOut() {
       receiverPhoneNumber : phoneNumber,
       orderTime : "2024-03-07",
       paymentMethod : 'PAYME',
-      orderCost : 200000,
+      orderCost : 2000,
       shippingCost : 0,
       deliveryDays : 3,
       deliveryDate : "2024-03-07",

@@ -10,14 +10,14 @@ function MainCategoryContainer({list}) {
   
   return (
 
-      <Box sx={{marginY: 3}} className="main-box">
+      <Box sx={{marginY: 3, height: '400px'}} className="main-box">
       
           <Box id="slider" className='look-slider'>
          
             {
              list.map(item => {
                  return(     
-                     <Box className ='scrollable-content' key = {item.nameUZ} sx={{borderRadius: '10px', overflow: 'hidden'}}>
+                     <Box className ='scrollable-content' key = {item.nameUZ} sx={{borderRadius: '10px', overflow: 'hidden', width: '60vw'}}>
                          <Link to={`/products/${item.id}`}>
                          <img src={item.url} alt="" />
                          <Box sx={{position: 'absolute', right: 0, 
