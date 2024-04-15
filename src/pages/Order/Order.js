@@ -1,14 +1,14 @@
-import React from 'react'
-import {Box, Typography, Grid} from '@mui/material'
-import {useParams} from 'react-router-dom'
-import { getOrdersById } from '../../api/Order';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import React from "react";
+import { Box, Typography, Grid } from "@mui/material";
+import { useParams } from "react-router-dom";
+import { getOrdersById } from "../../api/Order";
+import { useState } from "react";
+import { useEffect } from "react";
+import OrderContactInfo from "../../components/Order/OrderContactInfo";
 
 function Order() {
-
-  const [order, setOrder] = useState('');
-  const {id} = useParams();
+  const [order, setOrder] = useState("");
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,47 +21,28 @@ function Order() {
     fetchData();
   }, []);
   return (
-    <Box sx={{marginTop: 9, paddingX: 2}}>
-        <Grid container>
-            <Grid item xs = {6}>
-                <Typography fontSize={14} fontWeight={'bold'}>
-                    Yetkazish manzili:
-                </Typography>
-                <Typography fontSize={12} sx={{color: '#616161'}}>
-                    {
-                        order?.receiverName
-                    }
-                </Typography>
-                <Typography fontSize={12} sx={{color: '#616161'}}>
-                    {
-                        order?.address?.region?.name
-                    }
-                </Typography>
-                <Typography fontSize={12} sx={{color: '#616161'}}>
-                    {
-                        order?.address?.subRegion?.name
-                    }
-                </Typography>
+    <Box sx={{ marginTop: 9, paddingX: 1 }}>
+      <OrderContactInfo order={order}/>
 
-                <Box display={'flex'} gap={1}>
-                <Typography fontSize={12} sx={{color: '#616161'}}>
-                    {
-                        order?.address?.street
-                    },
-                </Typography>
-                <Typography fontSize={12} sx={{color: '#616161'}}>
-                    {
-                        order?.address?.houseNumber
-                    }
-                </Typography>
-                </Box>
-            </Grid>
-            <Grid item xs = {6}>
-
-            </Grid>
-        </Grid>
+      
+        <Typography fontSize={12} textAlign={"center"} fontWeight={'bold'}>
+          Buyurtma qilingan mahsulotlar
+        </Typography>
+        <Box sx={{marginX: 1, paddingX: 1, borderLeft: '1px solid grey', paddingBottom: 2}}>
+        <Box display={"flex"} justifyContent={"space-between"} sx={{borderBottom: '1px solid grey', marginTop: 4, paddingBottom: 1}}>
+            <Typography fontSize={12}>
+                Status
+            </Typography>
+            <Typography fontSize={12} sx={{color: 'brown'}}>
+                {
+                    order.orderStatusType == 'NEW' ? 'Buyurtma berildi' : (order.orderStatusType == 'Pack' ? 'Tayyorlandi' : 
+                    (order.orderStatusType == 'SEND' ? 'Yuborildi' : 'Bekor qilindi'))
+                }
+            </Typography>
+        </Box>
+      </Box>
     </Box>
-  )
+  );
 }
 
-export default Order
+export default Order;
