@@ -1,28 +1,26 @@
-import React, {useEffect, useState, useRef} from 'react'
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
-import Grow from '@mui/material/Grow';
-import Paper from '@mui/material/Paper';
-import Popper from '@mui/material/Popper';
-import MenuItem from '@mui/material/MenuItem';
-import MenuList from '@mui/material/MenuList';
-import {  getAllRegions } from '../../api/CheckOut';
+import React, { useEffect, useState, useRef } from "react";
+import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+import Grow from "@mui/material/Grow";
+import Paper from "@mui/material/Paper";
+import Popper from "@mui/material/Popper";
+import MenuItem from "@mui/material/MenuItem";
+import MenuList from "@mui/material/MenuList";
+import { getAllRegions } from "../../api/CheckOut";
 
-function MainDropdown({setRegion, setDistrict, setPostFilial}) {
-
-  const [options, setOptions] = useState([])
+function MainDropdown({ setRegion, setDistrict, setPostFilial }) {
+  const [options, setOptions] = useState([]);
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
   const [selectedIndex, setSelectedIndex] = useState(1);
 
-
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
-    setRegion(options[index])
-    setDistrict('')
-    setPostFilial('')
+    setRegion(options[index]);
+    setDistrict("");
+    setPostFilial("");
     setOpen(false);
   };
 
@@ -39,15 +37,15 @@ function MainDropdown({setRegion, setDistrict, setPostFilial}) {
   };
 
   useEffect(() => {
-    const fetchData = async() => {
+    const fetchData = async () => {
       const res = await getAllRegions();
-      if(res.success) {
-        setOptions(res.data)
+      if (res.success) {
+        setOptions(res.data);
       }
-    }
+    };
 
-   fetchData();
-  }, [])
+    fetchData();
+  }, []);
 
   return (
     <React.Fragment>
@@ -56,15 +54,13 @@ function MainDropdown({setRegion, setDistrict, setPostFilial}) {
         ref={anchorRef}
         aria-label="Button group with a nested menu"
       >
-        
         <Button
           size="small"
-          aria-controls={open ? 'split-button-menu' : undefined}
-          aria-expanded={open ? 'true' : undefined}
+          aria-controls={open ? "split-button-menu" : undefined}
+          aria-expanded={open ? "true" : undefined}
           aria-label="select merge strategy"
           aria-haspopup="menu"
           onClick={handleToggle}
-          
         >
           <ArrowDropDownIcon />
         </Button>
@@ -84,7 +80,7 @@ function MainDropdown({setRegion, setDistrict, setPostFilial}) {
             {...TransitionProps}
             style={{
               transformOrigin:
-                placement === 'bottom' ? 'center top' : 'center bottom',
+                placement === "bottom" ? "center top" : "center bottom",
             }}
           >
             <Paper>
@@ -109,4 +105,4 @@ function MainDropdown({setRegion, setDistrict, setPostFilial}) {
   );
 }
 
-export default MainDropdown
+export default MainDropdown;

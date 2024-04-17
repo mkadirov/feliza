@@ -14,7 +14,8 @@ function Product() {
     const {id} = useParams();
     const [item, setItem] = useState('')
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
-    const {addToBasket, addToLastSeenList, likedList, changeLikedList, user, setIsLoginPageOpen, isUzbek} = useContext(MyContext);
+    const {addToBasket, addToLastSeenList, likedList, changeLikedList, 
+          user, setIsLoginPageOpen, isUzbek} = useContext(MyContext);
     const [products, setProducts] = useState([])
     const [isLiked, setIsLiked] = useState(false);
     const [isSale, setIsSale] = useState(false)
@@ -44,7 +45,7 @@ function Product() {
           if(res.data.sale > 0) {
             setIsSale(true)
           }
-          addToLastSeenList(res.data.id)
+          addToLastSeenList(res.data)
           window.scrollTo({  
             top: 0,
             behavior: "smooth" // Optional: adds smooth scrolling effect

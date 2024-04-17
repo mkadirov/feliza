@@ -27,14 +27,14 @@ function MyOrders() {
         const date = new Date(order?.createdAt);
         const formattedDate = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
         return (
-        <Box key={order.id}>
+        <Box key={order.orderId}>
             <Box sx={{paddingY: 2, backgroundColor: '#ffcdd2'}}>
                 <Box display={"flex"} justifyContent={"space-around"} gap={2} >
                     <Typography fontSize={12}>
                         {formattedDate}
                     </Typography>
                     <Typography fontSize={12}>
-                       Nr: {order.id}
+                       Nr: {order.orderId}
                     </Typography>
                     <Typography fontSize={12}>
                        {order.orderCost} so'm
@@ -45,7 +45,7 @@ function MyOrders() {
                     <Grid item xs = {7}>
                         <Button variant="contained" size="small" fullWidth sx={{backgroundColor: 'black', 
                         color: 'white',  marginTop: 1}}
-                        onClick={() => navigate(`/order/${order.id}`)}
+                        onClick={() => navigate(`/order/${order.orderId}`)}
                     >
                             Batafsil ma'lumot
                         </Button>
@@ -67,7 +67,7 @@ function MyOrders() {
             <Grid item xs={8}>
               <Box sx={{ height: "200px", paddingY: 1 }} className="main-box">
                 <Box id="slider" className="look-slider">
-                  {order?.orderDetails?.map((item) => {
+                  {order?.orderDetailDtos?.map((item) => {
                     return (
                       <Box
                         className="scrollable-content"
@@ -79,7 +79,7 @@ function MyOrders() {
                         }}
                       >
                         {/* <Link to={`/products/${item.id}`}> */}
-                          <img src={''} alt="" />
+                          <img src={item.productImages[0]?.url} alt="" />
                         {/* </Link> */}
                       </Box>
                     );
