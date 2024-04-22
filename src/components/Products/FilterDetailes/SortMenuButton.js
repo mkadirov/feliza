@@ -4,7 +4,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
 
-function SortMenuButton() {
+function SortMenuButton({setSortType}) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -15,6 +15,12 @@ function SortMenuButton() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleSortBtn = (value) => {
+    setSortType(value);
+    setAnchorEl(null);
+    
+  }
 
   return (
     <div>
@@ -40,10 +46,11 @@ function SortMenuButton() {
           'aria-labelledby': 'basic-button',
         }}
         >
-        <MenuItem onClick={handleClose}>Eng arzon narxlar</MenuItem>
-        <MenuItem onClick={handleClose}>Eng baland narxlar</MenuItem>
-        <MenuItem onClick={handleClose}>Eng yangi mahsulotlar</MenuItem>
+        <MenuItem onClick={()=> handleSortBtn('asc')}>Eng arzon narxlar</MenuItem>
+        <MenuItem onClick={()=> handleSortBtn('desc')}>Eng baland narxlar</MenuItem>
+        <MenuItem onClick={()=> handleSortBtn('createdAtAsc')}>Eng yangi mahsulotlar</MenuItem>
       </Menu>
+      
     </div>
   );
 }

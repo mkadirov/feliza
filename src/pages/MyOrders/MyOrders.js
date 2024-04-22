@@ -5,6 +5,7 @@ import { useContext } from "react";
 import MyContext from "../../components/Context/MyContext";
 import { getOrdersByCustomerId } from "../../api/Order";
 import {useNavigate} from 'react-router-dom'
+import boxIcon from "../../assets/icons/empty.png";
 
 function MyOrders() {
   const [orderList, setOrderList] = useState([]);
@@ -93,6 +94,28 @@ function MyOrders() {
         </Box>
         );
       })}
+
+      {orderList.length == 0 && (
+        <Box marginTop={12}>
+          <Grid
+            container
+            spacing={2}
+            display={"flex"}
+            textAlign={"center"}
+            justifyContent={"center"}
+          >
+            <Grid item xs={7}>
+              <Box sx={{ width: "50%", margin: "auto" }}>
+                <img src={boxIcon} alt="" />
+              </Box>
+              <Typography>
+                Hozircha sizda  buyurtmalar  mavjud emas
+              </Typography>
+            </Grid>
+          </Grid>
+        </Box>
+      )}
+
     </Box>
   );
 }

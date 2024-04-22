@@ -16,9 +16,14 @@ const getAllProduct = async() => {
     }
 }
 
-const getProductListByCategoryID = async(id) => {
+const getProductListByCategoryID = async(id, page) => {
     try {
-        const res = await axios.get(baseURL + '/getProductByCategoryId/' + id);
+        const res = await axios.get(baseURL + '/getProductByCategoryId/' + id, {
+            params: {
+                page: page,
+                size: 5
+            }
+        });
         if(res.status == 200) {
             return {success: true, data: res.data}
         } else {
@@ -58,14 +63,22 @@ const getProductsByRefNumber = async(refNumber) => {
 }
 
 
-const getFilteredProducts = async (filterRequest, pageable) => {
+const getFilteredProducts = async (filterRequest, page) => {
+    const queryParams = new URLSearchParams({
+        page: page,
+        size: 7,
+        colorIds: filterRequest?.colorIds.join(','),
+        brandIds: filterRequest?.brandIds.join(','),
+        sizeIds: filterRequest?.sizes.join(','), 
+        categoryId: filterRequest?.categoryId,
+        maxPrice: filterRequest?.maxPrice,
+        minPrice: filterRequest?.minPrice,
+        categorySale: filterRequest?.categorySale,
+        sortType: filterRequest?.sortType,
+        sortBy: 'sellPrice'
+      });
     try {
-        const res = await axios.post(baseURL + '/filterAndSortProducts', filterRequest, {
-            params: {
-                page: 1, // Change this according to the desired page
-                size: 10, // Change this according to the desired page size
-            }
-        });
+        const res = await axios.get(`https://felizabackend.de/api/product/filterAndSortProducts?${queryParams}`);
         
         if (res.status === 200) {
             return { success: true, data: res.data, message: 'Success'};

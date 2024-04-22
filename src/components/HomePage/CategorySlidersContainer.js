@@ -18,11 +18,11 @@ function CategorySlidersContainer({ categoryId }) {
   useEffect(() => {
     const fetchData = async () => {
       const res = await getProductListByCategoryID(categoryId);
-      if (res.success) {
-        if (res.data.length > 10) {
-          setList(res.data.slice(4, 13));
+      if (res?.success) {
+        if (res.data.content.length > 10) {
+          setList(res.data.content.slice(4, 13));
         } else {
-          setList(res.data);
+          setList(res.data.content);
         }
       }
     };

@@ -28,6 +28,10 @@ function MainFooter() {
     }
   };
 
+  const linkToMedia = (link) => {
+    window.open(link, "_blank");
+  };
+
   return (
     <Box marginTop={5} sx={{ boxShadow: "inset 0 0.5px 0 black" }}>
       <Box align={"center"} paddingTop={2}>
@@ -77,19 +81,41 @@ function MainFooter() {
       </Box>
 
       <Box display={"flex"} justifyContent={"center"} gap={2} marginTop={2}>
-        <Box sx={{ width: "30px", height: "30px" }}>
+        <Box
+          sx={{ width: "30px", height: "30px" }}
+          onClick={() =>
+            linkToMedia("https://www.facebook.com/profile.php?id=100076425653712")
+          }
+        >
           <img src={facebookIcon} alt="" />
         </Box>
-        <Box sx={{ width: "30px", height: "30px" }}>
+        <Box
+          sx={{ width: "30px", height: "30px" }}
+          onClick={() =>
+            linkToMedia("https://www.instagram.com/feliza_uz/reels/")
+          }
+        >
           <img src={instagramIcon} alt="" />
         </Box>
-        <Box sx={{ width: "30px", height: "30px" }}>
+        <Box
+          sx={{ width: "30px", height: "30px" }}
+        >
           <img src={tiktokIcon} alt="" />
         </Box>
-        <Box sx={{ width: "30px", height: "30px" }}>
+        <Box
+          sx={{ width: "30px", height: "30px" }}
+          onClick={() =>
+            linkToMedia("https://t.me/feliza_uz")
+          }
+        >
           <img src={telegramIcon} alt="" />
         </Box>
-        <Box sx={{ width: "30px", height: "30px" }}>
+        <Box
+          sx={{ width: "30px", height: "30px" }}
+          onClick={() =>
+            linkToMedia("https://www.youtube.com/@feliza_uz6743/featured")
+          }
+        >
           <img src={youtubeIcon} alt="" />
         </Box>
       </Box>
