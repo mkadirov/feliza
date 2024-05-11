@@ -10,6 +10,7 @@ import StatusIcons from "../../components/Order/StatusIcons";
 function Order() {
   const [order, setOrder] = useState("");
   const { id } = useParams();
+  const [test, setTest] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {

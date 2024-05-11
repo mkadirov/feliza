@@ -65,7 +65,7 @@ const getProductsByRefNumber = async(refNumber) => {
 
 const getFilteredProducts = async (filterRequest, page) => {
     const queryParams = new URLSearchParams({
-        page: page,
+        page: 1,
         size: 7,
         colorIds: filterRequest?.colorIds.join(','),
         brandIds: filterRequest?.brandIds.join(','),
